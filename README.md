@@ -1,11 +1,4 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
-
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+# Vegan Playlist
 
 ## About Laravel
 
@@ -27,45 +20,56 @@ Laravel has the most extensive and thorough [documentation](https://laravel.com/
 
 If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost you and your team's skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
+## Set Up
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+### Linux/Ubuntu
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
+Step 1. Clone the repository.
 
-## Contributing
+Step 2. Install php and required extensions:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```console
+$ sudo apt-get install php7.2-dom php7.2-zip php7.2-mbstring php7.2-zip
+```
 
-## Security Vulnerabilities
+Step 3: Install composer:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Follow the instructions at [getcomposer.org](https://getcomposer.org/download/).
+
+Step 4. Install local dependencies:
+
+```console
+$ php composer.phar install
+```
+
+Step 5. Configure laravel:
+
+```console
+$ cp .env.example .env
+$ # make any necessary changes to .env, e.g. database info
+$ php artisan key:generate
+```
+
+Step 6. Small fix to run the development server (in `server.php`)
+
+```php
+// replace the final line with this
+require_once __DIR__.'/public/index.php';
+```
+
+Note: do not commit this change! The current code is required as a hack for the hosting situation.
+
+Step 7. Run the development server:
+
+```console
+$ php artisan serve
+Laravel development server started: <http://127.0.0.1:8000>
+```
+
+Navigate to [localhost](http://127.0.0.1:8000) and get started!
+
+Note: you may also configure the local site to run using Apache or nginx.
 
 ## License
 
-The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+All rights reserved.
