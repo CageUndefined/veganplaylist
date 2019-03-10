@@ -1,5 +1,7 @@
-@extends('layouts.main')
+@extends('layouts.app')
 
 @section('content')
-    Look at all these cute animals... You monster!
+    <div class="container">
+        Look at all these cute animals... You monster!
+    </div>
 @endsection
