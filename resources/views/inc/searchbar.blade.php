@@ -1,17 +1,3 @@
-<style type="text/css">
-/* move this to css file */
-#sidebar {
-    width: 250px;
-    position: fixed;
-    padding-left: 30px;
-    padding-top: 20px;
-    left: 0;
-}
-#short_url_input {
-    width: 95%;
-}
-</style>
-
 <div class="wrapper" id="sidebar">
     <form>
         <div class="form-group">
