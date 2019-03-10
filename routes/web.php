@@ -16,7 +16,21 @@ Route::get('/', function () {
 });
 
 Route::get('/viewer', function () {
-        return view('viewer');
+
+	// Really this should be passing a playlist and a position in it, and
+	// it wouldn't be hard-coded.
+
+	$id = "1igmzkmTv6U";
+
+	$video = [
+		"id" => $id,
+		"title" => "You Are Lisa Simpson",
+		"aspectRatio" => "4by3",
+		"length" => 109,
+		"src" => "https://invidio.us/embed/".$id
+	];
+
+	return view('viewer', ["video" =>  $video]);
 });
 
 Auth::routes();
