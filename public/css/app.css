@@ -10692,3 +10692,17 @@ a.text-dark:focus {
   border: 0;
 }
 
+.playlist-scroller {
+  max-width: 100%;
+  overflow-y: auto;
+}
+
+.playlist-scroller__item {
+  width: 100px;
+  display: inline-block;
+}
+
+.playlist-scroller__item--active {
+  border: 2px solid green;
+}
+

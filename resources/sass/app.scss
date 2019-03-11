@@ -46,3 +46,17 @@
 		border: 0;
 	}
 }
+
+.playlist-scroller {
+	max-width: 100%;
+	overflow-y: auto;
+
+	&__item {
+		width: 100px;
+		display: inline-block;
+
+		&--active {
+			border: 2px solid green;
+		}
+	}
+}
