@@ -4,7 +4,7 @@
 $totalVideos = count($videos);
 $previousVideo = $index > 0 ? $videos[$index - 1] : null;
 $nextVideo = $index < ($totalVideos - 1) ? $videos[$index + 1] : null;
-$currentVideo = $videos[$index];
+$currentVideo = $videos[$index != null ? $index : 0];
 ?>
 
 @section('content')
