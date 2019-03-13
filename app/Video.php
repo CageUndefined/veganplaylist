@@ -4,21 +4,38 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Video extends Model
-{
-    public function getThumbnailSrcAttribute() {
-    	return "https://img.youtube.com/vi/".$this['service_video_id']."/hqdefault.jpg";
-    }
+class Video extends Model {
+	public function getThumbnailSrcAttribute() {
 
-    public function getEmbedSrcAttribute() {
-    	return "https://invidio.us/embed/".$this['service_video_id'];
-    }
+		switch ($this['service']) {
+		case 'y':
+			return "https://img.youtube.com/vi/" . $this['service_video_id'] . "/hqdefault.jpg";
+		case 'v':
+			$url = 'https://vimeo.com/api/oembed.json?url=https://vimeo.com/';
+			$json = json_decode(file_get_contents($url . $this['service_video_id']));
+			return $json->thumbnail_url;
+		default:
+			throw new Exception("Service char out of range: '" . $this['service'] . "'..!", 1);
+		}
+	}
 
-    public function getAspectRatioAttribute() {
-    	return $this['widescreen'] ? '16by9' : '4by3';
-    }
+	public function getEmbedSrcAttribute() {
 
-    public function getPathAttribute() {
-    	return "/viewer/".($this['id'] - 1);
-    }
+		switch ($this['service']) {
+		case 'y':
+			return "https://invidio.us/embed/" . $this['service_video_id'];
+		case 'v':
+			return "https://player.vimeo.com/video/" . $this['service_video_id'];
+		default:
+			throw new Exception("Service char out of range: '" . $this['service'] . "'..!", 1);
+		}
+	}
+
+	public function getAspectRatioAttribute() {
+		return $this['widescreen'] ? '16by9' : '4by3';
+	}
+
+	public function getPathAttribute() {
+		return "/viewer/" . ($this['id'] - 1);
+	}
 }
