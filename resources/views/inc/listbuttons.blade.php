@@ -1,4 +1,5 @@
 <div class="container">
-    <button type="button" class="btn btn-primary">Copy</button>
-    <button type="button" class="btn btn-primary">share</button>
+    <a href="#" class="btn btn-primary">Copy</a>
+    <a href="#" class="btn btn-primary">Share</a>
+    <a href="/viewer" class="btn btn-primary">View</a>
 </div>

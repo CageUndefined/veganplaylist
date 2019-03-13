@@ -5,7 +5,6 @@
     <div class="container">
         <div class="container">
             <div class="card">
-                <div class="card-header">Dashboard</div>
                 <div class="card-body">
                     @guest
                         Welcome, Guest! Please convert to veganism.<br/>
@@ -21,29 +20,12 @@
                 </div>
             </div>
             <br><br>
-            <div class="row">
-                <div class="col-sm">
-                    @include('playlist')
-                </div>
-                <div class="col-sm">
-                    @include('playlist')
-                </div>
-                <div class="col-sm">
-                    @include('playlist')
-                </div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-sm">
-
-                </div>
-                <div class="col-sm">
-
-                </div>
-                <div class="col-sm">
-                    @include('playlist')
-                </div>
-            </div>
+            <div class="card-columns">
+                @include('playlist', [ 'item_count' => 4 ])
+                @include('playlist', [ 'item_count' => 7 ])
+                @include('playlist', [ 'item_count' => 3 ])
+                @include('playlist', [ 'item_count' => 4 ])
+                @include('playlist', [ 'item_count' => 5 ])
         </div>
     </div>
 @endsection
