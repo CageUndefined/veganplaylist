@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class SeedVideos extends Migration {
+class SeedVideos2 extends Migration {
 	/**
 	 * Run the migrations.
 	 *
