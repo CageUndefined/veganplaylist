@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+
 
 class UserSettingsController extends Controller
 {
@@ -39,7 +43,47 @@ class UserSettingsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = Auth::user();
+
+        // Make the changes to the user for the given fields, validating piece-meal
+
+        if (!empty($request->input('name'))) {
+            Validator::make($request->all(), [
+                'name' => ['string', 'max:255']
+            ])->validate();
+
+            $user->name = $request->input('name');
+        }
+
+        if (!empty($request->input('email'))) {
+            // If the user attempts to change their email address, make sure that the target email is not already taken.
+
+            if ($user->email != $request->input('email')) {
+                Validator::make($request->all(), [
+                    'email' => ['string', 'email', 'max:255', 'unique:users'],
+                ])->validate();
+            } else {
+                Validator::make($request->all(), [
+                    'email' => ['string', 'email', 'max:255'],
+                ])->validate();
+            }
+
+            $user->email = $request->input('email');
+        }
+
+        if (!empty($request->input('password'))) {
+            Validator::make($request->all(), [
+                'password' => ['string', 'min:8', 'confirmed'],
+            ])->validate();
+
+            $user->password = Hash::make($request->input('password'));
+        }
+
+        $user->save();
+
+        $request->session()->flash('alert-success', 'Account updated.');
+
+        return $this->index();
     }
 
     /**
