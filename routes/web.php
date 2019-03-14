@@ -12,18 +12,23 @@
  */
 
 Route::get('/', function () {
-	return view('home');
+    return view('home');
 });
 
 Route::get('viewer/{index?}', function ($index = null) {
 
-	$videos = App\Video::whereIn('id', array(1, 2, 3, 4))->get();
+    $videos = App\Video::whereIn('id', array(1, 2, 3, 4))->get();
 
-	return view('viewer', ["videos" => $videos, "index" => $index]);
+    return view('viewer', ["videos" => $videos, "index" => $index]);
 })
-	->where(['index' => '[0-9]?'])
-	->name('viewer');
+    ->where(['index' => '[0-9]?'])
+    ->name('viewer');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/user/settings', function () {
+    return view('settings');
+})
+    ->name('settings');
