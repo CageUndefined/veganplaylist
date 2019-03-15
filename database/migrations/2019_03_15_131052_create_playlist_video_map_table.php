@@ -19,6 +19,9 @@ class CreatePlaylistVideoMapTable extends Migration
 
             $table->unsignedBigInteger('video_id');
             $table->foreign('video_id')->references('id')->on('videos');
+
+            $table->bigInteger('views')->default(0);
+            $table->integer('order');
         });
     }
 

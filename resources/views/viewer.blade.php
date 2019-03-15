@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @php
+$videos = $playlist->videos;
 $totalVideos = count($videos);
 $previousVideo = $index > 0 ? $videos[$index - 1] : null;
 $nextVideo = $index < ($totalVideos - 1) ? $videos[$index + 1] : null;
@@ -12,6 +13,8 @@ $currentVideo = $videos[$index != null ? $index : 0];
     	<div class="row mb-1">
     		<div class="col-md-9">
 				{{ $playlist->name }}
+				<br>
+				Created by {{ $playlist->creator->name }}
 			</div>
     		<div class="col-md-3">PLAYLIST STATS</div>
     	</div>

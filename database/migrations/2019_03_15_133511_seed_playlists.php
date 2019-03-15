@@ -28,6 +28,22 @@ class SeedPlaylists extends Migration
         $playlist->creator_id = $user->id;
 
         $playlist->save();
+
+        $videos = App\Video::whereIn('id', array(1, 2, 3, 4))->get();
+
+        $order = 0;
+
+        foreach ($videos as $video) {
+            DB::table('playlist_video_map')->insert(
+                array(
+                    array(
+                        'playlist_id' => $playlist->id,
+                        'video_id' => $video->id,
+                        'order' => $order++
+                    )
+                )
+            );
+        }
     }
 
     /**
