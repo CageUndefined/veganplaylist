@@ -1,16 +1,18 @@
 @extends('layouts.app')
 
-<?php
+@php
 $totalVideos = count($videos);
 $previousVideo = $index > 0 ? $videos[$index - 1] : null;
 $nextVideo = $index < ($totalVideos - 1) ? $videos[$index + 1] : null;
 $currentVideo = $videos[$index != null ? $index : 0];
-?>
+@endphp
 
 @section('content')
     <div class="container">
     	<div class="row mb-1">
-    		<div class="col-md-9">Look at all these cute animals... You monster!</div>
+    		<div class="col-md-9">
+				{{ $playlist->name }}
+			</div>
     		<div class="col-md-3">PLAYLIST STATS</div>
     	</div>
     	<div class="row mb-2">

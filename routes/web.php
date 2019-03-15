@@ -17,9 +17,11 @@ Route::get('/', function () {
 
 Route::get('viewer/{index?}', function ($index = null) {
 
+    $playlist = App\Playlist::find(1);
+
     $videos = App\Video::whereIn('id', array(1, 2, 3, 4))->get();
 
-    return view('viewer', ["videos" => $videos, "index" => $index]);
+    return view('viewer', ["videos" => $videos, "index" => $index, "playlist" => $playlist]);
 })
     ->where(['index' => '[0-9]?'])
     ->name('viewer');
