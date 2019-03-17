@@ -1,5 +1,5 @@
 
-<nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark navbar-laravel">
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
             {{ config('app.name', 'Laravel') }}
@@ -16,6 +16,18 @@
 
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contact">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://www.patreon.com/youaretheirvoice">Donate</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"> </a>
+                </li>
                 <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">

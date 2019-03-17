@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('viewer/{index?}', function ($index = null) {
-    
+
     $playlist = App\Playlist::find(1);
 
     return view('viewer', ["index" => $index, "playlist" => $playlist]);
@@ -28,10 +28,13 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('settings', 'UserSettingsController');
+Route::resources([
+    'settings' => 'UserSettingsController',
+    'playlist' => 'PlaylistController'
+]);
 
 if( config('app.debug') ) {
-	
+
 	//Clear Cache facade value:
 	Route::get('/clear-cache', function() {
 		$exitCode = Artisan::call('cache:clear');

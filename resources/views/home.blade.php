@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('inc.searchbar')
     <div class="container">
         <div class="container">
             <div class="card">
@@ -21,11 +20,11 @@
             </div>
             <br><br>
             <div class="card-columns">
-                @include('playlist', [ 'item_count' => 4 ])
-                @include('playlist', [ 'item_count' => 7 ])
-                @include('playlist', [ 'item_count' => 3 ])
-                @include('playlist', [ 'item_count' => 4 ])
-                @include('playlist', [ 'item_count' => 5 ])
+                @include('playlistcard', [ 'item_count' => 4 ])
+                @include('playlistcard', [ 'item_count' => 7 ])
+                @include('playlistcard', [ 'item_count' => 3 ])
+                @include('playlistcard', [ 'item_count' => 4 ])
+                @include('playlistcard', [ 'item_count' => 5 ])
         </div>
     </div>
 @endsection

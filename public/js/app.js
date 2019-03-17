@@ -1784,6 +1784,24 @@ __webpack_require__.r(__webpack_exports__);
     console.log('Component mounted.');
   }
 });
+$(function () {
+  $('#name_input').keyup(function () {
+    var name = $(this).val();
+    console.log(name);
+    return true;
+    $.ajax({
+      url: '/search/name/' + name,
+      method: 'GET',
+      success: function success(resp) {
+        console.log('success!');
+        console.log(resp);
+      },
+      complete: function complete(resp) {
+        console.log('complete');
+      }
+    });
+  });
+});
 
 /***/ }),
 
@@ -49148,8 +49166,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/alex/github/veganplaylist/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/alex/github/veganplaylist/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/kboren/src/veganplaylist/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/kboren/src/veganplaylist/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
