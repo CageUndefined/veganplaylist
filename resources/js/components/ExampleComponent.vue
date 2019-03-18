@@ -20,23 +20,4 @@
             console.log('Component mounted.')
         }
     }
-    $(function() {
-        $('#name_input').keyup(function(){
-            var name = $(this).val();
-            console.log( name );
-            return true;
-            $.ajax({
-                url: '/search/name/' + name,
-                method: 'GET',
-                success: function (resp) {
-                    console.log('success!');
-                    console.log(resp);
-                },
-                complete: function (resp) {
-                    console.log('complete');
-                }
-            });
-
-        });
-    });
 </script>

@@ -16,29 +16,61 @@ class SeedTagsTable extends Migration
         DB::table('tags')->insert(
             array(
                 array(
-                    'name' => 'Health'
-                ), 
+                    'name' => 'Ethics',
+                    'color' => 'primary'
+                ),
                 array(
-                    'name' => 'Environmental'
-                ), 
+                    'name' => 'Humor',
+                    'color' => 'secondary'
+                ),
                 array(
-                    'name' => 'Cruelty'
-                ), 
+                    'name' => 'Environment',
+                    'color' => 'success'
+                ),
                 array(
-                    'name' => 'Graphic'
-                ), 
+                    'name'  => 'Health',
+                    'color' => 'danger'
+                ),
                 array(
-                    'name' => 'Ethics'
-                ), 
+                    'name' => 'Inspiring',
+                    'color' => 'primary'
+                ),
                 array(
-                    'name' => 'Philosophy'
-                ), 
+                    'name' => 'Documentary',
+                    'color' => 'warning'
+                ),
                 array(
-                    'name' => 'Humor'
-                ), 
+                    'name' => 'Information',
+                    'color' => 'info'
+                ),
                 array(
-                    'name' => 'Activism'
-                ) 
+                    'name' => 'Fitness',
+                    'color' => 'fitness'
+                ),
+                array(
+                    'name' => 'Activism',
+                    'color' => 'dark'
+                ),
+                array(
+                    'name' => 'Speech',
+                    'color' => 'light'
+                ),
+                array(
+                    'name' => 'Music',
+                    'color' => 'warning'
+                ),
+                array(
+                    'name' => 'Recipes',
+                    'color' => 'danger'
+                ),
+                array(
+                    'name' => 'Science',
+                    'color' => 'secondary'
+                ),
+                array(
+                    'name' => 'Philosophy',
+                    'color' => 'light'
+                )
             )
         );
     }
@@ -50,6 +82,6 @@ class SeedTagsTable extends Migration
      */
     public function down()
     {
-        
+
     }
 }

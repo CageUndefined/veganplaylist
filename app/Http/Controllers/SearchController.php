@@ -8,8 +8,8 @@ use App\Search;
 class SearchController extends Controller
 {
 
-    public function search( $tags = '' ) {
-        
+    public function search_tags( $tags = '' ) {
+
         if( empty( $tags ) )
             $tags = [];
         else
@@ -20,4 +20,11 @@ class SearchController extends Controller
 
     }
 
+    public function search_name( $name = '' ) {
+        $test = [
+            'results' => [],
+            'name'    => $name
+        ];
+        return response()->json( $test, 200 );
+    }
 }
