@@ -36,51 +36,9 @@ Route::resources([
 if( config('app.debug') ) {
 	
 	//Clear Cache facade value:
-	Route::get('/clear-cache', function() {
-		$exitCode = Artisan::call('cache:clear');
-		return '<h1>Cache facade value cleared</h1><pre>' . Artisan::output() . '</pre>';
-	});
+	Route::get('/artisan/{cmd}', function( $cmd ) {
+		$exitCode = Artisan::call( $cmd );
+		return "<h1>Executed 'artisan $cmd'</h1><pre>" . Artisan::output() . '</pre>';
+	})->where( 'cmd', '[a-z]+(:[a-z]+)?' );
 
-	//Reoptimized class loader:
-	Route::get('/optimize', function() {
-		$exitCode = Artisan::call('optimize');
-		return '<h1>Reoptimized class loader</h1><pre>' . Artisan::output() . '</pre>';
-	});
-
-	//Route cache:
-	Route::get('/route-cache', function() {
-		$exitCode = Artisan::call('route:cache');
-		return '<h1>Routes cached</h1><pre>' . Artisan::output() . '</pre>';
-	});
-
-	//Clear Route cache:
-	Route::get('/route-clear', function() {
-		$exitCode = Artisan::call('route:clear');
-		return '<h1>Route cache cleared</h1><pre>' . Artisan::output() . '</pre>';
-	});
-
-	//Clear View cache:
-	Route::get('/view-clear', function() {
-		$exitCode = Artisan::call('view:clear');
-		return '<h1>View cache cleared</h1><pre>' . Artisan::output() . '</pre>';
-	});
-
-	//Clear Config cache:
-	Route::get('/config-cache', function() {
-		$exitCode = Artisan::call('config:cache');
-		return '<h1>Config cache cleared</h1><pre>' . Artisan::output() . '</pre>';
-	});
-	
-	//Migrate database
-	Route::get('/migrate', function() {
-		$exitCode = Artisan::call('migrate');
-		return '<h1>Database migrated</h1><pre>' . Artisan::output() . '</pre>';
-	});
-		
-	//Reset and migrate database
-	Route::get('/migrate-fresh', function() {
-		$exitCode = Artisan::call('migrate:fresh');
-		return '<h1>Database reset and migrated</h1><pre>' . Artisan::output() . '</pre>';
-	});
-	
 }
