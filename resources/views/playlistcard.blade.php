@@ -1,9 +1,3 @@
-@php
-
-    $playlist_id = 1;
-    $playlist = App\Playlist::find( $playlist_id );
-    
-@endphp
 <div class="card">
     <div class="card-header text-center">
               @include('inc.listbuttons')

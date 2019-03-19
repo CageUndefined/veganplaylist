@@ -1,3 +1,7 @@
+@php    
+    $playlists = App\Playlist::where( 'featured', true )->get();
+@endphp
+
 @extends('layouts.app')
 
 @section('content')
@@ -12,11 +16,9 @@
         </div>
         <br><br>
         <div class="card-columns">
-            @include('playlistcard', [ 'item_count' => 4 ])
-            @include('playlistcard', [ 'item_count' => 7 ])
-            @include('playlistcard', [ 'item_count' => 3 ])
-            @include('playlistcard', [ 'item_count' => 4 ])
-            @include('playlistcard', [ 'item_count' => 5 ])
+           @foreach( $playlists as $playlist )
+             @include('playlistcard')
+           @endforeach
         </div>
     </div>
 @endsection
