@@ -26,7 +26,7 @@ class SeedPlaylists extends Migration
 
         $playlist->name = 'The Best Playlist In The World';
         $playlist->creator_id = $user->id;
-
+        $playlist->featured = true;
         $playlist->save();
 
         $videos = App\Video::whereIn('id', array(1, 2, 3, 4))->get();

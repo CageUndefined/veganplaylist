@@ -14,8 +14,13 @@ class CreateVideoTagMapTable extends Migration
     public function up()
     {
         Schema::create('video_tag_map', function (Blueprint $table) {
+
             $table->unsignedBigInteger('video_id');
+            $table->foreign('video_id')->references('id')->on('videos');
+            
             $table->unsignedTinyInteger('tag_id');
+            $table->foreign('tag_id')->references('id')->on('tags');
+
         });
     }
 

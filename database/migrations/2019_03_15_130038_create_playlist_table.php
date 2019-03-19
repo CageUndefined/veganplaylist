@@ -19,7 +19,7 @@ class CreatePlaylistTable extends Migration
 
             $table->unsignedBigInteger('creator_id');
             $table->foreign('creator_id')->references('id')->on('users');
-
+            $table->boolean( 'featured' )->default( false );            
             $table->timestamps();
         });
     }
