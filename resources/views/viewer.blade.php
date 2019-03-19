@@ -2,11 +2,16 @@
 
 @php
 $videos = $playlist->videos;
-$index = $videos->search( function( $item, $key ) use( $video ) { return $item->id == $video->id; } );
+if( is_null( $video ) ) {
+    $index = 0;
+    $currentVideo = $videos[0];
+} else {
+    $index = $videos->search( function( $item, $key ) use( $video ) { return $item->id == $video->id; } );
+    $currentVideo = $video;
+}
 $totalVideos = count($videos);
 $previousVideo = $index > 0 ? $videos[$index - 1] : null;
 $nextVideo = $index < ($totalVideos - 1) ? $videos[$index + 1] : null;
-$currentVideo = $video;
 @endphp
 
 @section('content')
