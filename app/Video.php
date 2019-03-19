@@ -35,7 +35,8 @@ class Video extends Model {
 		return $this['widescreen'] ? '16by9' : '4by3';
 	}
 
-	public function getPathAttribute() {
-		return "/viewer/" . ($this['id'] - 1);
-	}
+    public function getTime()
+    {
+        return sprintf( "%d:%02d", $this->length / 60, $this->length % 60 );
+    }
 }

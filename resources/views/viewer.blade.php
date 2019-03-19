@@ -2,10 +2,11 @@
 
 @php
 $videos = $playlist->videos;
+$index = $videos->search( function( $item, $key ) use( $video ) { return $item->id == $video->id; } );
 $totalVideos = count($videos);
 $previousVideo = $index > 0 ? $videos[$index - 1] : null;
 $nextVideo = $index < ($totalVideos - 1) ? $videos[$index + 1] : null;
-$currentVideo = $videos[$index != null ? $index : 0];
+$currentVideo = $video;
 @endphp
 
 @section('content')
@@ -35,7 +36,7 @@ $currentVideo = $videos[$index != null ? $index : 0];
     	</div>
     	<div class="playlist-scroller">
     		@if ($previousVideo)
-    			<a href="{{ $previousVideo["path"] }}" class="playlist-scroller__nav--previous">Prev</a>
+    			<a href="{{ route( 'playlist.video.show', [ $playlist, $previousVideo ] ) }}" class="playlist-scroller__nav--previous">Prev</a>
     		@else
     			<a href="#" class="playlist-scroller__nav--previous playlist-scroller__nav--disabled">Prev</a>
     		@endif
@@ -45,7 +46,7 @@ $currentVideo = $videos[$index != null ? $index : 0];
 				<?php $i++ ?>
 			@endforeach
     		@if ($nextVideo)
-    			<a href="{{ $nextVideo["path"] }}" class="playlist-scroller__nav--next">Next</a>
+    			<a href="{{ route( 'playlist.video.show', [ $playlist, $nextVideo ] ) }}" class="playlist-scroller__nav--next">Next</a>
     		@else
     			<a href="#" class="playlist-scroller__nav--next playlist-scroller__nav--disabled">Next</a>
     		@endif

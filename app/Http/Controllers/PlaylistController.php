@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Playlist;
+use App\Video;
 use App\Http\Resources\Playlist as PlaylistResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -11,7 +12,7 @@ class PlaylistController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
 
     /**
@@ -77,5 +78,11 @@ class PlaylistController extends Controller
     public function destroy(Playlist $playlist)
     {
         //
+    }
+
+    public function show(Playlist $playlist, Video $video = null ) {
+        
+        return view('viewer', ["video" => $video, "playlist" => $playlist]);
+
     }
 }
