@@ -45,7 +45,7 @@ class SeedTagsTable extends Migration
                 ),
                 array(
                     'name' => 'Fitness',
-                    'color' => 'fitness'
+                    'color' => 'success'
                 ),
                 array(
                     'name' => 'Activism',
