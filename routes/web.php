@@ -34,11 +34,20 @@ Route::resources([
 ]);
 
 if( config('app.debug') ) {
-	
+    
+    Route::get( '/artisan', function() {
+
+        Artisan::call( 'list' );
+        $output = strstr( Artisan::output(), 'Available commands:' );
+        $output = preg_replace( '/^  ?(([a-z]+:)?[a-z]+(-[a-z]+)?)/m', '<a href="artisan/\1">\1</a>', $output );
+        return "<h1>Artisan web interface</h1><pre>$output</pre>";
+
+    } );
+
 	//Clear Cache facade value:
-	Route::get('/artisan/{cmd}', function( $cmd ) {
+	Route::get( '/artisan/{cmd}', function( $cmd ) {
 		$exitCode = Artisan::call( $cmd );
 		return "<h1>Executed 'artisan $cmd'</h1><pre>" . Artisan::output() . '</pre>';
-	})->where( 'cmd', '[a-z]+(:[a-z]+)?' );
+	})->where( 'cmd', '([a-z]+:)?[a-z]+(-[a-z]+)?' );
 
 }
