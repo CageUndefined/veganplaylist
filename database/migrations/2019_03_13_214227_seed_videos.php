@@ -13,31 +13,38 @@ class SeedVideos extends Migration
      */
     public function up()
     {
-        DB::table('videos')->insert(
+
+        $videos = array(
             array(
-                array(
-                    'service' => 'y',
-                    'service_video_id' => '1igmzkmTv6U',
-                    'title' => 'You Are Lisa Simpson',
-                    'length' => 109,
-                    'widescreen' => false
-                ), 
-                array(
-                    'service' => 'y',
-                    'service_video_id' => 'Sczb1dnRXCY',
-                    'title' => 'Nelson Laughs at the Very Tall',
-                    'length' => 88,
-                    'widescreen' => true
-                ),
-                array(
-                    'service' => 'y',
-                    'service_video_id' => 'Ul6UcvNX4o8',
-                    'title' => 'I Sleep in a Racing Car!',
-                    'length' => 8,
-                    'widescreen' => false
-                )
+                'service' => 'y',
+                'service_video_id' => '1igmzkmTv6U',
+                'title' => 'You Are Lisa Simpson',
+                'length' => 109,
+                'widescreen' => false
+            ), 
+            array(
+                'service' => 'y',
+                'service_video_id' => 'Sczb1dnRXCY',
+                'title' => 'Nelson Laughs at the Very Tall',
+                'length' => 88,
+                'widescreen' => true
+            ),
+            array(
+                'service' => 'y',
+                'service_video_id' => 'Ul6UcvNX4o8',
+                'title' => 'I Sleep in a Racing Car!',
+                'length' => 8,
+                'widescreen' => false
             )
         );
+        
+        foreach( $videos as $entry ) {
+
+            $video = App\Video::create( $entry );
+            $video->save();
+
+        }
+
     }
 
     /**

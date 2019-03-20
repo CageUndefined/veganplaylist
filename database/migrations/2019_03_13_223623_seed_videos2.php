@@ -8,8 +8,10 @@ class SeedVideos2 extends Migration {
 	 *
 	 * @return void
 	 */
-	public function up() {
-		DB::table('videos')->insert(
+    public function up()
+    {
+
+        $videos = array(
 			array(
 				'service' => 'v',
 				'service_video_id' => '192022751',
@@ -17,8 +19,16 @@ class SeedVideos2 extends Migration {
 				'length' => 30,
 				'widescreen' => true,
 			)
-		);
-	}
+        );
+        
+        foreach( $videos as $entry ) {
+
+            $video = App\Video::create( $entry );
+            $video->save();
+
+        }
+
+    }
 
 	/**
 	 * Reverse the migrations.

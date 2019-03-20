@@ -18,4 +18,19 @@ class Playlist extends Model
     {
         return $this->belongsToMany('App\Video', 'playlist_video_map');
     }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::saving( function( $model ) {
+            $model->slug = str_slug( $model->name );
+        } );
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
 }
