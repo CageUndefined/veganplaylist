@@ -18,7 +18,7 @@ class CreateVideosTable extends Migration
             $table->char('service');
             $table->string('service_video_id');
             $table->string('title');
-            $table->string('slug');
+            $table->string('slug')->unique();
             $table->integer('length');
             $table->boolean('widescreen');
             $table->timestamps();
