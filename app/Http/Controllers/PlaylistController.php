@@ -30,8 +30,13 @@ class PlaylistController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create( $name = '' )
+    public function create( Request $request )
     {
+        if( $request->has( 'name' ) )
+            $name = $request->input( 'name' );
+        else
+            $name = '';
+
         return view('playlist', ['name' => $name ]);
     }
 
