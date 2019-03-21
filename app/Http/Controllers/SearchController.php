@@ -20,11 +20,12 @@ class SearchController extends Controller
 
     }
 
-    public function search_name( $name = '' ) {
-        $test = [
-            'results' => [],
-            'name'    => $name
-        ];
-        return response()->json( $test, 200 );
+    public function search_title( $title = '' ) {
+
+        $sanitized = preg_replace('/[^\w\s,:!.-]*/', '', $title);
+
+        $videos = Search::searchByTitle( $sanitized );
+
+        return response()->json( $videos, 200 );
     }
 }

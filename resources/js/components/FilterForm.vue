@@ -88,34 +88,22 @@
         methods: {
             searchName() {
                 const trimmedText = this.name_value.trim()
-                if (trimmedText) {
-                    console.log('Searching for videos with name like "'+trimmedText+'"');
-                    // ajax search by name call here
+                if (trimmedText && trimmedText.length && trimmedText.length > 2) {
+                    axios.get('/api/search/title/' + trimmedText)
+                        .then(function (response) {
+                            // handle success
+                            console.log(response);
+                        })
+                        .catch(function (error) {
+                            // handle error
+                            console.log(error);
+                        })
+                        .then(function () {
+                            // always executed
+                        });
                 }
             }
         }
     }
 
-    // might need something like this later
-    // $(function() {
-    //     $('#name_input').keyup(function(){
-    //         var name = $(this).val();
-    //         var data = { 'name' : name, 'csrf' : csrf };
-    //         console.log( name );
-    //         return true;
-    //         $.ajax({
-    //             url: '/api/search/name/' + name,
-    //             method: 'GET',
-    //             data: data,
-    //             success: function (resp) {
-    //                 console.log('success!');
-    //                 console.log(resp);
-    //             },
-    //             complete: function (resp) {
-    //                 console.log('complete');
-    //             }
-    //         });
-
-    //     });
-    // });
 </script>

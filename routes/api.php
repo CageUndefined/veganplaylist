@@ -19,4 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get( '/search', 'SearchController@search' );
 Route::get( '/search/tag/{tags}', 'SearchController@search_tags' );
-Route::get( '/search/name/{name}', 'SearchController@search_name' );
+Route::get( '/search/title/{name}', 'SearchController@search_title' );
