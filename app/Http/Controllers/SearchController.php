@@ -8,14 +8,14 @@ use App\Video;
 class SearchController extends Controller
 {
 
-    public function search( $name, $tags = false ) {
+    public function search( $title, $tags = false ) {
         
         if( empty( $tags ) )
             $tags = [];
         else
             $tags = explode( ',', $tags );
 
-        $query = Video::where( 'title', 'LIKE', "%$name%" );
+        $query = Video::where( 'title', 'LIKE', "%$title%" );
         
         foreach( $tags as $tag )
             $query->whereHas( 'tags', function( $query ) use ( $tag ) {
@@ -27,9 +27,9 @@ class SearchController extends Controller
 
     }
 
-    public function search_tag( $tags, $name = '' ) {
+    public function search_tag( $tags, $title = '' ) {
         
-        return $this::search( $name, $tags );
+        return $this::search( $title, $tags );
 
     }
 
