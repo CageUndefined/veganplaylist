@@ -56,4 +56,10 @@ class Video extends Model {
     {
         return sprintf( "%d:%02d", $this->length / 60, $this->length % 60 );
     }
+
+    public function tags()
+    {
+        return $this->belongsToMany('App\Tag', 'video_tag_map');
+    }
+
 }

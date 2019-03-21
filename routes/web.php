@@ -31,7 +31,7 @@ if( config('app.debug') ) {
 
         Artisan::call( 'list' );
         $output = strstr( Artisan::output(), 'Available commands:' );
-        $output = preg_replace( '/^  ?(([a-z]+:)?[a-z]+(-[a-z]+)?)/m', '<a href="artisan/\1">\1</a>', $output );
+        $output = preg_replace( '/^(  ?)(([a-z]+:)?[a-z]+(-[a-z]+)?)/m', '\1<a href="artisan/\2">\2</a>', $output );
         return "<h1>Artisan web interface</h1><pre>$output</pre>";
 
     } );
