@@ -8,7 +8,7 @@ use App\Video;
 class SearchController extends Controller
 {
 
-    public function search( $title, $tags = false ) {
+    public function search( $title, $tags = '' ) {
         
         if( empty( $tags ) )
             $tags = [];

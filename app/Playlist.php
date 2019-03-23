@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\PsuedoCrypt;
 
 // See https://laravel.com/docs/5.8/eloquent-relationships
 // for more information about defining and using model relationships
@@ -31,6 +32,17 @@ class Playlist extends Model
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    public function getHash()
+    {
+        return PseudoCrypt::hash( $this->id, 3 );
+    }
+
+    public function getShortURL()
+    {
+        $hash = $this->getHash();
+        return "https://vgn.soy/$hash";
     }
 
 }
