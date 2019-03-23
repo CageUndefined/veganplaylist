@@ -1,7 +1,3 @@
-@php    
-    $playlists = App\Playlist::where( 'featured', true )->get();
-@endphp
-
 @extends('layouts.app')
 
 @section('content')

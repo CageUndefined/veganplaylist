@@ -6,7 +6,7 @@ if( is_null( $video ) ) {
     $index = 0;
     $currentVideo = $videos[0];
 } else {
-    $index = $videos->search( function( $item, $key ) use( $video ) { return $item->id == $video->id; } );
+    $index = $videos->search( function( $item, $key ) use( $video ) { return $item->is( $video ); } );
     $currentVideo = $video;
 }
 $totalVideos = count($videos);
