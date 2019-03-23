@@ -33,3 +33,9 @@ const filter_app = new Vue({
     template: '<FilterApp/>',
     components: { FilterApp }
 });
+
+Vue.component('main-viewer', require('./components/MainViewer.vue').default);
+
+const viewer_app = new Vue({
+    el: '#viewer_app'
+});

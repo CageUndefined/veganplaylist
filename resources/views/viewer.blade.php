@@ -16,6 +16,9 @@ $nextVideo = $index < ($totalVideos - 1) ? $videos[$index + 1] : null;
 
 @section('content')
     <div class="container">
+        <div id="viewer_app">
+            <main-viewer :videos="'{{ $playlist->videos }}'"></main-viewer>
+        </div>
     	<div class="row mb-1">
     		<div class="col-md-9">
 				{{ $playlist->name }}
