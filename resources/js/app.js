@@ -31,5 +31,15 @@ window.Vue = require('vue');
 Vue.component('main-viewer', require('./components/MainViewer.vue').default);
 
 const viewer_app = new Vue({
-    el: '#viewer_app'
-});
+    el: '#viewer_app',
+    data: {
+    	index: 0
+    },
+    computed: {
+    	nonNullItems: function() {
+      		return this.items.filter(function(item) {
+        		return item !== null;
+      		});
+    	}
+    }
+ });
