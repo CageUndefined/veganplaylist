@@ -12,6 +12,7 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script type="text/javascript" src="//platform-api.sharethis.com/js/sharethis.js#property=5c8fba2e1c07550011f24f3c&product=custom-share-buttons"></script>
+    {!! NoCaptcha::renderJs() !!}
     
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
