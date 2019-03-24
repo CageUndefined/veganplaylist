@@ -131,6 +131,10 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'g-recaptcha-response' => [
+            'recaptcha' => 'reCAPTCHA does not think you are a human - only humans allowed.',
+            'required' => 'Please check the box to confirm you are a real person.'
+        ],
     ],
 
     /*
