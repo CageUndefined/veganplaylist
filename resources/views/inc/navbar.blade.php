@@ -20,10 +20,10 @@
                     <a class="nav-link" href="/about">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/contact">Contact</a>
+                    <a class="nav-link" href="http://youaretheirvoice.com/contact?veganplaylist" target="_blank">Contact</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="https://www.patreon.com/youaretheirvoice">Donate</a>
+                    <a class="nav-link" href="https://www.patreon.com/youaretheirvoice" target="_blank" style="color: #ff0097;">Donate</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#"> </a>
@@ -31,11 +31,11 @@
                 <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        <a class="nav-link" style="color:#fff;" href="{{ route('login') }}">{{ __('Login') }}</a>
                     </li>
                     @if (Route::has('register'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a class="nav-link" style="color:#fff;" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
                     @endif
                 @else
