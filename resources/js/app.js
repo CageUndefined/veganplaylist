@@ -7,6 +7,8 @@
 
 require('./bootstrap');
 
+require('./playlist');
+
 window.Vue = require('vue');
 
 /**
@@ -25,14 +27,6 @@ window.Vue = require('vue');
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
-import FilterApp from './FilterApp'
-
-const filter_app = new Vue({
-    el: '#filter_app',
-    template: '<FilterApp/>',
-    components: { FilterApp }
-});
 
 Vue.component('main-viewer', require('./components/MainViewer.vue').default);
 
