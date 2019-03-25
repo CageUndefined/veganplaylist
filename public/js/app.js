@@ -1845,9 +1845,9 @@ function getThumbnailSrcAttribute(video) {
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['playlist', 'initialIndex'],
   data: function data() {
-    var playlist = JSON.parse(this.playlist);
+    this.playlist = JSON.parse(this.playlist);
     return {
-      videos: playlist.videos,
+      videos: this.playlist.videos,
       index: 0
     };
   },

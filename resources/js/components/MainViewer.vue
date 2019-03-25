@@ -78,9 +78,9 @@
 	export default {
 		props: ['playlist', 'initialIndex'],
 		data: function () {
-			var playlist = JSON.parse(this.playlist);
+			this.playlist = JSON.parse(this.playlist);
 			return {
-				videos: playlist.videos,
+				videos: this.playlist.videos,
 				index: 0
 			}
 		},
