@@ -45,7 +45,7 @@
 	function getEmbedSrc(video) {
 		switch (video.service) {
 			case 'y':
-			return "https://youtu.be/embed/" + video.service_video_id;
+			return "https://www.youtube-nocookie.com/embed/" + video.service_video_id;
 			case 'v':
 			return "https://player.vimeo.com/video/" + video.service_video_id;
 			default:
