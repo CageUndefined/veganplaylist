@@ -22,7 +22,7 @@
 			   <b style="font-size: 16px;">Thank you so much for visiting VeganPlaylist.org! Can you help us?</b><br><br>
 			   Please spread the word by sharing our page below! If you're feeling extra generous, please <a href="https://www.patreon.com/youaretheirvoice" target="_blank">check out our Patreon here</a> to support this project and other ones to come! All donations are used to fund future vegan projects (such as <a href="https://veganactivism.org" target="_blank">VeganActivism.org</a>), we'd be beyond grateful for even the smallest of contributions. Thank you!
 			   <br><br>
-			   <div class="sharethis-inline-share-buttons"></div>
+			   <div data-url="{{ URL::to('/') }}" data-title="Vegan Playlist" class="sharethis-inline-share-buttons"></div>
             </div>
         </div>
         <br><br> 
