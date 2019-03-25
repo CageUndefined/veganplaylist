@@ -1,5 +1,7 @@
 <?php
 
+use App\Video;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,7 +12,6 @@
 | contains the "web" middleware group. Now create something great!
 |
  */
-
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
@@ -18,12 +19,22 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::view('/about', 'about');
 
+// Ajax Routes
+Route::get('/videolist/title/{title?}', function($title = '') {
+    $videos = Video::where( 'title', 'LIKE', "%$title%" )->get();
+    return view('inc.videolist', [
+        'videos' => $videos
+    ]);
+});
+
+// Resources
 Route::resources([
     'settings' => 'UserSettingsController',
     'playlist' => 'PlaylistController',
     'playlist.video' => 'PlaylistController'
 ]);
 
+// Development Tool Routes
 if( config('app.debug') ) {
     
     Route::get( '/artisan', function() {

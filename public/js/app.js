@@ -49328,16 +49328,101 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./resources/js/playlist.js ***!
   \**********************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+*
+*  Dependencies and URL Query Params
+*
+*/
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 var uri = window.location.search.substring(1);
 var params = new URLSearchParams(uri);
-var playlist = {
-  name: params ? params.get('name') : ''
+var name_from_get_param = params && params.get('name') ? params.get('name') : '';
+/* Playlist
+* 
+*  Define our Playlist object
+*
+*/
+
+var Playlist = {
+  name: name_from_get_param,
+  list: {},
+  init: function init() {
+    if ($('#playlist_name').length && this.name.length) $('#playlist_name').text(this.name);
+    this.bindEvents();
+    return this;
+  },
+  bindEvents: function bindEvents() {
+    $('.card-columns').on('click', '.btn-add', function () {
+      var id = $(this).data('id');
+      var title = $('#card_' + id + ' p').text();
+      Playlist.addVideo(id, title);
+      return false;
+    });
+    $('ol.list-group').on('click', '.remove', function () {
+      var id = $(this).data('id');
+      Playlist.removeVideo(id);
+      $(this).parent().fadeOut().remove();
+      return false;
+    });
+    $('.playlist-save').click(function () {
+      Playlist.createPlaylist(); // go to viewer
+
+      return false;
+    });
+  },
+  addVideo: function addVideo(id, title) {
+    var list = $('#new_playlist .list-group'); // this should ideally be in some kind of template (handlebars)
+
+    var li = '<li class="list-group-item">' + title + ' <a href="#" data-id="' + id + '" class="remove text-danger ml-2"><i class="fas fa-trash-alt"></i></a></li>';
+    list.append(li);
+    Playlist.list[id] = {
+      id: id,
+      title: title
+    };
+    $('#card_' + id).fadeOut().remove();
+    if ($('a.playlist-save').hasClass('disabled')) $('a.playlist-save').removeClass('disabled');
+  },
+  removeVideo: function removeVideo(id) {
+    delete Playlist.list[id];
+    $('a.playlist-save');
+    $('#name_input').trigger('keyup');
+    if (!Object.keys(Playlist.list).length) $('a.playlist-save').addClass('disabled');
+  },
+  createPlaylist: function createPlaylist() {
+    console.log('create playlist ...');
+  }
 };
+/*
+*
+* document ready
+*
+*/
+
 $(function () {
-  console.log('page loaded!');
-  console.log(playlist.name);
+  window.Playlist = Playlist.init();
+  $('#name_input').keyup(function () {
+    var title = $(this).val();
+    axios.get('/videolist/title/' + title).then(function (response) {
+      if (response && response.data) {
+        if ($('.video-card').length) {
+          $('.video-card').fadeOut('fast', function () {
+            $('.video-card').detach();
+            $(response.data).appendTo('.card-columns');
+          }).fadeIn();
+        } else {
+          $(response.data).appendTo('.card-columns');
+        }
+      } else if (response.data === '') {
+        $('.video-card').detach();
+      }
+    }).catch(function (error) {
+      console.log(error);
+    });
+    return false;
+  });
 });
 
 /***/ }),
@@ -49360,8 +49445,8 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /mnt/bf661e13-baac-422e-bb0e-084dfec51065/judas/Github/vegan-hacktivists/veganplaylist/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /mnt/bf661e13-baac-422e-bb0e-084dfec51065/judas/Github/vegan-hacktivists/veganplaylist/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\veganplaylist\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\veganplaylist\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

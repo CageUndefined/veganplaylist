@@ -12,6 +12,7 @@
             </div>
             <div class="card-body">
                 <form id='filter_form'>
+                    {{ csrf_field() }}
                     <div class="row ml-2">
                         <div class="col-sm-4">
                             <div class="row">
@@ -76,19 +77,26 @@
             </div>
         </div>
         <br><br>
-        <div class="card-columns">
-            <div class="card playlist-card">
-                <div class="card-header text-center" id="playlist-name">Your Playlist</div>
-                <div class="card-body text-center">
-                    <em>Search for videos using the filter above, then click 'Add'</em>
-                    <ul class="list-group">
-                        <!-- <li class="list-group-item">Search for videos using the filter above, then click 'Add'</li> -->
-                    </ul>
+        <div class="row">
+            <div class="col-8">
+                <div class="card-columns">
+                    @include('inc.videolist')
                 </div>
             </div>
-            @foreach( $videos as $video )
-                {{-- @include('playlistcard') --}}
-            @endforeach
+            <div class="col">
+                <div class="card">
+                    <div id="new_playlist">
+                        <div class="card-header text-center" id="playlist_name">Your Playlist</div>
+                        <div class="card-body text-center">
+                            <p><em>Search for videos using the filter above</em></p>
+                            <ol class="list-group text-left"></ol>
+                        </div>
+                        <div class="card-footer text-center">
+                            <a href="#" class="btn btn-primary playlist-save disabled">Create Playlist</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 @endsection

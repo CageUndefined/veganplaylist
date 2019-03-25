@@ -10706,3 +10706,11 @@ a.text-dark:focus {
   border: 2px solid green;
 }
 
+ol.list-group {
+  list-style: decimal inside;
+}
+
+ol .list-group-item {
+  display: list-item;
+}
+

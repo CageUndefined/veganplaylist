@@ -60,3 +60,11 @@
 		}
 	}
 }
+
+ol.list-group {
+	list-style: decimal inside;
+}
+
+ol .list-group-item {
+	display: list-item;
+}

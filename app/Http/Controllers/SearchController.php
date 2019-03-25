@@ -10,11 +10,10 @@ class SearchController extends Controller
 
     public function search( $title, $tags = '' ) {
         
-        if( empty( $tags ) || preg_match('/^all$/', $tags ) ) {
+        if( empty( $tags ) )
             $tags = [];
-        } else {
+        else
             $tags = explode( ',', $tags );
-        }
 
         $query = Video::where( 'title', 'LIKE', "%$title%" );
         
