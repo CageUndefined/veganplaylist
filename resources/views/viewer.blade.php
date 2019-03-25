@@ -16,7 +16,7 @@ $playlist['creatorName'] = $playlist->creator->name;
 @section('content')
     <div class="container">
         <div id="viewer_app">
-            <main-viewer :playlist="'{{ $playlist }}'" :initial-index="{{ $index }}"></main-viewer>
+            <main-viewer :json-playlist="'{{ $playlist }}'" :initial-index="{{ $index }}"></main-viewer>
         </div>
     </div>
 @endsection

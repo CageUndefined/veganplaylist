@@ -1805,15 +1805,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-function getLinkClassAttribute(video, index) {
-  return 'playlist-scroller__item' + (video.active ? ' playlist-scroller__item--active' : '');
-}
-
-function getIframeClassAttribute(video) {
-  return 'embed__aspect-ratio embed__aspect-ratio--' + (video.widescreen ? '16by9' : '4by3');
-}
-
-function getEmbedSrcAttribute(video) {
+function getEmbedSrc(video) {
   switch (video.service) {
     case 'y':
       return "https://invidio.us/embed/" + video.service_video_id;
@@ -1826,7 +1818,7 @@ function getEmbedSrcAttribute(video) {
   }
 }
 
-function getThumbnailSrcAttribute(video) {
+function getThumbnailSrc(video) {
   switch (video.service) {
     case 'y':
       return "https://img.youtube.com/vi/" + video.service_video_id + "/hqdefault.jpg";
@@ -1843,45 +1835,40 @@ function getThumbnailSrcAttribute(video) {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['playlist', 'initialIndex'],
+  props: ['jsonPlaylist', 'initialIndex'],
   data: function data() {
-    this.playlist = JSON.parse(this.playlist);
     return {
-      videos: this.playlist.videos,
+      playlist: JSON.parse(this.jsonPlaylist),
       index: parseInt(this.initialIndex)
     };
   },
   methods: {
     init: function init() {
-      var videos = this.videos;
+      var videos = this.playlist.videos;
       var index = this.index;
       var current = videos[index];
-      current.iframeClass = getIframeClassAttribute(current);
-      current.iframeBackgroundImg = getThumbnailSrcAttribute(current);
-      current.src = getEmbedSrcAttribute(current);
-      var totalVideos = videos.length;
-      var previous = index > 0 ? videos[index - 1] : null;
-      if (previous !== null) previous.thumbnailSrc = getThumbnailSrcAttribute(previous);
-      var next = index < totalVideos - 1 ? videos[index + 1] : null;
-      if (next !== null) next.thumbnailSrc = getThumbnailSrcAttribute(next);
+      current.iframeClass = 'embed__aspect-ratio embed__aspect-ratio--' + (current.widescreen ? '16by9' : '4by3');
+      current.iframeBackgroundImg = getThumbnailSrc(current);
+      current.src = getEmbedSrc(current);
 
-      for (var i = 0; i < totalVideos; i++) {
+      for (var i = 0; i < videos.length; i++) {
         var video = videos[i];
         video.active = i == index;
-        video.linkClass = getLinkClassAttribute(video, i);
-        video.thumbnailSrc = getThumbnailSrcAttribute(video);
+        video.linkClass = 'playlist-scroller__item' + (video.active ? ' playlist-scroller__item--active' : '');
+        video.thumbnailSrc = getThumbnailSrc(video);
       }
 
       this.currentVideo = current;
-      this.nextVideo = next;
-      this.previousVideo = previous;
     },
-    changeIndex: function changeIndex(index) {
-      this.index = index;
+    changeIndex: function changeIndex(i) {
+      this.index = i;
       this.init();
     }
   },
   created: function created() {
+    this.init();
+  },
+  updated: function updated() {
     this.init();
   }
 });
@@ -36956,7 +36943,9 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-md-3" }, [
-          _vm._v(_vm._s(_vm.index + 1) + "/" + _vm._s(_vm.videos.length))
+          _vm._v(
+            _vm._s(_vm.index + 1) + "/" + _vm._s(_vm.playlist.videos.length)
+          )
         ])
       ]),
       _vm._v(" "),
@@ -36981,8 +36970,8 @@ var render = function() {
               {
                 name: "show",
                 rawName: "v-show",
-                value: _vm.index != 0,
-                expression: "index != 0"
+                value: _vm.index > 0,
+                expression: "index > 0"
               }
             ],
             staticClass: "playlist-scroller__nav--previous",
@@ -36996,7 +36985,7 @@ var render = function() {
           [_vm._v("\n\t\t\t\t←\n    \t\t")]
         ),
         _vm._v(" "),
-        _vm._l(_vm.videos, function(video, i) {
+        _vm._l(_vm.playlist.videos, function(video, i) {
           return _c("span", [
             _c(
               "a",
@@ -37026,8 +37015,8 @@ var render = function() {
               {
                 name: "show",
                 rawName: "v-show",
-                value: _vm.index != _vm.videos.length - 1,
-                expression: "index != (videos.length - 1)"
+                value: _vm.index < _vm.playlist.videos.length - 1,
+                expression: "index < (playlist.videos.length - 1)"
               }
             ],
             staticClass:
