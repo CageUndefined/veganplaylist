@@ -1805,57 +1805,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-function getEmbedSrc(video) {
-  switch (video.service) {
-    case 'y':
-      return "https://youtu.be/embed/" + video.service_video_id;
-
-    case 'v':
-      return "https://player.vimeo.com/video/" + video.service_video_id;
-
-    default:
-      throw new Exception("Service char out of range: '" + video.service + "'..!", 1);
-  }
-}
-
-function getThumbnailSrc(video) {
-  switch (video.service) {
-    case 'y':
-      return "https://img.youtube.com/vi/" + video.service_video_id + "/hqdefault.jpg";
-
-    case 'v':
-      return ""; // var url = 'https://vimeo.com/api/oembed.json?url=https://vimeo.com/';
-      // var json = json_decode(file_get_contents($url + video.service_video_id));
-
-      return json.thumbnail_url;
-
-    default:
-      throw new Exception("Service char out of range: '" + video.service + "'..!", 1);
-  }
-}
-
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['jsonPlaylist', 'initialIndex'],
+  props: ['jsonPlaylist', 'jsonVideodata', 'initialIndex'],
   data: function data() {
     return {
       playlist: JSON.parse(this.jsonPlaylist),
+      videos: JSON.parse(this.jsonVideodata),
       index: parseInt(this.initialIndex)
     };
   },
   methods: {
     init: function init() {
-      var videos = this.playlist.videos;
+      var videos = this.videos;
       var index = this.index;
       var current = videos[index];
       current.iframeClass = 'embed__aspect-ratio embed__aspect-ratio--' + (current.widescreen ? '16by9' : '4by3');
-      current.iframeBackgroundImg = getThumbnailSrc(current);
-      current.src = getEmbedSrc(current);
+      current.iframeBackgroundImg = current.thumbnailSrc;
 
       for (var i = 0; i < videos.length; i++) {
         var video = videos[i];
         video.active = i == index;
         video.linkClass = 'playlist-scroller__item' + (video.active ? ' playlist-scroller__item--active' : '');
-        video.thumbnailSrc = getThumbnailSrc(video);
       }
 
       this.currentVideo = current;
@@ -36943,9 +36913,7 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-md-3" }, [
-          _vm._v(
-            _vm._s(_vm.index + 1) + "/" + _vm._s(_vm.playlist.videos.length)
-          )
+          _vm._v(_vm._s(_vm.index + 1) + "/" + _vm._s(_vm.videos.length))
         ])
       ]),
       _vm._v(" "),
@@ -36985,7 +36953,7 @@ var render = function() {
           [_vm._v("\n\t\t\t\t←\n    \t\t")]
         ),
         _vm._v(" "),
-        _vm._l(_vm.playlist.videos, function(video, i) {
+        _vm._l(_vm.videos, function(video, i) {
           return _c("span", [
             _c(
               "a",
@@ -37015,8 +36983,8 @@ var render = function() {
               {
                 name: "show",
                 rawName: "v-show",
-                value: _vm.index < _vm.playlist.videos.length - 1,
-                expression: "index < (playlist.videos.length - 1)"
+                value: _vm.index < _vm.videos.length - 1,
+                expression: "index < (videos.length - 1)"
               }
             ],
             staticClass:
@@ -49445,8 +49413,8 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\veganplaylist\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\veganplaylist\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/alex/github/veganplaylist/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/alex/github/veganplaylist/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

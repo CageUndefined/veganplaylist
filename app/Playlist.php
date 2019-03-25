@@ -3,46 +3,47 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\PsuedoCrypt;
 
 // See https://laravel.com/docs/5.8/eloquent-relationships
 // for more information about defining and using model relationships
 
-class Playlist extends Model
-{
-    public function creator()
-    {
-        return $this->hasOne('App\User', 'id', 'creator_id');
-    }
+class Playlist extends Model {
+	public function creator() {
+		return $this->hasOne('App\User', 'id', 'creator_id');
+	}
 
-    public function videos()
-    {
-        return $this->belongsToMany('App\Video', 'playlist_video_map');
-    }
+	public function videos() {
+		return $this->belongsToMany('App\Video', 'playlist_video_map');
+	}
 
-    public static function boot()
-    {
-        parent::boot();
+	public function videoData() {
+		$videoModels = $this->videos;
+		$videoData = [];
+		foreach ($videoModels as $vm) {
+			array_push($videoData, $vm->viewerData());
+		}
+		return $videoData;
+	}
 
-        static::saving( function( $model ) {
-            $model->slug = str_slug( $model->name );
-        } );
-    }
+	public static function boot() {
+		parent::boot();
 
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
+		static::saving(function ($model) {
+			$model->slug = str_slug($model->name);
+		});
+	}
 
-    public function getHash()
-    {
-        return PseudoCrypt::hash( $this->id, 3 );
-    }
+	public function getRouteKeyName() {
+		return 'slug';
+	}
 
-    public function getShortURL()
-    {
-        $hash = $this->getHash();
-        return "https://vgn.soy/$hash";
-    }
+	public function getHash() {
+		return PseudoCrypt::hash($this->id, 3);
+	}
+
+	public function getShortURL() {
+		$hash = $this->getHash();
+		return "https://vgn.soy/$hash";
+	}
 
 }

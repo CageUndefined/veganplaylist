@@ -5,22 +5,20 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class Video extends Model {
-    
-    protected $fillable = [ 'service', 'service_video_id', 'title', 'length', 'widescreen' ];
 
-    public static function boot()
-    {
-        parent::boot();
+	protected $fillable = ['service', 'service_video_id', 'title', 'length', 'widescreen'];
 
-        static::saving( function( $model ) {
-            $model->slug = str_slug( $model->title );
-        } );
-    }
+	public static function boot() {
+		parent::boot();
 
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
+		static::saving(function ($model) {
+			$model->slug = str_slug($model->title);
+		});
+	}
+
+	public function getRouteKeyName() {
+		return 'slug';
+	}
 
 	public function getThumbnailSrcAttribute() {
 
@@ -52,14 +50,19 @@ class Video extends Model {
 		return $this['widescreen'] ? '16by9' : '4by3';
 	}
 
-    public function getTime()
-    {
-        return sprintf( "%d:%02d", $this->length / 60, $this->length % 60 );
-    }
+	public function getTime() {
+		return sprintf("%d:%02d", $this->length / 60, $this->length % 60);
+	}
 
-    public function tags()
-    {
-        return $this->belongsToMany('App\Tag', 'video_tag_map');
-    }
+	public function tags() {
+		return $this->belongsToMany('App\Tag', 'video_tag_map');
+	}
+
+	public function viewerData() {
+		return [
+			'src' => $this->getEmbedSrcAttribute(),
+			'thumbnailSrc' => $this->getThumbnailSrcAttribute(),
+		];
+	}
 
 }

@@ -10695,6 +10695,9 @@ a.text-dark:focus {
 .playlist-scroller {
   max-width: 100%;
   overflow-y: auto;
+  position: fixed;
+  bottom: 0;
+  background: #000;
 }
 
 .playlist-scroller__item {
