@@ -1848,7 +1848,7 @@ function getThumbnailSrcAttribute(video) {
     this.playlist = JSON.parse(this.playlist);
     return {
       videos: this.playlist.videos,
-      index: 0
+      index: parseInt(this.initialIndex)
     };
   },
   methods: {
