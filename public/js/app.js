@@ -1808,7 +1808,7 @@ __webpack_require__.r(__webpack_exports__);
 function getEmbedSrc(video) {
   switch (video.service) {
     case 'y':
-      return "https://invidio.us/embed/" + video.service_video_id;
+      return "https://youtu.be/embed/" + video.service_video_id;
 
     case 'v':
       return "https://player.vimeo.com/video/" + video.service_video_id;

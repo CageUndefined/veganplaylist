@@ -45,7 +45,7 @@
 	function getEmbedSrc(video) {
 		switch (video.service) {
 			case 'y':
-			return "https://invidio.us/embed/" + video.service_video_id;
+			return "https://youtu.be/embed/" + video.service_video_id;
 			case 'v':
 			return "https://player.vimeo.com/video/" + video.service_video_id;
 			default:
@@ -84,7 +84,7 @@
 				current.iframeClass = 'embed__aspect-ratio embed__aspect-ratio--' + (current.widescreen ? '16by9' : '4by3');
 				current.iframeBackgroundImg = getThumbnailSrc(current);
 				current.src = getEmbedSrc(current);
-				
+
 				for (var i = 0; i < videos.length; i++){
 					var video = videos[i];
 					video.active = i == index;
