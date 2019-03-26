@@ -77,20 +77,17 @@ class PlaylistController extends Controller {
 	}
 
 	public function show(Playlist $playlist, Video $video = null) {
-<<<<<<< HEAD
-		$playlist->incrementViews();
-		return view('viewer', ["video" => $video, "playlist" => $playlist]);
-=======
 		// Reference them once so it populates and shows up in the json, TODO: find a setting to make that happen auto
-		$playlist->creator; 
-		$playlist->videos; 
-		
-		if( is_null( $video ) )
+		$playlist->creator;
+		$playlist->videos;
+
+		if (is_null($video)) {
 			$index = 0;
-		else
-			$index = $playlist->videos->search( function( $item, $key ) use( $video ) { return $item->is( $video ); } );
-		
+		} else {
+			$index = $playlist->videos->search(function ($item, $key) use ($video) {return $item->is($video);});
+		}
+
+		$playlist->incrementViews();
 		return view('viewer', ["index" => $index, "playlist" => $playlist]);
->>>>>>> 7ecc66241376fbe34d23257965aa98b4200aeb82
 	}
 }
