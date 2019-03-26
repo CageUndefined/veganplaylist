@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 // for more information about defining and using model relationships
 
 class Playlist extends Model {
+
+	protected $visible = [ 'name', 'slug', 'creator', 'videos' ];
+
 	public function creator() {
 		return $this->hasOne('App\User', 'id', 'creator_id');
 	}
