@@ -19,6 +19,7 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::view('/about', 'about');
+Route::view('/contact', 'contact');
 
 // Ajax Routes
 Route::post('/videolist', function(Request $request) {

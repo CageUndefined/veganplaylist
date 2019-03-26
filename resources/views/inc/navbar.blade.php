@@ -20,7 +20,7 @@
                     <a class="nav-link" href="/about">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://youaretheirvoice.com/contact?veganplaylist" target="_blank">Contact</a>
+                    <a class="nav-link" href="/contact">Contact</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="https://www.patreon.com/youaretheirvoice" target="_blank" style="color: #ff0097;">Donate</a>
