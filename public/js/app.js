@@ -1805,18 +1805,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['jsonPlaylist', 'jsonVideodata', 'initialIndex'],
   data: function data() {
     return {
       playlist: JSON.parse(this.jsonPlaylist),
-      videos: JSON.parse(this.jsonVideodata),
       index: parseInt(this.initialIndex)
     };
   },
   methods: {
     init: function init() {
-      var videos = this.videos;
+      var videos = this.playlist.videos;
       var index = this.index;
       var current = videos[index];
       current.iframeClass = 'embed__aspect-ratio embed__aspect-ratio--' + (current.widescreen ? '16by9' : '4by3');
@@ -1825,7 +1834,7 @@ __webpack_require__.r(__webpack_exports__);
       for (var i = 0; i < videos.length; i++) {
         var video = videos[i];
         video.active = i == index;
-        video.linkClass = 'playlist-scroller__item' + (video.active ? ' playlist-scroller__item--active' : '');
+        video.linkClass = video.active ? 'active' : '';
       }
 
       this.currentVideo = current;
@@ -36887,120 +36896,120 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "row mb-1 playlist-heading" }, [
-      _c("div", { staticClass: "col-md-9" }, [
-        _c("span", { staticClass: "playlist-heading__title" }, [
-          _vm._v("\n\t\t\t\t\t" + _vm._s(_vm.playlist.name) + "\n\t\t\t\t")
-        ]),
-        _vm._v(" "),
-        _c("br"),
-        _vm._v("\n\t\t\t\tCreated by \n\t\t\t\t"),
-        _c("span", { staticClass: "playlist-heading__creator" }, [
-          _vm._v(
-            "\n\t\t\t\t\t" + _vm._s(_vm.playlist.creatorName) + "\n\t\t\t\t"
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-3" }, [_vm._v("PLAYLIST STATS")])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "current-video" }, [
-      _c("div", { staticClass: "row mb-2 current-video__title" }, [
-        _c("div", { staticClass: "col-md-9" }, [
-          _vm._v(_vm._s(_vm.currentVideo.title))
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-3" }, [
-          _vm._v(_vm._s(_vm.index + 1) + "/" + _vm._s(_vm.videos.length))
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "embed current-video__embed mb-2" }, [
-        _c("div", { class: _vm.currentVideo.iframeClass }, [
-          _c("iframe", {
-            staticClass: "embed__iframe",
-            attrs: { src: _vm.currentVideo.src }
-          })
+  return _c("div", { staticClass: "viewer" }, [
+    _c("div", { staticClass: "heading" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-9" }, [
+            _c("h4", [
+              _vm._v(
+                "\n\t\t\t\t\t\t\t" +
+                  _vm._s(_vm.playlist.name) +
+                  "\n\t\t\t\t\t\t\t"
+              ),
+              _c("small", [
+                _vm._v("\n\t\t\t\t\t\t\t\tCreated by "),
+                _c("em", [_vm._v(_vm._s(_vm.playlist.creatorName))])
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-3" }, [
+            _vm._v("\n\t\t\t\t\t\tPLAYLIST STATS\n\t\t\t\t\t")
+          ])
         ])
       ])
     ]),
     _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "playlist-scroller" },
-      [
-        _c(
-          "a",
-          {
-            directives: [
-              {
-                name: "show",
-                rawName: "v-show",
-                value: _vm.index > 0,
-                expression: "index > 0"
-              }
-            ],
-            staticClass: "playlist-scroller__nav--previous",
-            attrs: { href: "#" },
-            on: {
-              click: function($event) {
-                return _vm.changeIndex(_vm.index - 1)
-              }
-            }
-          },
-          [_vm._v("\n\t\t\t\t←\n    \t\t")]
-        ),
-        _vm._v(" "),
-        _vm._l(_vm.videos, function(video, i) {
-          return _c("span", [
-            _c(
-              "a",
-              {
-                class: video.linkClass,
-                attrs: { href: "#" },
-                on: {
-                  click: function($event) {
-                    return _vm.changeIndex(i)
-                  }
+    _c("div", { staticClass: "subheading" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("h5", [
+          _c(
+            "a",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.index > 0,
+                  expression: "index > 0"
                 }
-              },
-              [
-                _c("img", {
-                  staticClass: "img-fluid img-thumbnail",
-                  attrs: { src: video.thumbnailSrc, alt: "" }
-                })
-              ]
+              ],
+              attrs: { href: "#" },
+              on: {
+                click: function($event) {
+                  return _vm.changeIndex(_vm.index - 1)
+                }
+              }
+            },
+            [_vm._v("\n\t\t\t\t\t\t←\n\t\t    \t\t")]
+          ),
+          _vm._v(
+            "\n\t\t    \t\t" + _vm._s(_vm.currentVideo.title) + "\n\t\t\t\t\t"
+          ),
+          _c("small", [
+            _vm._v(
+              "\n\t\t    \t\t\t(" +
+                _vm._s(_vm.index + 1) +
+                " / " +
+                _vm._s(_vm.playlist.videos.length) +
+                ")\n\t\t    \t\t"
             )
-          ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.index < _vm.playlist.videos.length - 1,
+                  expression: "index < (playlist.videos.length - 1)"
+                }
+              ],
+              attrs: { href: "#" },
+              on: {
+                click: function($event) {
+                  return _vm.changeIndex(_vm.index + 1)
+                }
+              }
+            },
+            [_vm._v("\n\t\t\t\t\t\t→\n\t\t    \t\t")]
+          )
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "embed" }, [
+      _c("iframe", {
+        staticClass: "embed__iframe",
+        attrs: { src: _vm.currentVideo.src }
+      })
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "navigation" }, [
+      _c(
+        "div",
+        { staticClass: "container" },
+        _vm._l(_vm.playlist.videos, function(video, i) {
+          return _c(
+            "a",
+            {
+              class: video.linkClass,
+              attrs: { href: "#", title: video.title },
+              on: {
+                click: function($event) {
+                  return _vm.changeIndex(i)
+                }
+              }
+            },
+            [_c("img", { attrs: { src: video.thumbnailSrc, alt: "" } })]
+          )
         }),
-        _vm._v(" "),
-        _c(
-          "a",
-          {
-            directives: [
-              {
-                name: "show",
-                rawName: "v-show",
-                value: _vm.index < _vm.videos.length - 1,
-                expression: "index < (videos.length - 1)"
-              }
-            ],
-            staticClass:
-              "playlist-scroller__nav--next playlist-scroller__nav--disabled",
-            attrs: { href: "#" },
-            on: {
-              click: function($event) {
-                return _vm.changeIndex(_vm.index + 1)
-              }
-            }
-          },
-          [_vm._v("\n\t\t\t\t→\n    \t\t")]
-        )
-      ],
-      2
-    )
+        0
+      )
+    ])
   ])
 }
 var staticRenderFns = []
@@ -49413,8 +49422,8 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/alex/github/veganplaylist/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/alex/github/veganplaylist/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/longinus/Github/code-activists/veganplaylist/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/longinus/Github/code-activists/veganplaylist/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

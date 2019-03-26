@@ -1,41 +1,51 @@
 <template>
-	<div>	
-		<div class="row mb-1 playlist-heading">
-			<div class="col-md-9">
-				<span class="playlist-heading__title">
-					{{ playlist.name }}
-				</span>
-				<br>
-				Created by 
-				<span class="playlist-heading__creator">
-					{{ playlist.creatorName }}
-				</span>
-			</div>
-			<div class="col-md-3">PLAYLIST STATS</div>
-		</div>
-		<div class="current-video">
-	    	<div class="row mb-2 current-video__title">
-	    		<div class="col-md-9">{{ currentVideo.title }}</div>
-	    		<div class="col-md-3">{{ (index + 1) }}/{{ videos.length }}</div>
-	    	</div>
-			<div class="embed current-video__embed mb-2">
-				<div :class="currentVideo.iframeClass">
-					<iframe class="embed__iframe" :src="currentVideo.src"></iframe>
+	<div class="viewer">
+		<div class="heading">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-9">
+						<h4>
+							{{ playlist.name }}
+							<small>
+								Created by <em>{{ playlist.creatorName }}</em>
+							</small>
+						</h4>
+					</div>
+					<div class="col-md-3">
+						PLAYLIST STATS
+					</div>
 				</div>
 			</div>
 		</div>
-    	<div class="playlist-scroller">
-    		<a href="#" v-show="index > 0" v-on:click="changeIndex(index - 1)" class="playlist-scroller__nav--previous">
-				&larr;
-    		</a>
-    		<span v-for="(video, i) in videos">
-				<a href="#" v-on:click="changeIndex(i)" :class="video.linkClass">
-					<img :src="video.thumbnailSrc" class="img-fluid img-thumbnail" alt="">
+		<div class="subheading">
+			<div class="container">
+				<h5>
+		    		<a href="#" v-show="index > 0" v-on:click="changeIndex(index - 1)">
+						&larr;
+		    		</a>
+		    		{{ currentVideo.title }}
+					<small>
+		    			({{ (index + 1) }} / {{ playlist.videos.length }})
+		    		</small>
+		    		<a href="#" v-show="index < (playlist.videos.length - 1)" v-on:click="changeIndex(index + 1)">
+						&rarr;
+		    		</a>
+				</h5>
+	    	</div>
+		</div>
+		<div class="embed">
+			<iframe class="embed__iframe" :src="currentVideo.src"></iframe>
+		</div>
+    	<div class="navigation">
+    		<div class="container">
+				<a href="#"
+					v-for="(video, i) in playlist.videos"
+					v-on:click="changeIndex(i)"
+					:title="video.title"
+					:class="video.linkClass">
+					<img :src="video.thumbnailSrc" alt="">
 				</a>
-    		</span>
-    		<a href="#" v-show="index < (videos.length - 1)" v-on:click="changeIndex(index + 1)" class="playlist-scroller__nav--next playlist-scroller__nav--disabled">
-				&rarr;
-    		</a>
+    		</div>
 		</div>
 	</div>
 </template>
@@ -46,13 +56,12 @@
 		data: function () {
 			return {
 				playlist: JSON.parse(this.jsonPlaylist),
-				videos: JSON.parse(this.jsonVideodata),
 				index: parseInt(this.initialIndex)
 			}
 		},
 		methods: {
 			init: function() {
-				var videos = this.videos;
+				var videos = this.playlist.videos;
 				var index = this.index;
 
 				var current = videos[index];
@@ -62,7 +71,7 @@
 				for (var i = 0; i < videos.length; i++){
 					var video = videos[i];
 					video.active = i == index;
-					video.linkClass = 'playlist-scroller__item' +  (video.active ? ' playlist-scroller__item--active' : '');
+					video.linkClass = (video.active ? 'active' : '');
 				}
 
 				this.currentVideo = current;

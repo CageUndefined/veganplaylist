@@ -14,6 +14,11 @@ class Video extends Model {
 		static::saving(function ($model) {
 			$model->slug = str_slug($model->title);
 		});
+
+		static::retrieved(function ($model) {
+			$model->src = $model->getEmbedSrcAttribute();
+			$model->thumbnailSrc = $model->getThumbnailSrcAttribute();
+		});
 	}
 
 	public function getRouteKeyName() {
@@ -38,7 +43,7 @@ class Video extends Model {
 
 		switch ($this['service']) {
 		case 'y':
-			return "https://invidio.us/embed/" . $this['service_video_id'];
+			return "https://www.youtube.com/embed/" . $this['service_video_id'] ."&autoplay=1";
 		case 'v':
 			return "https://player.vimeo.com/video/" . $this['service_video_id'];
 		default:
@@ -57,12 +62,4 @@ class Video extends Model {
 	public function tags() {
 		return $this->belongsToMany('App\Tag', 'video_tag_map');
 	}
-
-	public function viewerData() {
-		return [
-			'src' => $this->getEmbedSrcAttribute(),
-			'thumbnailSrc' => $this->getThumbnailSrcAttribute(),
-		];
-	}
-
 }

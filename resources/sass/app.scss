@@ -21,6 +21,83 @@
     left: 0;
 }
 
+.viewer {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: #333;
+	color: #CCC;
+	
+	.heading {
+		position:absolute;
+		top:0;
+		left:0;
+		right:0;
+		height: 45px;
+		padding: 10px 0;
+		background: #242424;
+		overflow: hidden;
+	}
+	.subheading {
+		position: absolute;
+		top: 45px;
+		left: 0;
+		right: 0;
+		height: 25px;
+		overflow: hidden;
+
+		h5 {
+			a {
+				color: white;
+
+				&:active, &:hover {
+					color: green;
+					text-decoration: none;
+					outline: none;
+				}
+			}
+		}
+	}
+	.embed {
+		position: absolute;
+		top: 70px;
+		left: 0;
+		right: 0;
+		bottom: 60px;
+	}
+	.navigation {
+		position:absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		height: 60px;
+		padding: 10px;
+
+		a {
+			width: 40px;
+			height: 40px;
+			background: black;
+			display: inline-block;
+			margin-right: 10px;
+			overflow: hidden;
+			position:relative;
+			border: 2px solid white;
+
+			&.active, &:active {
+				border: 2px solid green;
+			}
+
+			img {
+				position: absoute;
+				left:0;
+				width:100%;
+			}
+		}
+	}
+}
+
 .embed {
 	&__aspect-ratio {
 		display: block;

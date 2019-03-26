@@ -10668,6 +10668,86 @@ a.text-dark:focus {
   left: 0;
 }
 
+.viewer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #333;
+  color: #CCC;
+}
+
+.viewer .heading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 45px;
+  padding: 10px 0;
+  background: #242424;
+  overflow: hidden;
+}
+
+.viewer .subheading {
+  position: absolute;
+  top: 45px;
+  left: 0;
+  right: 0;
+  height: 25px;
+  overflow: hidden;
+}
+
+.viewer .subheading h5 a {
+  color: white;
+}
+
+.viewer .subheading h5 a:active,
+.viewer .subheading h5 a:hover {
+  color: green;
+  text-decoration: none;
+  outline: none;
+}
+
+.viewer .embed {
+  position: absolute;
+  top: 70px;
+  left: 0;
+  right: 0;
+  bottom: 60px;
+}
+
+.viewer .navigation {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 60px;
+  padding: 10px;
+}
+
+.viewer .navigation a {
+  width: 40px;
+  height: 40px;
+  background: black;
+  display: inline-block;
+  margin-right: 10px;
+  overflow: hidden;
+  position: relative;
+  border: 2px solid white;
+}
+
+.viewer .navigation a.active,
+.viewer .navigation a:active {
+  border: 2px solid green;
+}
+
+.viewer .navigation a img {
+  position: absoute;
+  left: 0;
+  width: 100%;
+}
+
 .embed__aspect-ratio {
   display: block;
   position: relative;
@@ -10695,9 +10775,6 @@ a.text-dark:focus {
 .playlist-scroller {
   max-width: 100%;
   overflow-y: auto;
-  position: fixed;
-  bottom: 0;
-  background: #000;
 }
 
 .playlist-scroller__item {

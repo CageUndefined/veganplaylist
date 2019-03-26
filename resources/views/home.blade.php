@@ -25,7 +25,7 @@
         <br><br>
         <div class="card-columns">
            @foreach( $playlists as $playlist )
-             @include('playlistcard')
+             @include('inc.playlistcard')
            @endforeach
         </div>
     </div>

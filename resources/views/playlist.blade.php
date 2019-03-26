@@ -2,7 +2,7 @@
     $videos = App\Video::all();
 @endphp
 
-@extends('layouts.app')
+@extends('layouts.page')
 
 @section('content')
     <div class="container-fluid">
