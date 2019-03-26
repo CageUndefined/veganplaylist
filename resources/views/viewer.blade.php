@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.page')
 
-@section('content')
+@section('page_content')
     <div id="viewer_app">
         <main-viewer></main-viewer>
     </div>
