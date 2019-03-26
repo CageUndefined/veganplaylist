@@ -36906,10 +36906,12 @@ var render = function() {
                   _vm._s(_vm.playlist.name) +
                   "\n\t\t\t\t\t\t\t"
               ),
-              _c("small", [
-                _vm._v("\n\t\t\t\t\t\t\t\tCreated by "),
-                _c("em", [_vm._v(_vm._s(_vm.playlist.creator.name))])
-              ])
+              _vm.playlist.creator
+                ? _c("small", [
+                    _vm._v("\n\t\t\t\t\t\t\t\tCreated by "),
+                    _c("em", [_vm._v(_vm._s(_vm.playlist.creator.name))])
+                  ])
+                : _vm._e()
             ])
           ]),
           _vm._v(" "),
