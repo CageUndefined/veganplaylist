@@ -6,8 +6,8 @@
 					<div class="col-md-9">
 						<h4>
 							{{ playlist.name }}
-							<small>
-								Created by <em>{{ playlist.creatorName }}</em>
+							<small v-if="playlist.creator">
+								Created by <em>{{ playlist.creator.name }}</em>
 							</small>
 						</h4>
 					</div>

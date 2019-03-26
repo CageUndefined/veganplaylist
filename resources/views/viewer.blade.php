@@ -11,7 +11,6 @@ if( is_null( $video ) ) {
     $currentVideo = $video;
 }
 $totalVideos = count($videos);
-$playlist['creatorName'] = $playlist->creator->name;
 @endphp
 
 @section('page_content')

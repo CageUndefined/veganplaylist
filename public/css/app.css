@@ -10794,3 +10794,12 @@ ol .list-group-item {
   display: list-item;
 }
 
+.playlist-card .card-header {
+  background-color: #343a40;
+  font-size: 18px;
+}
+
+.playlist-card .card-header a {
+  color: #fff;
+}
+
