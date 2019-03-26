@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Video extends Model {
 
 	protected $fillable = ['service', 'service_video_id', 'title', 'length', 'widescreen', 'graphic', 'mature'];
+	protected $visible = [ 'src', 'thumbnailSrc', 'title', 'slug', 'length', 'widescreen', 'graphic', 'mature', 'tags' ];
 
 	public static function boot() {
 		parent::boot();
@@ -43,7 +44,7 @@ class Video extends Model {
 
 		switch ($this['service']) {
 		case 'y':
-			return "https://www.youtube-nocookie.com/embed/" . $this['service_video_id'] ."&autoplay=1";
+			return "https://www.youtube-nocookie.com/embed/" . $this['service_video_id'] ."?autoplay=1";
 		case 'v':
 			return "https://player.vimeo.com/video/" . $this['service_video_id'];
 		default:
