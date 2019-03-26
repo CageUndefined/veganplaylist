@@ -49434,8 +49434,8 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/alex/github/veganplaylist/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/alex/github/veganplaylist/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\wamp\htdocs\veganplaylist\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\wamp\htdocs\veganplaylist\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

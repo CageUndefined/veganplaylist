@@ -50,6 +50,10 @@ class Playlist extends Model {
 		return "https://vgn.soy/$hash";
 	}
 
+	public function getLength() {
+
+	}
+
 	public function incrementViews() {
 		$this->views = $this->views + 1;
 		$this->save();
