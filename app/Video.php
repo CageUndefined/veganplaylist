@@ -44,7 +44,7 @@ class Video extends Model {
 
 		switch ($this['service']) {
 		case 'y':
-			return "https://www.youtube-nocookie.com/embed/" . $this['service_video_id'] ."?autoplay=1";
+			return "https://www.youtube-nocookie.com/embed/" . $this['service_video_id'] ."?autoplay=1&rel=0";
 		case 'v':
 			return "https://player.vimeo.com/video/" . $this['service_video_id'];
 		default:
