@@ -145,3 +145,12 @@ ol.list-group {
 ol .list-group-item {
 	display: list-item;
 }
+
+.playlist-card .card-header {
+  background-color: rgb(52, 58, 64);
+  font-size: 18px;
+}
+
+.playlist-card .card-header a {
+  color: #fff;
+}

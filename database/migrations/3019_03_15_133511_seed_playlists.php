@@ -26,7 +26,7 @@ class SeedPlaylists extends Migration
 
             $playlist = new App\Playlist;
 
-            $playlist->name = Lorem::text(50);
+            $playlist->name = ucwords( rtrim( Lorem::text(30), '.' ) );
             $playlist->creator_id = $user->id;
             $playlist->featured = true;
             $playlist->save();
