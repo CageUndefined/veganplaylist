@@ -77,6 +77,9 @@ class PlaylistController extends Controller {
 	}
 
 	public function show(Playlist $playlist, Video $video = null) {
+		// Reference it once so it populates shows up in the json, TODO: find a setting to make that happen auto
+		$playlist->creator; 
+		
 		if( is_null( $video ) )
 			$index = 0;
 		else
