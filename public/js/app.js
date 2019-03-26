@@ -1815,6 +1815,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -36916,7 +36918,13 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-3" }, [
-            _vm._v("\n\t\t\t\t\t\tPLAYLIST STATS\n\t\t\t\t\t")
+            _vm._v(
+              "\n\t\t\t\t\t\tviews: " +
+                _vm._s(_vm.playlist.views) +
+                "\n\t\t\t\t\t\tvideos: " +
+                _vm._s(_vm.playlist.videos.length) +
+                "\n\t\t\t\t\t\tlength: 1 hour\n\t\t\t\t\t"
+            )
           ])
         ])
       ])

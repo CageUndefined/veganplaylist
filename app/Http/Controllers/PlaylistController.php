@@ -77,6 +77,7 @@ class PlaylistController extends Controller {
 	}
 
 	public function show(Playlist $playlist, Video $video = null) {
+		$playlist->incrementViews();
 		return view('viewer', ["video" => $video, "playlist" => $playlist]);
 	}
 }

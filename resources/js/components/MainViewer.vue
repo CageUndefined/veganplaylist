@@ -12,7 +12,9 @@
 						</h4>
 					</div>
 					<div class="col-md-3">
-						PLAYLIST STATS
+						views: {{ playlist.views }}
+						videos: {{ playlist.videos.length }}
+						length: 1 hour
 					</div>
 				</div>
 			</div>

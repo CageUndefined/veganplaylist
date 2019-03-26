@@ -9,7 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Playlist extends Model {
 
-	protected $visible = [ 'name', 'slug', 'creator', 'videos' ];
+	protected $visible = ['name', 'slug', 'creator', 'videos', 'views'];
+	protected $fillable = ['views'];
 
 	public function creator() {
 		return $this->hasOne('App\User', 'id', 'creator_id');
@@ -49,4 +50,8 @@ class Playlist extends Model {
 		return "https://vgn.soy/$hash";
 	}
 
+	public function incrementViews() {
+		$this->views = $this->views + 1;
+		$this->save();
+	}
 }
