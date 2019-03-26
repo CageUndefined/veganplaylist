@@ -52,11 +52,10 @@
 
 <script>
 	export default {
-		props: ['jsonPlaylist', 'jsonVideodata', 'initialIndex'],
 		data: function () {
 			return {
-				playlist: JSON.parse(this.jsonPlaylist),
-				index: parseInt(this.initialIndex)
+				playlist: this.$parent.playlist,
+				index: this.$parent.index
 			}
 		},
 		methods: {

@@ -1816,11 +1816,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['jsonPlaylist', 'jsonVideodata', 'initialIndex'],
   data: function data() {
     return {
-      playlist: JSON.parse(this.jsonPlaylist),
-      index: parseInt(this.initialIndex)
+      playlist: this.$parent.playlist,
+      index: this.$parent.index
     };
   },
   methods: {
@@ -49157,19 +49156,6 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
  */
 
 Vue.component('main-viewer', __webpack_require__(/*! ./components/MainViewer.vue */ "./resources/js/components/MainViewer.vue").default);
-var viewer_app = new Vue({
-  el: '#viewer_app',
-  data: {
-    index: 0
-  },
-  computed: {
-    nonNullItems: function nonNullItems() {
-      return this.items.filter(function (item) {
-        return item !== null;
-      });
-    }
-  }
-});
 
 /***/ }),
 
@@ -49318,7 +49304,7 @@ var uri = window.location.search.substring(1);
 var params = new URLSearchParams(uri);
 var name_from_get_param = params && params.get('name') ? params.get('name') : '';
 /* Playlist
-* 
+*
 *  Define our Playlist object
 *
 */
@@ -49350,6 +49336,34 @@ var Playlist = {
       return false;
     });
   },
+  filter: function filter() {
+    var title = $('#name_input').val();
+    var hide_graphic = $('#graphic_input').is(":checked") ? 0 : 1;
+    var hide_mature = $('#mature_input').is(":checked") ? 0 : 1;
+    var data = {
+      title: title,
+      hide_graphic: hide_graphic,
+      hide_mature: hide_mature,
+      tags: []
+    };
+    console.log(data);
+    axios.post('/videolist', data).then(function (response) {
+      if (response && response.data) {
+        if ($('.video-card').length) {
+          $('.video-card').fadeOut('fast', function () {
+            $('.video-card').detach();
+            $(response.data).appendTo('.card-columns');
+          }).fadeIn();
+        } else {
+          $(response.data).appendTo('.card-columns');
+        }
+      } else if (response.data === '') {
+        $('.video-card').detach();
+      }
+    }).catch(function (error) {
+      console.log(error);
+    });
+  },
   addVideo: function addVideo(id, title) {
     var list = $('#new_playlist .list-group'); // this should ideally be in some kind of template (handlebars)
 
@@ -49369,7 +49383,7 @@ var Playlist = {
     if (!Object.keys(Playlist.list).length) $('a.playlist-save').addClass('disabled');
   },
   createPlaylist: function createPlaylist() {
-    console.log('create playlist ...');
+    console.log('create playlist ...'); // axios.post('/playlist').then(function(response){}).catch(function(error){});
   }
 };
 /*
@@ -49381,23 +49395,11 @@ var Playlist = {
 $(function () {
   window.Playlist = Playlist.init();
   $('#name_input').keyup(function () {
-    var title = $(this).val();
-    axios.get('/videolist/title/' + title).then(function (response) {
-      if (response && response.data) {
-        if ($('.video-card').length) {
-          $('.video-card').fadeOut('fast', function () {
-            $('.video-card').detach();
-            $(response.data).appendTo('.card-columns');
-          }).fadeIn();
-        } else {
-          $(response.data).appendTo('.card-columns');
-        }
-      } else if (response.data === '') {
-        $('.video-card').detach();
-      }
-    }).catch(function (error) {
-      console.log(error);
-    });
+    Playlist.filter();
+    return false;
+  });
+  $('input[type=checkbox]').change(function () {
+    Playlist.filter();
     return false;
   });
 });
@@ -49422,8 +49424,8 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/longinus/Github/code-activists/veganplaylist/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/longinus/Github/code-activists/veganplaylist/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\wamp\htdocs\veganplaylist\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\wamp\htdocs\veganplaylist\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

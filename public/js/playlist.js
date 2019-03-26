@@ -36648,7 +36648,7 @@ var uri = window.location.search.substring(1);
 var params = new URLSearchParams(uri);
 var name_from_get_param = params && params.get('name') ? params.get('name') : '';
 /* Playlist
-* 
+*
 *  Define our Playlist object
 *
 */
@@ -36680,6 +36680,34 @@ var Playlist = {
       return false;
     });
   },
+  filter: function filter() {
+    var title = $('#name_input').val();
+    var hide_graphic = $('#graphic_input').is(":checked") ? 0 : 1;
+    var hide_mature = $('#mature_input').is(":checked") ? 0 : 1;
+    var data = {
+      title: title,
+      hide_graphic: hide_graphic,
+      hide_mature: hide_mature,
+      tags: []
+    };
+    console.log(data);
+    axios.post('/videolist', data).then(function (response) {
+      if (response && response.data) {
+        if ($('.video-card').length) {
+          $('.video-card').fadeOut('fast', function () {
+            $('.video-card').detach();
+            $(response.data).appendTo('.card-columns');
+          }).fadeIn();
+        } else {
+          $(response.data).appendTo('.card-columns');
+        }
+      } else if (response.data === '') {
+        $('.video-card').detach();
+      }
+    }).catch(function (error) {
+      console.log(error);
+    });
+  },
   addVideo: function addVideo(id, title) {
     var list = $('#new_playlist .list-group'); // this should ideally be in some kind of template (handlebars)
 
@@ -36699,7 +36727,7 @@ var Playlist = {
     if (!Object.keys(Playlist.list).length) $('a.playlist-save').addClass('disabled');
   },
   createPlaylist: function createPlaylist() {
-    console.log('create playlist ...');
+    console.log('create playlist ...'); // axios.post('/playlist').then(function(response){}).catch(function(error){});
   }
 };
 /*
@@ -36711,23 +36739,11 @@ var Playlist = {
 $(function () {
   window.Playlist = Playlist.init();
   $('#name_input').keyup(function () {
-    var title = $(this).val();
-    axios.get('/videolist/title/' + title).then(function (response) {
-      if (response && response.data) {
-        if ($('.video-card').length) {
-          $('.video-card').fadeOut('fast', function () {
-            $('.video-card').detach();
-            $(response.data).appendTo('.card-columns');
-          }).fadeIn();
-        } else {
-          $(response.data).appendTo('.card-columns');
-        }
-      } else if (response.data === '') {
-        $('.video-card').detach();
-      }
-    }).catch(function (error) {
-      console.log(error);
-    });
+    Playlist.filter();
+    return false;
+  });
+  $('input[type=checkbox]').change(function () {
+    Playlist.filter();
     return false;
   });
 });
@@ -36741,7 +36757,7 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/alex/github/veganplaylist/resources/js/playlist.js */"./resources/js/playlist.js");
+module.exports = __webpack_require__(/*! C:\wamp\htdocs\veganplaylist\resources\js\playlist.js */"./resources/js/playlist.js");
 
 
 /***/ })
