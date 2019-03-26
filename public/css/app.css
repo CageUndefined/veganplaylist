@@ -10670,7 +10670,7 @@ a.text-dark:focus {
 
 .viewer {
   position: fixed;
-  top: 0;
+  top: 55px;
   left: 0;
   right: 0;
   bottom: 0;

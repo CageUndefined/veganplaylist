@@ -36757,7 +36757,7 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\wamp\htdocs\veganplaylist\resources\js\playlist.js */"./resources/js/playlist.js");
+module.exports = __webpack_require__(/*! /home/alex/github/veganplaylist/resources/js/playlist.js */"./resources/js/playlist.js");
 
 
 /***/ })

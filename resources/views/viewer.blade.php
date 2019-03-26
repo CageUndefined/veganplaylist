@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.page')
 
 @php
 $videos = $playlist->videos;
@@ -14,7 +14,7 @@ $totalVideos = count($videos);
 $playlist['creatorName'] = $playlist->creator->name;
 @endphp
 
-@section('content')
+@section('page_content')
     <div id="viewer_app">
         <main-viewer></main-viewer>
     </div>
