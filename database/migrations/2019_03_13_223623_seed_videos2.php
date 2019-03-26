@@ -17,10 +17,12 @@ class SeedVideos2 extends Migration {
 				'service_video_id' => '192022751',
 				'title' => 'You Will Be Sold To',
 				'length' => 30,
-				'widescreen' => true,
+                'widescreen' => true,
+                'graphic' => true,
+                'mature' => true
 			)
         );
-        
+
         foreach( $videos as $entry ) {
 
             $video = App\Video::create( $entry );

@@ -12,7 +12,7 @@ var name_from_get_param = (params && params.get('name')) ? params.get('name') : 
 
 
 /* Playlist
-* 
+*
 *  Define our Playlist object
 *
 */
@@ -47,6 +47,39 @@ var Playlist = {
         });
     },
 
+    filter: function() {
+        var title        = $('#name_input').val();
+        var hide_graphic = $('#graphic_input').is(":checked") ? 0 : 1;
+        var hide_mature  = $('#mature_input').is(":checked")  ? 0 : 1;
+        var data = {
+            title: title,
+            hide_graphic: hide_graphic,
+            hide_mature: hide_mature,
+            tags: []
+        };
+        console.log(data);
+        axios.post('/videolist', data)
+            .then(function (response) {
+                if (response && response.data) {
+                    if ($('.video-card').length) {
+                        $('.video-card').fadeOut('fast', function(){
+                            $('.video-card').detach();
+                            $( response.data ).appendTo('.card-columns');
+                        }).fadeIn();
+                    }
+                    else {
+                        $( response.data ).appendTo('.card-columns');
+                    }
+                }
+                else if (response.data === '') {
+                    $('.video-card').detach();
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    },
+
     addVideo: function( id, title ) {
         var list = $('#new_playlist .list-group');
         // this should ideally be in some kind of template (handlebars)
@@ -69,6 +102,7 @@ var Playlist = {
 
     createPlaylist: function() {
         console.log('create playlist ...');
+        // axios.post('/playlist').then(function(response){}).catch(function(error){});
     }
 };
 
@@ -83,27 +117,11 @@ $(function() {
     window.Playlist = Playlist.init();
 
     $('#name_input').keyup(function(){
-        var title = $(this).val();
-        axios.get('/videolist/title/' + title)
-            .then(function (response) {
-                if (response && response.data) {
-                    if ($('.video-card').length) {
-                        $('.video-card').fadeOut('fast', function(){
-                            $('.video-card').detach();
-                            $( response.data ).appendTo('.card-columns');
-                        }).fadeIn();
-                    }
-                    else {
-                        $( response.data ).appendTo('.card-columns');
-                    }
-                }
-                else if (response.data === '') {
-                    $('.video-card').detach();
-                }
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        Playlist.filter();
+        return false;
+    });
+    $('input[type=checkbox]').change(function(){
+        Playlist.filter();
         return false;
     });
 

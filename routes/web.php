@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use App\Video;
 
 /*
@@ -20,8 +21,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::view('/about', 'about');
 
 // Ajax Routes
-Route::get('/videolist/title/{title?}', function($title = '') {
-    $videos = Video::where( 'title', 'LIKE', "%$title%" )->get();
+Route::post('/videolist', function(Request $request) {
+    $title = $request['title'];
+    $where = array( array('title', 'LIKE', "%$title%") );
+    if ($request['hide_graphic']) $where[] = array('graphic', '!=', '1');
+    if ($request['hide_mature'])  $where[] = array('mature', '!=', '1');
+    $videos = Video::where( $where )->get();
     return view('inc.videolist', [
         'videos' => $videos
     ]);
@@ -36,7 +41,7 @@ Route::resources([
 
 // Development Tool Routes
 if( config('app.debug') ) {
-    
+
     Route::get( '/artisan', function() {
 
         Artisan::call( 'list' );

@@ -1,10 +1,10 @@
-@php    
+@php
     $videos = App\Video::all();
 @endphp
 
 @extends('layouts.page')
 
-@section('content')
+@section('page_content')
     <div class="container-fluid">
         <div class="card">
             <div class="card-header">
@@ -20,16 +20,16 @@
                             </div>
                             <div class="row mt-2">
                                 <div class="col-sm-2" title="Content that is stomach-turning">
-                                    <label for="graphic-input">Graphic:</label>
+                                    <label for="graphic_input">Graphic:</label>
                                 </div>
                                 <div class="col-sm-1">
-                                    <input type="checkbox" id="graphic-input" checked />
+                                    <input type="checkbox" id="graphic_input" value="1" checked />
                                 </div>
                                 <div class="col-sm-2" title="Content with language/nudity/violence">
-                                    <label for="nsfw-input">NSFW:</label>
+                                    <label for="mature_input">Mature:</label>
                                 </div>
                                 <div class="col-sm-1">
-                                    <input type="checkbox" id="nsfw-input" checked />
+                                    <input type="checkbox" id="mature_input" value="1" checked />
                                 </div>
                             </div>
                         </div>
@@ -37,19 +37,6 @@
                             <div class="row mb-3 mt-2 justify-content-end">
                                 <div id="labels-inactive" class="">
                                     <span class="text-secondary mr-2">Tags: </span>
-                                    <!-- v-if="tags.length" -->
-    
-                                    <!-- <TagItem
-            				            v-for="tag in tags"
-            				            v-bind:key="tag.id"
-            				            v-bind:tag="tag"
-            				            @remove="removeTag"
-            			            />
-            
-            		                <p v-else>
-            			                No tags available.
-            		                </p> -->
-    
                                     <a href="#" class="badge badge-pill badge-primary">Ethics</a>
                                     <a href="#" class="badge badge-pill badge-secondary">Humor</a>
                                     <a href="#" class="badge badge-pill badge-success">Environment</a>

@@ -1,6 +1,6 @@
 @extends('layouts.page')
 
-@section('content')
+@section('page_content')
     <div class="container">
         <div class="card">
             <div class="card-body">
@@ -25,7 +25,7 @@
 			   <div data-url="{{ URL::to('/') }}" data-title="Vegan Playlist" class="sharethis-inline-share-buttons"></div>
             </div>
         </div>
-        <br><br> 
-        
+        <br><br>
+
     </div>
 @endsection

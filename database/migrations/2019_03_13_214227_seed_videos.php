@@ -20,24 +20,30 @@ class SeedVideos extends Migration
                 'service_video_id' => '1igmzkmTv6U',
                 'title' => 'You Are Lisa Simpson',
                 'length' => 109,
-                'widescreen' => false
-            ), 
+                'widescreen' => false,
+                'graphic' => false,
+                'mature' => true
+            ),
             array(
                 'service' => 'y',
                 'service_video_id' => 'Sczb1dnRXCY',
                 'title' => 'Nelson Laughs at the Very Tall',
                 'length' => 88,
-                'widescreen' => true
+                'widescreen' => true,
+                'graphic' => true,
+                'mature' => false
             ),
             array(
                 'service' => 'y',
                 'service_video_id' => 'Ul6UcvNX4o8',
                 'title' => 'I Sleep in a Racing Car!',
                 'length' => 8,
-                'widescreen' => false
+                'widescreen' => false,
+                'graphic' => false,
+                'mature' => false
             )
         );
-        
+
         foreach( $videos as $entry ) {
 
             $video = App\Video::create( $entry );

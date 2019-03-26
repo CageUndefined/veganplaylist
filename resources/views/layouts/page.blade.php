@@ -3,6 +3,6 @@
 @section('content')
     @include('inc.navbar')
     <main class="py-4">
-        @yield('content')
+        @yield('page_content')
     </main>
 @endsection

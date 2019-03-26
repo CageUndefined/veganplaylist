@@ -21,6 +21,8 @@ class CreateVideosTable extends Migration
             $table->string('slug')->unique();
             $table->integer('length');
             $table->boolean('widescreen');
+            $table->boolean('graphic')->default(false);
+            $table->boolean('mature')->default(false);
             $table->timestamps();
         });
     }

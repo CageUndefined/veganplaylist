@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Video extends Model {
 
-	protected $fillable = ['service', 'service_video_id', 'title', 'length', 'widescreen'];
+	protected $fillable = ['service', 'service_video_id', 'title', 'length', 'widescreen', 'graphic', 'mature'];
 
 	public static function boot() {
 		parent::boot();
