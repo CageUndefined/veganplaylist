@@ -36908,7 +36908,7 @@ var render = function() {
               ),
               _c("small", [
                 _vm._v("\n\t\t\t\t\t\t\t\tCreated by "),
-                _c("em", [_vm._v(_vm._s(_vm.playlist.creatorName))])
+                _c("em", [_vm._v(_vm._s(_vm.playlist.creator.name))])
               ])
             ])
           ]),

@@ -7,7 +7,7 @@
 						<h4>
 							{{ playlist.name }}
 							<small>
-								Created by <em>{{ playlist.creatorName }}</em>
+								Created by <em>{{ playlist.creator.name }}</em>
 							</small>
 						</h4>
 					</div>
