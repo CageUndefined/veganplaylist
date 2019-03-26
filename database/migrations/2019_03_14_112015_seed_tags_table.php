@@ -70,7 +70,27 @@ class SeedTagsTable extends Migration
                 array(
                     'name' => 'Philosophy',
                     'color' => 'light'
-                )
+                ),
+                array(
+                    'name' => 'Cosmetics',
+                    'color' => 'light'
+                ),
+                array(
+                    'name' => 'Debate',
+                    'color' => 'light'
+                ),
+                array(
+                    'name' => 'Sketches',
+                    'color' => 'light'
+                ),
+                array(
+                    'name' => 'Undercover',
+                    'color' => 'light'
+                ),
+                array(
+                    'name' => 'News',
+                    'color' => 'light'
+                ),
             )
         );
     }

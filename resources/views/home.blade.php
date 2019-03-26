@@ -1,7 +1,5 @@
 @extends('layouts.page')
 
-@php for( $i = 0; $i < 10; $i++ ) $playlists[] = $playlists[ 0 ]; @endphp
-
 @section('page_content')
     <div class="container">
 		<center>
