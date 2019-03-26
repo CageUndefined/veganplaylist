@@ -9,8 +9,8 @@
 	
 	<form action="{{ route( 'playlist.create' ) }}" method="get">
 				
-	<div class="input-group mb-3">
-	<input style="width: 273px;padding: 6px;" name="name" placeholder="Enter a playlist name to start" />
+	<div class="input-group mb-3" style="width: 20rem;">
+	<input class="form-control" style="padding: 6px;" name="name" placeholder="Enter a playlist name to start" />
 	<div class="input-group-append">
 	<button class="btn btn-outline-secondary" style="background-color: #349de4;color: #fff;"type="button" id="button-addon2">Create</button>
 	</div>
