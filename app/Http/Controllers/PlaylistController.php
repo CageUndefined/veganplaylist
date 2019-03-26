@@ -77,6 +77,11 @@ class PlaylistController extends Controller {
 	}
 
 	public function show(Playlist $playlist, Video $video = null) {
-		return view('viewer', ["video" => $video, "playlist" => $playlist]);
+		if( is_null( $video ) )
+			$index = 0;
+		else
+			$index = $playlist->videos->search( function( $item, $key ) use( $video ) { return $item->is( $video ); } );
+		
+		return view('viewer', ["index" => $index, "playlist" => $playlist]);
 	}
 }

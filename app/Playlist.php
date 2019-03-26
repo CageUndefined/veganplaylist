@@ -12,7 +12,7 @@ class Playlist extends Model {
 	protected $visible = [ 'name', 'slug', 'creator', 'videos' ];
 
 	public function creator() {
-		return $this->hasOne('App\User', 'id', 'creator_id');
+		return $this->belongsTo('App\User', 'creator_id');
 	}
 
 	public function videos() {
