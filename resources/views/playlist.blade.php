@@ -76,7 +76,7 @@
                         <div class="card-header text-center" id="playlist_name">Your Playlist</div>
                         <div class="card-body text-center">
                             <p><em>Search for videos using the filter above</em></p>
-                            <ul class="list-group text-left"></ul>
+                            <ol class="list-group text-left"></ol>
                         </div>
                         <div class="card-footer text-center">
                             <a href="#" class="btn btn-primary playlist-save disabled">Create Playlist</a>
