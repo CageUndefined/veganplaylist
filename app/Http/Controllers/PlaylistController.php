@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Playlist;
 use App\Video;
+use App\PseudoCrypt;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class PlaylistController extends Controller {
 	public function __construct() {
@@ -42,7 +44,21 @@ class PlaylistController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function store(Request $request) {
-		//
+        $name = $request->input('name');
+        $ids  = $request->input('video_ids');
+        if ( empty($name) ) {
+            $name = PseudoCrypt::hash($ids[0], 8);
+        }
+
+        $playlist = Playlist::create([ 'name' => $name ]);
+
+        for ($i = 0; $i < count($ids); $i++) {
+            $id = $ids[$i];
+            $playlist->videos()->attach([
+                $id => [ 'order' => $i ]
+            ]);
+        }
+        return response()->json( $playlist, 200 );
 	}
 
 	/**

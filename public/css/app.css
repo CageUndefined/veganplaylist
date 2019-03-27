@@ -10802,14 +10802,6 @@ a.text-dark:focus {
   border: 2px solid green;
 }
 
-ol.list-group {
-  list-style: decimal inside;
-}
-
-ol .list-group-item {
-  display: list-item;
-}
-
 .playlist-card .card-header {
   background-color: #343a40;
   font-size: 18px;

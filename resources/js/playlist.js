@@ -105,8 +105,14 @@ var Playlist = {
     },
 
     createPlaylist: function() {
-        console.log('create playlist ...');
-        // axios.post('/playlist').then(function(response){}).catch(function(error){});
+        var data = {
+            name: Playlist.name,
+            video_ids: Object.keys(Playlist.list)
+        };
+        axios.post('/playlist', data)
+            .then(function(response){
+                setTimeout(function(){ window.location = '/playlist/' + response.data.slug; }, 2000);
+            }).catch(function(error){ console.log(error) });
     }
 };
 

@@ -13,15 +13,20 @@ class SeedPlaylists extends Migration
      */
     public function up()
     {
-        $user = new App\User;
+        $g_user = new App\User;
+        $g_user->name = 'Guest';
+        $g_user->slug = 'guest';
+        $g_user->email = 'g@vgn.soy';
+        $g_user->password = Hash::make('imvegan');
+        $g_user->save();
 
+        $user = new App\User;
         $user->name = 'David';
-        $user->slug = 'david'; 
+        $user->slug = 'david';
         $user->email = 'd@d.d';
         $user->password = Hash::make('imvegan');
-
         $user->save();
-        
+
 
         for( $i = 0; $i < 9; $i++ ) {
 
@@ -46,8 +51,8 @@ class SeedPlaylists extends Migration
                     )
                 );
             }
-            
-        } 
+
+        }
     }
 
     /**
