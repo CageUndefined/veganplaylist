@@ -16,6 +16,7 @@ class SeedPlaylists extends Migration
         $user = new App\User;
 
         $user->name = 'David';
+        $user->slug = 'david';
         $user->email = 'd@d.d';
         $user->password = Hash::make('imvegan');
 
