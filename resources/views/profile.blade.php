@@ -3,6 +3,7 @@
 @section('content')
     <div class="container">
     @if (!empty($user))
+    
         <h3>Profile Details</h3>
         <ul>
             <li>Name: {{ $user->name }}</li>

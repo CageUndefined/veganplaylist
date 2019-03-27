@@ -31,9 +31,6 @@ class UserProfileController extends Controller
         $user = User::where( 'slug', $slug )->first();
         $playlists = !empty($user) ? Playlist::where( 'creator_id', $user->id )->get() : [];
 
-        return view( 'profile', [ 
-            'user' => $user,
-            'playlists' => $playlists
-        ] );
+        return view( 'profile', [ 'user' => $user, 'playlists' => $playlists ] );
     }
 }
