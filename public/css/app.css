@@ -10670,7 +10670,7 @@ a.text-dark:focus {
 
 .viewer {
   position: fixed;
-  top: 0;
+  top: 55px;
   left: 0;
   right: 0;
   bottom: 0;
@@ -10684,9 +10684,21 @@ a.text-dark:focus {
   left: 0;
   right: 0;
   height: 45px;
-  padding: 10px 0;
   background: #242424;
   overflow: hidden;
+}
+
+.viewer .heading .title {
+  padding: 10px 0;
+}
+
+.viewer .heading .stats {
+  font-size: 90%;
+  padding: 3px 0;
+}
+
+.viewer .heading .stats div {
+  text-align: center;
 }
 
 .viewer .subheading {
@@ -10726,7 +10738,7 @@ a.text-dark:focus {
   padding: 10px;
 }
 
-.viewer .navigation a {
+.viewer .navigation a.thumbnail {
   width: 40px;
   height: 40px;
   background: black;
@@ -10737,15 +10749,19 @@ a.text-dark:focus {
   border: 2px solid white;
 }
 
-.viewer .navigation a.active,
-.viewer .navigation a:active {
+.viewer .navigation a.thumbnail.active,
+.viewer .navigation a.thumbnail:active {
   border: 2px solid green;
 }
 
-.viewer .navigation a img {
+.viewer .navigation a.thumbnail img {
   position: absoute;
   left: 0;
   width: 100%;
+}
+
+.viewer .navigation .creator {
+  text-align: right;
 }
 
 .embed__aspect-ratio {

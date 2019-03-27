@@ -87,7 +87,8 @@ class PlaylistController extends Controller {
 			$index = $playlist->videos->search(function ($item, $key) use ($video) {return $item->is($video);});
 		}
 
-		$playlist->incrementViews();
+		Playlist::where('id', $playlist->id)->update(array('views' => ($playlist->views + 1)));
+
 		return view('viewer', ["index" => $index, "playlist" => $playlist]);
 	}
 }
