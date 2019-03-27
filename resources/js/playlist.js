@@ -34,10 +34,10 @@ var Playlist = {
             Playlist.addVideo(id, title);
             return false;
         });
-        $('ol.list-group').on('click', '.remove', function(){
+        $('ul.list-group').on('click', '.remove', function(){
             var id = $(this).data('id');
             Playlist.removeVideo(id);
-            $(this).parent().fadeOut().remove();
+            $('#list_item_'+id).fadeOut().remove();
             return false;
         });
         $('.playlist-save').click(function(){
@@ -57,7 +57,6 @@ var Playlist = {
             hide_mature: hide_mature,
             tags: []
         };
-        console.log(data);
         axios.post('/videolist', data)
             .then(function (response) {
                 if (response && response.data) {
@@ -81,16 +80,21 @@ var Playlist = {
     },
 
     addVideo: function( id, title ) {
-        var list = $('#new_playlist .list-group');
-        // this should ideally be in some kind of template (handlebars)
-        var li = '<li class="list-group-item">'+title+' <a href="#" data-id="'+id+'" class="remove text-danger ml-2"><i class="fas fa-trash-alt"></i></a></li>';
-        list.append(li);
-        Playlist.list[id] = {
-            id: id,
-            title: title
-        };
-        $('#card_'+id).fadeOut().remove();
-        if ($('a.playlist-save').hasClass('disabled')) $('a.playlist-save').removeClass('disabled');
+        axios.get('/video/' + id)
+            .then(function(response){
+                var li = response.data;
+                var list = $('#new_playlist .list-group');
+                list.append(li);
+                Playlist.list[id] = {
+                    id: id,
+                    title: title
+                };
+                $('#card_' + id).fadeOut().remove();
+                if ($('a.playlist-save').hasClass('disabled')) $('a.playlist-save').removeClass('disabled');
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     },
 
     removeVideo: function( id ) {
