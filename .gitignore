@@ -11,6 +11,10 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 
+composer.json
+composer.lock
+composer.phar
+
 ### Vim
 # Swap
 [._]*.s[a-v][a-z]
