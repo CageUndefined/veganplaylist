@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Playlist extends Model {
 
-	protected $visible = ['name', 'slug', 'creator', 'videos', 'views'];
+	protected $visible = ['id', 'name', 'slug', 'creator', 'videos', 'views', 'display_length'];
 	protected $fillable = ['views'];
 
 	public function creator() {
@@ -20,20 +20,15 @@ class Playlist extends Model {
 		return $this->belongsToMany('App\Video', 'playlist_video_map');
 	}
 
-	public function videoData() {
-		$videoModels = $this->videos;
-		$videoData = [];
-		foreach ($videoModels as $vm) {
-			array_push($videoData, $vm->viewerData());
-		}
-		return $videoData;
-	}
-
 	public static function boot() {
 		parent::boot();
 
 		static::saving(function ($model) {
 			$model->slug = str_slug($model->name);
+		});
+
+		static::retrieved(function ($model) {
+			$model->display_length = $model->getDisplayLengthAttribute();
 		});
 	}
 
@@ -50,12 +45,12 @@ class Playlist extends Model {
 		return "https://vgn.soy/$hash";
 	}
 
-	public function getLength() {
-
-	}
-
-	public function incrementViews() {
-		$this->views = $this->views + 1;
-		$this->save();
+	public function getDisplayLengthAttribute() {
+		$secondLength = 0;
+		$videoModels = $this->videos;
+		foreach ($videoModels as $vm) {
+			$secondLength += $vm->length;
+		}
+		return gmdate("H:i:s", $secondLength);
 	}
 }

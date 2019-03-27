@@ -3,18 +3,15 @@
 		<div class="heading">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-9">
+					<div class="title col-md-9">
 						<h4>
 							{{ playlist.name }}
-							<small v-if="playlist.creator">
-								Created by <em>{{ playlist.creator.name }}</em>
-							</small>
 						</h4>
 					</div>
-					<div class="col-md-3">
-						views: {{ playlist.views }}
-						videos: {{ playlist.videos.length }}
-						length: 1 hour
+					<div class="stats col-md-3 row">
+						<div class="col-md-4">views<br>{{ playlist.views }}</div>
+						<div class="col-md-4">videos<br>{{ playlist.videos.length }}</div>
+						<div class="col-md-4">run time<br>{{ playlist.display_length }}</div>
 					</div>
 				</div>
 			</div>
@@ -38,9 +35,10 @@
 		<div class="embed">
 			<iframe class="embed__iframe" :src="currentVideo.src"></iframe>
 		</div>
-    	<div class="navigation">
-    		<div class="container">
-				<a href="#"
+    	<div class="navigation row">
+			<div class="col-md-3"><a href="">Edit</a></div>
+    		<div class="container col-md-6">
+				<a class="thumbnail" href="#"
 					v-for="(video, i) in playlist.videos"
 					v-on:click="changeIndex(i)"
 					:title="video.title"
@@ -48,7 +46,11 @@
 					<img :src="video.thumbnailSrc" alt="">
 				</a>
     		</div>
+    		<div class="col-md-3 creator">
+    			<span v-if="playlist.creator">Created by <a href="">{{ playlist.creator.name }}</a></span>
+    		</div>
 		</div>
+		
 	</div>
 </template>
 

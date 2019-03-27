@@ -5,7 +5,6 @@
         <main-viewer></main-viewer>
     </div>
     <script>
-
         const viewer = new Vue({
             el: '#viewer_app',
             data: {

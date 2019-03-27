@@ -1817,6 +1817,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -36901,30 +36903,34 @@ var render = function() {
     _c("div", { staticClass: "heading" }, [
       _c("div", { staticClass: "container" }, [
         _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-9" }, [
+          _c("div", { staticClass: "title col-md-9" }, [
             _c("h4", [
               _vm._v(
                 "\n\t\t\t\t\t\t\t" +
                   _vm._s(_vm.playlist.name) +
-                  "\n\t\t\t\t\t\t\t"
-              ),
-              _vm.playlist.creator
-                ? _c("small", [
-                    _vm._v("\n\t\t\t\t\t\t\t\tCreated by "),
-                    _c("em", [_vm._v(_vm._s(_vm.playlist.creator.name))])
-                  ])
-                : _vm._e()
+                  "\n\t\t\t\t\t\t"
+              )
             ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-md-3" }, [
-            _vm._v(
-              "\n\t\t\t\t\t\tviews: " +
-                _vm._s(_vm.playlist.views) +
-                "\n\t\t\t\t\t\tvideos: " +
-                _vm._s(_vm.playlist.videos.length) +
-                "\n\t\t\t\t\t\tlength: 1 hour\n\t\t\t\t\t"
-            )
+          _c("div", { staticClass: "stats col-md-3 row" }, [
+            _c("div", { staticClass: "col-md-4" }, [
+              _vm._v("views"),
+              _c("br"),
+              _vm._v(_vm._s(_vm.playlist.views))
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-4" }, [
+              _vm._v("videos"),
+              _c("br"),
+              _vm._v(_vm._s(_vm.playlist.videos.length))
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-4" }, [
+              _vm._v("run time"),
+              _c("br"),
+              _vm._v(_vm._s(_vm.playlist.display_length))
+            ])
           ])
         ])
       ])
@@ -36997,14 +37003,17 @@ var render = function() {
       })
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "navigation" }, [
+    _c("div", { staticClass: "navigation row" }, [
+      _vm._m(0),
+      _vm._v(" "),
       _c(
         "div",
-        { staticClass: "container" },
+        { staticClass: "container col-md-6" },
         _vm._l(_vm.playlist.videos, function(video, i) {
           return _c(
             "a",
             {
+              staticClass: "thumbnail",
               class: video.linkClass,
               attrs: { href: "#", title: video.title },
               on: {
@@ -37017,11 +37026,31 @@ var render = function() {
           )
         }),
         0
-      )
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-3 creator" }, [
+        _vm.playlist.creator
+          ? _c("span", [
+              _vm._v("Created by "),
+              _c("a", { attrs: { href: "" } }, [
+                _vm._v(_vm._s(_vm.playlist.creator.name))
+              ])
+            ])
+          : _vm._e()
+      ])
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-3" }, [
+      _c("a", { attrs: { href: "" } }, [_vm._v("Edit")])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -49434,8 +49463,8 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\wamp\htdocs\veganplaylist\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\wamp\htdocs\veganplaylist\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/alex/github/veganplaylist/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/alex/github/veganplaylist/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

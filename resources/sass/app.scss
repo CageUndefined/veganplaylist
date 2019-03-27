@@ -36,9 +36,20 @@
 		left:0;
 		right:0;
 		height: 45px;
-		padding: 10px 0;
 		background: #242424;
 		overflow: hidden;
+
+		.title {
+			padding: 10px 0;
+		}
+
+		.stats {
+			font-size: 90%;
+			padding: 3px 0;
+			div {
+				text-align: center;
+			}
+		}
 	}
 	.subheading {
 		position: absolute;
@@ -76,24 +87,29 @@
 		padding: 10px;
 
 		a {
-			width: 40px;
-			height: 40px;
-			background: black;
-			display: inline-block;
-			margin-right: 10px;
-			overflow: hidden;
-			position:relative;
-			border: 2px solid white;
+			&.thumbnail {
+				width: 40px;
+				height: 40px;
+				background: black;
+				display: inline-block;
+				margin-right: 10px;
+				overflow: hidden;
+				position:relative;
+				border: 2px solid white;
 
-			&.active, &:active {
-				border: 2px solid green;
-			}
+				&.active, &:active {
+					border: 2px solid green;
+				}
 
-			img {
-				position: absoute;
-				left:0;
-				width:100%;
+				img {
+					position: absoute;
+					left:0;
+					width:100%;
+				}
 			}
+		}
+		.creator {
+			text-align: right;
 		}
 	}
 }
