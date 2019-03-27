@@ -1,33 +1,19 @@
-<div class="card playlist-card" style="box-shadow: -1px 1px 11px 0px rgba(0, 0, 0, 0.26);border-radius: 10px 10px 10px 10px;">
-
-    <div class="card-header text-center" style="background-size: cover; background-repeat: no-repeat;padding-top: 8px;border-radius: 10px 10px 0px 0px;padding-bottom: 5px;background-image: url(https://i.imgur.com/ESi8MTp.jpg);color: black;">
-	<i class="fas fa-play-circle" style="padding-top: 14px;float: left;color: #fff;
-    font-size: 25px;"></i>
-        <a style="font-weight: 600;letter-spacing: 2px;" href="{{ route( 'playlist.show', $playlist ) }}">{{ $playlist->name }}</a>
+<div class="card playlist-card">
+    <div class="card-header text-center">
+        <a href="{{ route( 'playlist.show', $playlist ) }}">{{ $playlist->name }}</a>
     </div>
     <ul class="list-group">
-	<table>
-
-  <tr>
-    <td align="center" style="padding: 15px;"><i class="fas fa-share"></i> Share</td>
-    <td><i class="fas fa-link"></i> Copy URL</td>
-    <td align="right" style="padding-right: 18px;">Total: <b>1:23:33</b></td>
-  </tr>
-
-</table>
-
     @foreach( $playlist->videos as $video )
-      <li class="list-group-item" style="padding-left: 20px;padding-right: 10px;">
+      <li class="list-group-item" style="padding-left: 0px; padding-right: 0px;">
           <a class="row" href="{{ route( 'playlist.video.show', [ $playlist, $video ] ) }}">
               <div class="col-3">@include('inc.videothumb')</div>
-              <div class="col-7 text-truncate" style="white-space: inherit !important;color: #000;text-decoration: none;font-weight: 600;margin: -10px 0px 0px 15px;">{{ $video->title }}</div>
-              <!--<small class="col-1 text-right" style="padding: 0px;">{{ $video->getTime() }}</small>-->
+              <div class="col-7 text-truncate">{{ $video->title }}</div>
+              <small class="col-1 text-right" style="padding: 0px;">{{ $video->getTime() }}</small>
           </a>
       </li>
     @endforeach
     </ul>
-    <!--<div class="card-body text-center">
+    <div class="card-body text-center">
         @include('inc.listbuttons')
     </div>
-	-->
 </div>
