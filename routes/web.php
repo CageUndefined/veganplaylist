@@ -32,6 +32,10 @@ Route::post('/videolist', function(Request $request) {
         'videos' => $videos
     ]);
 });
+Route::get('/video/{id}', function($id){
+    $video = Video::findOrFail($id);
+    return view('inc.videolistitem', ['video' => $video]);
+});
 
 // Resources
 Route::resources([
