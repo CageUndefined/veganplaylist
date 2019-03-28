@@ -29,4 +29,22 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function boot() {
+        parent::boot(); 
+        static::saving(function ($model) {
+                $model->slug = str_slug($model->name);
+        });
+    }
+
+    public function getRouteKeyName() {
+            return 'slug';
+    }
+
+    public function playlists() {
+        
+        return $this->hasMany('App\Playlist', 'creator_id');
+
+    }
+
 }

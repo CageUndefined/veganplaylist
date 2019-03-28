@@ -26,11 +26,10 @@ class UserProfileController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index($slug)
+    public function index(User $user)
     {
-        $user = User::where( 'slug', $slug )->first();
-        $playlists = !empty($user) ? Playlist::where( 'creator_id', $user->id )->get() : [];
-
+        $playlists = $user->playlists()->get();
+        
         return view( 'profile', [ 'user' => $user, 'playlists' => $playlists ] );
     }
 }
