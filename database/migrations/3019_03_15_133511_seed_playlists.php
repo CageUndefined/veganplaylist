@@ -13,11 +13,6 @@ class SeedPlaylists extends Migration
      */
     public function up()
     {
-        $g_user = new App\User;
-        $g_user->name = 'Guest';
-        $g_user->email = 'g@vgn.soy';
-        $g_user->password = Hash::make('imvegan');
-        $g_user->save();
 
         $user = new App\User;
         $user->name = 'David';
@@ -31,7 +26,8 @@ class SeedPlaylists extends Migration
             $playlist = new App\Playlist;
 
             $playlist->name = ucwords( rtrim( Lorem::text(50), '.' ) );
-            $playlist->creator_id = $user->id;
+            if( rand(0,1) )
+                $playlist->creator_id = $user->id;
             $playlist->featured = true;
             $playlist->save();
 
