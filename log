@@ -1,0 +1,427 @@
++++ created Tcl interpreter +++
+!!! started DIN Is Noise !!!
++++ initialised random number generator +++
++++ created audio clock +++
++++ created UI clock +++
++++ initialised computer keyboard input +++
+loaded globals from: /home/longinus/.din/globals
+<<< loading font from: /home/longinus/.din/jag.fnt, done. >>>
++++ found 1 audio devices +++
+name = system input [default?] = 0[0], output[default?] = 4[1] duplex = 0 
+sample rates: 44100 
++++ opened audio stream +++
++++ loaded curve from: feedback-l.crv +++
++++ loaded curve from: volume-l.crv +++
++++ loaded curve from: feedback-r.crv +++
++++ loaded curve from: volume-r.crv +++
+<<< loading curve editor settings from: /home/longinus/.din/delay.ed, done >>>
++++ loaded fft_levels +++
++++ FFT setup complete +++ 
++++ loaded 144 curves from: waveforms.lib +++
++++ loaded 5 curves from: sin.lib +++
++++ loaded 6 curves from: cos.lib +++
++++ loaded 9 curves from: attack.lib +++
++++ loaded 6 curves from: decay.lib +++
++++ loaded curve from: coml.crv +++
++++ loaded curve from: comr.crv +++
+<<< loading curve editor settings from: /home/longinus/.din/compressor.ed, done >>>
++++ loaded curve from: octave-shift.crv +++
+<<< loading curve editor settings from: /home/longinus/.din/octave-shift.ed, done >>>
++++ loaded 15 curves from: octave-shift-patterns.lib +++
++++ loaded curve from: drone-mod-fm.crv +++
++++ loaded curve from: drone-mod-am.crv +++
+<<< loading curve editor settings from: /home/longinus/.din/drone-modulation.ed, done >>>
++++ loaded curve from: range-mod-width.crv +++
++++ loaded curve from: range-mod-height.crv +++
+<<< loading curve editor settings from: /home/longinus/.din/range-modulation.ed, done >>>
++++ loaded curve from: waveform1.crv +++
+<<< loading curve editor settings from: /home/longinus/.din/waveform1.ed, done >>>
++++ loaded curve from: drone.crv +++
+<<< loading curve editor settings from: /home/longinus/.din/drone.ed, done >>>
++++ loaded curve from: fm.crv +++
++++ loaded curve from: am.crv +++
+<<< loading curve editor settings from: /home/longinus/.din/modulation.ed, done >>>
++++ loaded curve from: gater.crv +++
+<<< loading curve editor settings from: /home/longinus/.din/gater.ed, done >>>
++++ loaded 45 curves from: gater-patterns.lib +++
++++ loaded curve from: mondrian_waveform.crv +++
+<<< loading curve editor settings from: /home/longinus/.din/mondrian_waveform.ed, done >>>
++++ loaded curve from: mondrian_attack.crv +++
++++ loaded curve from: mondrian_decay.crv +++
+<<< loading curve editor settings from: /home/longinus/.din/mondrian_attack.ed, done >>>
+<<< loading curve editor settings from: /home/longinus/.din/mondrian_decay.ed, done >>>
++++ loaded curve from: swav.crv +++
+<<< loading curve editor settings from: /home/longinus/.din/swav.ed, done >>>
++++ loaded curve from: fader.crv +++
++++ loaded curve from: waveform2.crv +++
+<<< loading curve editor settings from: /home/longinus/.din/waveform2.ed, done >>>
++++ loaded curve from: attack.crv +++
++++ loaded curve from: decay.crv +++
+<<< loading curve editor settings from: /home/longinus/.din/attack.ed, done >>>
+<<< loading curve editor settings from: /home/longinus/.din/decay.ed, done >>>
++++ loaded curve from: velocity.crv +++
+<<< loading curve editor settings from: /home/longinus/.din/velocity.ed, done >>>
++++ loaded 9 curves from: velocity.lib +++
++++ loaded curve from: dot.crv +++
++++ loaded curve from: dash.crv +++
++++ loaded curve from: inner.crv +++
++++ loaded curve from: letter.crv +++
++++ loaded curve from: word.crv +++
+<<< loading curve editor settings from: /home/longinus/.din/morse-code.ed, done >>>
++++ loaded curve from: seed.crv +++
+<<< loading curve editor settings from: /home/longinus/.din/seed.ed, done >>>
++++ loaded 22 curves from: seed.lib +++
++++ loaded curve from: rose_milker_sin.crv +++
++++ loaded curve from: rose_milker_cos.crv +++
++++ loaded curve from: circler_radius.crv +++
+<<< loading curve editor settings from: /home/longinus/.din/rose_milker_sin.ed, done >>>
+<<< loading curve editor settings from: /home/longinus/.din/rose_milker_cos.ed, done >>>
+<<< loading curve editor settings from: /home/longinus/.din/circler_radius.ed, done >>>
++++ loaded curve from: circler_sin.crv +++
++++ loaded curve from: circler_cos.crv +++
++++ loaded curve from: circler_radius.crv +++
+<<< loading curve editor settings from: /home/longinus/.din/circler_sin.ed, done >>>
+<<< loading curve editor settings from: /home/longinus/.din/circler_cos.ed, done >>>
+<<< loading curve editor settings from: /home/longinus/.din/circler_radius.ed, done >>>
++++ loaded curve from: spiraler_sin.crv +++
++++ loaded curve from: spiraler_cos.crv +++
++++ loaded curve from: spiraler_radius.crv +++
+<<< loading curve editor settings from: /home/longinus/.din/spiraler_sin.ed, done >>>
+<<< loading curve editor settings from: /home/longinus/.din/spiraler_cos.ed, done >>>
+<<< loading curve editor settings from: /home/longinus/.din/spiraler_radius.ed, done >>>
++++ loaded curve from: warpx.crv +++
++++ loaded curve from: warpy.crv +++
+<<< loading curve editor settings from: /home/longinus/.din/warper.ed, done >>>
++++ loaded curve from: morph_source.crv +++
++++ loaded curve from: morph_target.crv +++
++++ loaded curve from: sine_mixer_sin.crv +++
+<<< loading curve editor settings from: /home/longinus/.din/sine_mixer_sin.ed, done >>>
++++ loaded sine_levels +++
+<<< loading curve editor settings from: /home/longinus/.din/font.ed, done >>>
+*** current MIDI API = JACK ***
+!!! found no MIDI input ports !!!
+*** Starting DIN Is Noise 39 ***
++++ initialised SDL video +++
+*** loading fullscreen modes ***
+ found mode: 1366x768
+ found mode: 1280x720
+ found mode: 1024x768
+ found mode: 1024x576
+number of fullscreen modes = 4
++++ loaded all full screen modes +++
++++ setup SDL/OpenGL double buffer +++
+*** reading last window ***
+*** setting up screens ***
+*** setup delay: feedback-l.crv volume-l.crv ***
+*** setup delay: feedback-r.crv volume-r.crv ***
+*** setting up plugin: Fractaliser +++
+*** setting up plugin: Rose_Milker +++
+*** setting up plugin: Circler +++
+*** setting up plugin: Spiraler +++
+*** setting up plugin: Starrer +++
+*** setting up plugin: Lissajous +++
+*** setting up plugin: Superformula +++
+*** setting up plugin: Warper +++
+*** setting up plugin: Countries +++
+*** setting up plugin: Sine_Mixernss = 257
+ +++
+*** setting up plugin: Morpher +++
+*** setting up plugin: Number +++
+*** setting up menu ***
++++ menu setup complete +++
+*** setting up Mondrian ***
+!!! Failed loading boxes & balls from file: mondrian.data !!!
++++ Mondrian setup complete +++
++++ setup screens complete +++
+added command: key aka key
+added command: set-var aka sv
+added command: get-var aka gv
+added command: set-delay aka sd
+added command: get-delay aka gd
+added command: set-bpm aka sb
+added command: get-bpm aka gb
+added command: set-beat aka sbt
+added command: get-beat aka gbt
+added command: set-style aka ss
+added command: get-style aka gs
+added command: set-kern aka sk
+added command: get-kern aka gk
+added command: set-font-size aka sfs
+added command: get-font-size aka gfs
+added command: note-distance aka nd
+added command: chord aka ch
+added command: notation aka no
+added command: echo aka eo
+added command: curve-value aka cv
+added command: curve-name aka cn
+added command: curve-library aka cl
+added command: morse-code aka mc
+added command: set-curve-editor aka sced
+added command: set-scope aka ssco
+added command: get-scope aka gsco
+added command: get-drone aka gdro
+added command: set-drone aka sdro
+added command: set-text-color aka stc
+added command: paste-gater aka paste-gater
+added command: get-intervals aka gint
+added command: num-octaves aka noct
+added command: set-kb-layout aka kbl
+added command: set-audio aka sa
+added command: load-scale aka los
+added command: scale-curve aka scrv
+added command: binaural-drone aka bd
+added command: set-sine-mixer aka ssm
+added command: change-sine-mixer aka csm
+added command: update-sine-mixer aka usm
+added command: write-svg aka wsvg
++++ added 41 din commands to the Tcl interpreter +++
++++ loaded DIN scripts (init.tcl) +++ 0.0
+<< loading ranges from: /home/longinus/.din/blues.ranges, done >>>
+<<< loading 0 drones from: /home/longinus/.din/blues.drone, done. >>>
++++ loaded DIN settings (settings.tcl) +++ 
+!!! couldnt open MIDI port 0 !!!
++++ setup video mode 800 600 24 +++
++++ DIN Is Noise 39 @ Chennai, India | LICENSED VERSION is now streaming audio +++
++++ stopped and closed audio stream +++
++++ saved curve into: drone-mod-am.crv +++
++++ saved curve into: drone-mod-fm.crv +++
++++ saved curve into: range-mod-height.crv +++
++++ saved curve into: range-mod-width.crv +++
+--- destroying uis ---
+--- destroyed uis ---
+~spinner: Inputs Per Second 120 
+~spinner: Frames Per Second 120 
+~spinner: Number of Octaves 3 
+~spinner: Key (Hz)  14.768 
+~spinner: BPM 90.000 
+~spinner: Hz/Pixel 0.300 
+--- destroying menu ---
+--- destroyed menu ---
+~spinner: Curve roughness 0.000 
+~spinner: Cycles 2 
+~spinner: Hz 440.000 
+~spinner: RPM 0.000 
+~spinner: Number of Pairs 1 
+~spinner: Separation (Hz) 1.000 
+~spinner: Every  
+~spinner: Max balls  
+~spinner: Max clones  
+~spinner: Offset  
+~spinner: Every  
+~spinner: Max distance  
+~spinner: Every  
+~spinner: Max speed  
+~spinner: Accelerate  
+~spinner: Brake  
+~spinner: Every  
+~spinner: Anti-clockwise Max  
+~spinner: Clockwise Max  
+~spinner: Every  
+~spinner: Min split size 16.000 
+~spinner: Every 2.000 
+~spinner: Every 1.000 
+~spinner: Note polygon points 0 
+~spinner: Ball trail length 0 
+~spinner: Slit open/close time 0.000 
+~spinner: Slit size 0.000 
+~spinner: Note polygon radius 0.000 
+~spinner: Ball direction 0.000 
+~spinner: Ball speed 0.000 
+~spinner: Ball decay time 0.000 
+~spinner: Ball attack time 0.000 
+~spinner: Ball volume 0.000 
+~spinner: Min Voices 8 
+~spinner: N 8 
+~spinner: Samples 256 
+~spinner: Height 96 
+~spinner: Depth 0.500 
+~spinner: Width 0.200 
+~spinner: Default height 360 
+~spinner: Default width 160 
+~spinner: BPM 38.000 
+~spinner: BPM 38.000 
+~spinner: Height 0.000 
+~spinner: Width 0.000 
+~spinner: Range 0 
+~spinner: Scale 0.000 
+~spinner: Rotate 0.000 
+~spinner: Snap right 0.500 
+~spinner: Snap left 0.500 
+~spinner: Browse drone -1 
+~spinner: Columns 2 
+~spinner: Rows 2 
+~spinner: Speed % 100 
+~spinner: Bounces 1 
+~spinner: FM BPM 0.000 
+~spinner: AM BPM 0.000 
+~spinner: FM Depth 0.000 
+~spinner: AM Depth 0.000 
+~spinner: FM BPM 90.000 
+~spinner: AM BPM 90.000 
+~spinner: FM Depth 0.000 
+~spinner: AM Depth -0.450 
+~spinner: Orbit insertion time 0.000 
+~spinner: Lifetime 0.000 
+~spinner: Drones per minute 0 
+~spinner: Rotate velocity 0 
+~spinner: Acceleration 0.000 
+~spinner: Velocity 0.000 
+~spinner: Trail length 0 
+~spinner: Handle size 0 
+~spinner: Volume 0.300 
+~spinner: BPM 90.000 
+~spinner: BPM 90.000 
+-- destroyed curve editor: font ---
++++ saved widgets to: d_sine_mixer +++
+--- destroyed sine mixer ---
+~spinner: Points 256 
+-- destroyed curve editor: sine_mixer-sin ---
++++ saved curve into: sine_mixer_sin.crv +++
++++ saved widgets to: d_number +++
+~spinner: 0 =  0.300 
+~spinner: 1 =  1.000 
+~spinner: Scale 1.000 
++++ saved widgets to: d_morpher +++
++++ saved curve into: morph_source.crv +++
++++ saved curve into: morph_target.crv +++
+~spinner: Points 128 
++++ saved widgets to: d_countries +++
+~spinner: Step 10 
++++ saved curve into: warpx.crv +++
++++ saved curve into: warpy.crv +++
++++ saved widgets to: d_warper +++
+-- destroyed curve editor: xy_warper ---
++++ saved widgets to: d_superformula +++
+~spinner: Points 256 
+~spinner: n3 0.900 
+~spinner: n2 2.300 
+~spinner: n1 0.200 
+~spinner: m 12.000 
++++ saved widgets to: d_lissajous +++
+~spinner: Points 64 
+~spinner: Y Speed 2.000 
+~spinner: X Speed 1.000 
++++ saved widgets to: d_starrer +++
+~spinner: Steps 3 
++++ saved widgets to: d_spiraler +++
+~spinner: Points 128 
+~spinner: Turns 1.000 
+~spinner: Radius 1.000 
+-- destroyed curve editor: spiraler-radius ---
+-- destroyed curve editor: spiraler-cos ---
+-- destroyed curve editor: spiraler-sin ---
++++ saved curve into: spiraler_radius.crv +++
++++ saved curve into: spiraler_cos.crv +++
++++ saved curve into: spiraler_sin.crv +++
++++ saved widgets to: d_circler +++
+~spinner: Points 6 
+~spinner: Phase 90 
+~spinner: Radius 1.000 
+-- destroyed curve editor: circler-radius ---
+-- destroyed curve editor: circler-cos ---
+-- destroyed curve editor: circler-sin ---
++++ saved curve into: circler_radius.crv +++
++++ saved curve into: circler_cos.crv +++
++++ saved curve into: circler_sin.crv +++
++++ saved widgets to: d_rose_milker +++
+~spinner: End angle 360.000 
+~spinner: Points 128 
+~spinner: D 1 
+~spinner: N 2 
+-- destroyed curve editor: circler-radius ---
+-- destroyed curve editor: rose_milker-cos ---
+-- destroyed curve editor: rose_milker-sin ---
++++ saved curve into: circler_radius.crv +++
++++ saved curve into: rose_milker_cos.crv +++
++++ saved curve into: rose_milker_sin.crv +++
++++ saved curve into: seed.crv +++
++++ saved widgets to: d_fractaliser +++
+~spinner: Scale 1.000 
+~spinner: Threshold 0.000 
++++ saved curve library: seed.lib +++
+-- destroyed curve editor: fractal-seed ---
++++ saved curve into: dot.crv +++
++++ saved curve into: dash.crv +++
++++ saved curve into: inner_space.crv +++
++++ saved curve into: letter_space.crv +++
++++ saved curve into: word_space.crv +++
+-- destroyed curve editor: morse-code ---
++++ saved scale into /home/longinus/.din/blues +++
++++ saved curve into: waveform2.crv +++
++++ saved curve into: attack.crv +++
++++ saved curve into: decay.crv +++
++++ saved curve into: velocity.crv +++
+--- destroyed keyboard-keyboard ---
++++ saved curve library: velocity.lib +++
+-- destroyed curve editor: midi-velocity ---
+-- destroyed curve editor: keyboard-keyboard-decay ---
+-- destroyed curve editor: keyboard-keyboard-attack ---
+-- destroyed curve editor: keyboard-keyboard-waveform ---
++++ saved curve into: swav.crv +++
+--- destroyed binaural_drones ---
+-- destroyed curve editor: binaural-drones-waveform ---
++++ saved curve into: mondrian_waveform.crv +++
++++ saved curve into: mondrian_attack.crv +++
++++ saved curve into: mondrian_decay.crv +++
+--- destroyed Mondrian --
+-- destroyed curve editor: mondrian-decay ---
+-- destroyed curve editor: mondrian-attack ---
+-- destroyed curve editor: mondrian-waveform ---
+--- destroyed microtonal-keyboard ---
++++ saved curve library: gater-patterns.lib +++
+-- destroyed curve editor: gater ---
++++ saved curve into: gater.crv +++
+-- destroyed curve editor: modulation ---
++++ saved curve into: am.crv +++
++++ saved curve into: fm.crv +++
+-- destroyed curve editor: drone ---
+-- destroyed curve editor: microtonal-keyboard-waveform ---
+-- destroyed recorder --
+-- destroyed curve editor: range-modulation ---
+-- destroyed curve editor: drone-modulation ---
++++ saved curve library: octave-shift-patterns.lib +++
+-- destroyed curve editor: octave-shift ---
++++ saved curve into: octave-shift.crv +++
+-- destroyed curve editor: compressor ---
++++ saved curve into: comr.crv +++
++++ saved curve into: coml.crv +++
++++ saved curve library: decay.lib +++
++++ saved curve library: attack.lib +++
++++ saved curve library: cos.lib +++
++++ saved curve library: sin.lib +++
++++ saved curve library: waveforms.lib +++
+--- destroyed cmdlist ---
+--- destroyed fft ---
+-- destroyed curve editor: delay ---
+--- deleting delay buffers ---
+  deleting: samples
+  deleting: feedback
+  deleting: volume
++++ saved curve into: feedback-r.crv +++
++++ saved curve into: volume-r.crv +++
++++ deleted delay buffers +++
+--- deleting delay buffers ---
+  deleting: samples
+  deleting: feedback
+  deleting: volume
++++ saved curve into: feedback-l.crv +++
++++ saved curve into: volume-l.crv +++
++++ deleted delay buffers +++
+--- destroyed scalelist ---
++++ saved audio prefrences in /home/longinus/.din/audio_prefs +++
+--- destroyed audio ---
+--- destroyed console ---
+saving font in: jag.fnt
+--- destroyed font ---
+--- destroyed viewport: 800 x 600 ---
+--- destroyed computer keyboard input ---
+--- destroyed UI clock ---
+--- destroyed audio clock ---
+!!! cleaned up SDL !!!
+*** [Mondrian] box count = 0 ***
+*** [Mondrian] ball count = 0 ***
+*** [Mondrian] slit count = 0 ***
+*** [Microtonal-Keyboard] drone count = 0 ***
+\o/ DIN Is Noise was up for 0 hours 7 minutes 29 seconds \o/
+--- destroyed tcl interpreter ---
+!!! DIN Is Noise has shut down !!!

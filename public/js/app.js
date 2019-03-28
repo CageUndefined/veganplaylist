@@ -1823,6 +1823,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1837,12 +1856,12 @@ __webpack_require__.r(__webpack_exports__);
       var index = this.index;
       if (!this.pageVideos) this.pageVideos = videos.slice(0, this.maxThumbs);
       var current = videos[index];
-      current.iframeClass = 'embed__aspect-ratio embed__aspect-ratio--' + (current.widescreen ? '16by9' : '4by3');
+      current.iframeClass = "embed__aspect-ratio embed__aspect-ratio--" + (current.widescreen ? "16by9" : "4by3");
       current.iframeBackgroundImg = current.thumbnailSrc;
 
       for (var i = 0; i < videos.length; i++) {
         var video = videos[i];
-        video.linkClass = i == index ? 'active' : '';
+        video.linkClass = i == index ? "active" : "";
       }
 
       this.currentVideo = current;
@@ -36919,32 +36938,36 @@ var render = function() {
       _c("div", { staticClass: "container" }, [
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "title col-md-9" }, [
-            _c("h4", [
-              _vm._v(
-                "\n\t\t\t\t\t\t\t" +
-                  _vm._s(_vm.playlist.name) +
-                  "\n\t\t\t\t\t\t"
-              )
-            ])
+            _c("h4", [_vm._v(_vm._s(_vm.playlist.name))])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "stats col-md-3 row" }, [
             _c("div", { staticClass: "col-md-4" }, [
-              _vm._v("views"),
+              _vm._v("\n            views\n            "),
               _c("br"),
-              _vm._v(_vm._s(_vm.playlist.views))
+              _vm._v(
+                "\n            " + _vm._s(_vm.playlist.views) + "\n          "
+              )
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "col-md-4" }, [
-              _vm._v("videos"),
+              _vm._v("\n            videos\n            "),
               _c("br"),
-              _vm._v(_vm._s(_vm.playlist.videos.length))
+              _vm._v(
+                "\n            " +
+                  _vm._s(_vm.playlist.videos.length) +
+                  "\n          "
+              )
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "col-md-4" }, [
-              _vm._v("run time"),
+              _vm._v("\n            run time\n            "),
               _c("br"),
-              _vm._v(_vm._s(_vm.playlist.display_length))
+              _vm._v(
+                "\n            " +
+                  _vm._s(_vm.playlist.display_length) +
+                  "\n          "
+              )
             ])
           ])
         ])
@@ -36954,16 +36977,14 @@ var render = function() {
     _c("div", { staticClass: "subheading" }, [
       _c("div", { staticClass: "container" }, [
         _c("h5", [
-          _vm._v(
-            "\n\t\t    \t\t" + _vm._s(_vm.currentVideo.title) + "\n\t\t\t\t\t"
-          ),
+          _vm._v("\n        " + _vm._s(_vm.currentVideo.title) + "\n        "),
           _c("small", [
             _vm._v(
-              "\n\t\t    \t\t\t(" +
+              "(" +
                 _vm._s(_vm.index + 1) +
                 " / " +
                 _vm._s(_vm.playlist.videos.length) +
-                ")\n\t\t    \t\t"
+                ")"
             )
           ])
         ])
@@ -37001,9 +37022,10 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("\n\t\t\t\t\t\t←\n\t\t    \t\t")]
+            [_vm._v("←")]
           )
         ]),
+        _vm._v(" "),
         _c(
           "div",
           { staticClass: "thumbnail-strip col-md-10" },
@@ -37011,6 +37033,7 @@ var render = function() {
             return _c(
               "a",
               {
+                key: i,
                 staticClass: "thumbnail",
                 class: video.linkClass,
                 attrs: { href: "#", title: video.title },
@@ -37025,6 +37048,7 @@ var render = function() {
           }),
           0
         ),
+        _vm._v(" "),
         _c("div", { staticClass: "col-md-1 next" }, [
           _c(
             "a",
@@ -37045,7 +37069,7 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("\n\t\t\t\t\t\t→\n\t\t    \t\t")]
+            [_vm._v("→")]
           )
         ])
       ]),
@@ -37053,7 +37077,7 @@ var render = function() {
       _c("div", { staticClass: "col-md-2 creator" }, [
         _vm.playlist.creator
           ? _c("span", [
-              _vm._v("Created by "),
+              _vm._v("\n        Created by\n        "),
               _c("a", { attrs: { href: "" } }, [
                 _vm._v(_vm._s(_vm.playlist.creator.name))
               ])
@@ -49497,8 +49521,8 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/alex/github/veganplaylist/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/alex/github/veganplaylist/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/longinus/Github/vegan-hacktivists/veganplaylist/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/longinus/Github/vegan-hacktivists/veganplaylist/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
