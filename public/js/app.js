@@ -1847,6 +1847,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       playlist: this.$parent.playlist,
       index: this.$parent.index,
+      editUrl: this.$parent.editUrl,
+      creatorProfileUrl: this.$parent.creatorProfileUrl,
       maxThumbs: 10
     };
   },
@@ -1879,6 +1881,12 @@ __webpack_require__.r(__webpack_exports__);
     selectVideo: function selectVideo(pageVideoIndex) {
       var i = this.playlist.videos.indexOf(this.pageVideos[pageVideoIndex]);
       this.changeIndex(i);
+    },
+    goToEdit: function goToEdit() {
+      window.location = this.editUrl;
+    },
+    goToProfile: function goToProfile() {
+      window.location = this.creatorProfileUrl;
     }
   },
   created: function created() {
@@ -36999,7 +37007,20 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "navigation row" }, [
-      _vm._m(0),
+      _c("div", { staticClass: "col-md-2" }, [
+        _c(
+          "a",
+          {
+            attrs: { href: "#" },
+            on: {
+              click: function($event) {
+                return _vm.goToEdit()
+              }
+            }
+          },
+          [_vm._v("Edit")]
+        )
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "container col-md-8 row" }, [
         _c("div", { staticClass: "col-md-1" }, [
@@ -37078,25 +37099,25 @@ var render = function() {
         _vm.playlist.creator
           ? _c("span", [
               _vm._v("\n        Created by\n        "),
-              _c("a", { attrs: { href: "" } }, [
-                _vm._v(_vm._s(_vm.playlist.creator.name))
-              ])
+              _c(
+                "a",
+                {
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      return _vm.goToProfile()
+                    }
+                  }
+                },
+                [_vm._v(_vm._s(_vm.playlist.creator.name))]
+              )
             ])
           : _vm._e()
       ])
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-2" }, [
-      _c("a", { attrs: { href: "" } }, [_vm._v("Edit")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -49521,8 +49542,8 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/longinus/Github/vegan-hacktivists/veganplaylist/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/longinus/Github/vegan-hacktivists/veganplaylist/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/alex/github/veganplaylist/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/alex/github/veganplaylist/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

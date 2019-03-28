@@ -11,7 +11,9 @@
             el: '#viewer_app',
             data: {
                 playlist: @json( $playlist ),
-                index: @json( $index )
+                index: @json( $index ),
+                editUrl: @json($editUrl),
+                creatorProfileUrl: @json($creatorProfileUrl)
             },
             computed: {
                 nonNullItems: function() {

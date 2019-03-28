@@ -39,7 +39,7 @@
     </div>
     <div class="navigation row">
       <div class="col-md-2">
-        <a href>Edit</a>
+        <a href="#" v-on:click="goToEdit()">Edit</a>
       </div>
       <div class="container col-md-8 row">
         <div class="col-md-1">
@@ -70,7 +70,7 @@
       <div class="col-md-2 creator">
         <span v-if="playlist.creator">
           Created by
-          <a href>{{ playlist.creator.name }}</a>
+          <a href="#" v-on:click="goToProfile()">{{ playlist.creator.name }}</a>
         </span>
       </div>
     </div>
@@ -83,6 +83,8 @@ export default {
     return {
       playlist: this.$parent.playlist,
       index: this.$parent.index,
+      editUrl: this.$parent.editUrl,
+      creatorProfileUrl: this.$parent.creatorProfileUrl,
       maxThumbs: 10
     };
   },
@@ -116,6 +118,12 @@ export default {
     selectVideo: function(pageVideoIndex) {
       var i = this.playlist.videos.indexOf(this.pageVideos[pageVideoIndex]);
       this.changeIndex(i);
+    },
+    goToEdit: function() {
+    	window.location = this.editUrl;
+    },
+    goToProfile: function() {
+    	window.location = this.creatorProfileUrl;
     }
   },
   created: function() {

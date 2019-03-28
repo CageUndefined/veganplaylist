@@ -102,9 +102,12 @@ class PlaylistController extends Controller {
 			$index = $playlist->videos->search(function ($item, $key) use ($video) {return $item->is($video);});
 		}
 
+		$editUrl = route('playlist.edit', $playlist);
+		$creatorProfileUrl = route('profile', $playlist->creator);
+
 		$playlist->views += 1;
 		Playlist::where('id', $playlist->id)->update(array('views' => $playlist->views));
 
-		return view('viewer', ["index" => $index, "playlist" => $playlist]);
+		return view('viewer', ["index" => $index, "playlist" => $playlist, "editUrl" => $editUrl, "creatorProfileUrl" => $creatorProfileUrl]);
 	}
 }
