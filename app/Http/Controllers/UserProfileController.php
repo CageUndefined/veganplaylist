@@ -28,7 +28,7 @@ class UserProfileController extends Controller
      */
     public function index(User $user)
     {
-        $playlists = $user->playlists()->get();
+        $playlists = $user->playlists;
         
         return view( 'profile', [ 'user' => $user, 'playlists' => $playlists ] );
     }
