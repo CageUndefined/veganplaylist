@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Playlist;
-use App\Video;
 use App\PseudoCrypt;
+use App\Video;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
 class PlaylistController extends Controller {
 	public function __construct() {
@@ -44,21 +43,21 @@ class PlaylistController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function store(Request $request) {
-        $name = $request->input('name');
-        $ids  = $request->input('video_ids');
-        if ( empty($name) ) {
-            $name = PseudoCrypt::hash($ids[0], 8);
-        }
+		$name = $request->input('name');
+		$ids = $request->input('video_ids');
+		if (empty($name)) {
+			$name = PseudoCrypt::hash($ids[0], 8);
+		}
 
-        $playlist = Playlist::create([ 'name' => $name ]);
+		$playlist = Playlist::create(['name' => $name]);
 
-        for ($i = 0; $i < count($ids); $i++) {
-            $id = $ids[$i];
-            $playlist->videos()->attach([
-                $id => [ 'order' => $i ]
-            ]);
-        }
-        return response()->json( $playlist, 200 );
+		for ($i = 0; $i < count($ids); $i++) {
+			$id = $ids[$i];
+			$playlist->videos()->attach([
+				$id => ['order' => $i],
+			]);
+		}
+		return response()->json($playlist, 200);
 	}
 
 	/**
@@ -103,7 +102,8 @@ class PlaylistController extends Controller {
 			$index = $playlist->videos->search(function ($item, $key) use ($video) {return $item->is($video);});
 		}
 
-		Playlist::where('id', $playlist->id)->update(array('views' => ($playlist->views + 1)));
+		$playlist->views += 1;
+		Playlist::where('id', $playlist->id)->update(array('views' => $playlist->views));
 
 		return view('viewer', ["index" => $index, "playlist" => $playlist]);
 	}

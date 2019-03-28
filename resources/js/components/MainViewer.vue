@@ -19,16 +19,10 @@
 		<div class="subheading">
 			<div class="container">
 				<h5>
-		    		<a href="#" v-show="index > 0" v-on:click="changeIndex(index - 1)">
-						&larr;
-		    		</a>
 		    		{{ currentVideo.title }}
 					<small>
 		    			({{ (index + 1) }} / {{ playlist.videos.length }})
 		    		</small>
-		    		<a href="#" v-show="index < (playlist.videos.length - 1)" v-on:click="changeIndex(index + 1)">
-						&rarr;
-		    		</a>
 				</h5>
 	    	</div>
 		</div>
@@ -36,17 +30,27 @@
 			<iframe class="embed__iframe" :src="currentVideo.src"></iframe>
 		</div>
     	<div class="navigation row">
-			<div class="col-md-3"><a href="">Edit</a></div>
-    		<div class="container col-md-6">
-				<a class="thumbnail" href="#"
-					v-for="(video, i) in playlist.videos"
-					v-on:click="changeIndex(i)"
-					:title="video.title"
-					:class="video.linkClass">
-					<img :src="video.thumbnailSrc" alt="">
-				</a>
+			<div class="col-md-2"><a href="">Edit</a></div>
+    		<div class="container col-md-8 row">
+    			<div class="col-md-1">
+	    			<a class="arrow" href="#" v-show="index > 0" v-on:click="changeIndex(index - 1)">
+						&larr;
+		    		</a>
+		    	</div><div class="thumbnail-strip col-md-10">
+					<a class="thumbnail" href="#"
+						v-for="(video, i) in pageVideos"
+						v-on:click="selectVideo(i)"
+						:title="video.title"
+						:class="video.linkClass">
+						<img :src="video.thumbnailSrc" alt="">
+					</a>
+				</div><div class="col-md-1 next">
+		    		<a class="arrow" href="#" v-show="index < (playlist.videos.length - 1)" v-on:click="changeIndex(index + 1)">
+						&rarr;
+		    		</a>
+		    	</div>
     		</div>
-    		<div class="col-md-3 creator">
+    		<div class="col-md-2 creator">
     			<span v-if="playlist.creator">Created by <a href="">{{ playlist.creator.name }}</a></span>
     		</div>
 		</div>
@@ -59,13 +63,15 @@
 		data: function () {
 			return {
 				playlist: this.$parent.playlist,
-				index: this.$parent.index
+				index: this.$parent.index,
+				maxThumbs: 10
 			}
 		},
 		methods: {
 			init: function() {
 				var videos = this.playlist.videos;
 				var index = this.index;
+				if (!this.pageVideos) this.pageVideos = videos.slice(0, this.maxThumbs);
 
 				var current = videos[index];
 				current.iframeClass = 'embed__aspect-ratio embed__aspect-ratio--' + (current.widescreen ? '16by9' : '4by3');
@@ -73,15 +79,22 @@
 
 				for (var i = 0; i < videos.length; i++){
 					var video = videos[i];
-					video.active = i == index;
-					video.linkClass = (video.active ? 'active' : '');
+					video.linkClass = (i == index ? 'active' : '');
 				}
 
 				this.currentVideo = current;
 			},
-			changeIndex: function(i){
+			changeIndex: function(i) {
 				this.index = i;
+				if (this.index >= this.maxThumbs) {
+					this.pageVideos.shift();
+					this.pageVideos.push(this.playlist.videos[i]);
+				}
 				this.init();
+			},
+			selectVideo: function(pageVideoIndex) {
+				var i = this.playlist.videos.indexOf(this.pageVideos[pageVideoIndex]);
+				this.changeIndex(i);
 			}
 		},
 		created: function() {

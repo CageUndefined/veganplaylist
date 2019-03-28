@@ -1819,32 +1819,47 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       playlist: this.$parent.playlist,
-      index: this.$parent.index
+      index: this.$parent.index,
+      maxThumbs: 10
     };
   },
   methods: {
     init: function init() {
       var videos = this.playlist.videos;
       var index = this.index;
+      if (!this.pageVideos) this.pageVideos = videos.slice(0, this.maxThumbs);
       var current = videos[index];
       current.iframeClass = 'embed__aspect-ratio embed__aspect-ratio--' + (current.widescreen ? '16by9' : '4by3');
       current.iframeBackgroundImg = current.thumbnailSrc;
 
       for (var i = 0; i < videos.length; i++) {
         var video = videos[i];
-        video.active = i == index;
-        video.linkClass = video.active ? 'active' : '';
+        video.linkClass = i == index ? 'active' : '';
       }
 
       this.currentVideo = current;
     },
     changeIndex: function changeIndex(i) {
       this.index = i;
+
+      if (this.index >= this.maxThumbs) {
+        this.pageVideos.shift();
+        this.pageVideos.push(this.playlist.videos[i]);
+      }
+
       this.init();
+    },
+    selectVideo: function selectVideo(pageVideoIndex) {
+      var i = this.playlist.videos.indexOf(this.pageVideos[pageVideoIndex]);
+      this.changeIndex(i);
     }
   },
   created: function created() {
@@ -36939,26 +36954,6 @@ var render = function() {
     _c("div", { staticClass: "subheading" }, [
       _c("div", { staticClass: "container" }, [
         _c("h5", [
-          _c(
-            "a",
-            {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.index > 0,
-                  expression: "index > 0"
-                }
-              ],
-              attrs: { href: "#" },
-              on: {
-                click: function($event) {
-                  return _vm.changeIndex(_vm.index - 1)
-                }
-              }
-            },
-            [_vm._v("\n\t\t\t\t\t\t←\n\t\t    \t\t")]
-          ),
           _vm._v(
             "\n\t\t    \t\t" + _vm._s(_vm.currentVideo.title) + "\n\t\t\t\t\t"
           ),
@@ -36970,28 +36965,7 @@ var render = function() {
                 _vm._s(_vm.playlist.videos.length) +
                 ")\n\t\t    \t\t"
             )
-          ]),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.index < _vm.playlist.videos.length - 1,
-                  expression: "index < (playlist.videos.length - 1)"
-                }
-              ],
-              attrs: { href: "#" },
-              on: {
-                click: function($event) {
-                  return _vm.changeIndex(_vm.index + 1)
-                }
-              }
-            },
-            [_vm._v("\n\t\t\t\t\t\t→\n\t\t    \t\t")]
-          )
+          ])
         ])
       ])
     ]),
@@ -37006,29 +36980,77 @@ var render = function() {
     _c("div", { staticClass: "navigation row" }, [
       _vm._m(0),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "container col-md-6" },
-        _vm._l(_vm.playlist.videos, function(video, i) {
-          return _c(
+      _c("div", { staticClass: "container col-md-8 row" }, [
+        _c("div", { staticClass: "col-md-1" }, [
+          _c(
             "a",
             {
-              staticClass: "thumbnail",
-              class: video.linkClass,
-              attrs: { href: "#", title: video.title },
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.index > 0,
+                  expression: "index > 0"
+                }
+              ],
+              staticClass: "arrow",
+              attrs: { href: "#" },
               on: {
                 click: function($event) {
-                  return _vm.changeIndex(i)
+                  return _vm.changeIndex(_vm.index - 1)
                 }
               }
             },
-            [_c("img", { attrs: { src: video.thumbnailSrc, alt: "" } })]
+            [_vm._v("\n\t\t\t\t\t\t←\n\t\t    \t\t")]
           )
-        }),
-        0
-      ),
+        ]),
+        _c(
+          "div",
+          { staticClass: "thumbnail-strip col-md-10" },
+          _vm._l(_vm.pageVideos, function(video, i) {
+            return _c(
+              "a",
+              {
+                staticClass: "thumbnail",
+                class: video.linkClass,
+                attrs: { href: "#", title: video.title },
+                on: {
+                  click: function($event) {
+                    return _vm.selectVideo(i)
+                  }
+                }
+              },
+              [_c("img", { attrs: { src: video.thumbnailSrc, alt: "" } })]
+            )
+          }),
+          0
+        ),
+        _c("div", { staticClass: "col-md-1 next" }, [
+          _c(
+            "a",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.index < _vm.playlist.videos.length - 1,
+                  expression: "index < (playlist.videos.length - 1)"
+                }
+              ],
+              staticClass: "arrow",
+              attrs: { href: "#" },
+              on: {
+                click: function($event) {
+                  return _vm.changeIndex(_vm.index + 1)
+                }
+              }
+            },
+            [_vm._v("\n\t\t\t\t\t\t→\n\t\t    \t\t")]
+          )
+        ])
+      ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-md-3 creator" }, [
+      _c("div", { staticClass: "col-md-2 creator" }, [
         _vm.playlist.creator
           ? _c("span", [
               _vm._v("Created by "),
@@ -37046,7 +37068,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-3" }, [
+    return _c("div", { staticClass: "col-md-2" }, [
       _c("a", { attrs: { href: "" } }, [_vm._v("Edit")])
     ])
   }
@@ -49363,10 +49385,10 @@ var Playlist = {
       Playlist.addVideo(id, title);
       return false;
     });
-    $('ol.list-group').on('click', '.remove', function () {
+    $('ul.list-group').on('click', '.remove', function () {
       var id = $(this).data('id');
       Playlist.removeVideo(id);
-      $(this).parent().fadeOut().remove();
+      $('#list_item_' + id).fadeOut().remove();
       return false;
     });
     $('.playlist-save').click(function () {
@@ -49385,7 +49407,6 @@ var Playlist = {
       hide_mature: hide_mature,
       tags: []
     };
-    console.log(data);
     axios.post('/videolist', data).then(function (response) {
       if (response && response.data) {
         if ($('.video-card').length) {
@@ -49404,16 +49425,19 @@ var Playlist = {
     });
   },
   addVideo: function addVideo(id, title) {
-    var list = $('#new_playlist .list-group'); // this should ideally be in some kind of template (handlebars)
-
-    var li = '<li class="list-group-item">' + title + ' <a href="#" data-id="' + id + '" class="remove text-danger ml-2"><i class="fas fa-trash-alt"></i></a></li>';
-    list.append(li);
-    Playlist.list[id] = {
-      id: id,
-      title: title
-    };
-    $('#card_' + id).fadeOut().remove();
-    if ($('a.playlist-save').hasClass('disabled')) $('a.playlist-save').removeClass('disabled');
+    axios.get('/video/' + id).then(function (response) {
+      var li = response.data;
+      var list = $('#new_playlist .list-group');
+      list.append(li);
+      Playlist.list[id] = {
+        id: id,
+        title: title
+      };
+      $('#card_' + id).fadeOut().remove();
+      if ($('a.playlist-save').hasClass('disabled')) $('a.playlist-save').removeClass('disabled');
+    }).catch(function (error) {
+      console.log(error);
+    });
   },
   removeVideo: function removeVideo(id) {
     delete Playlist.list[id];
@@ -49422,7 +49446,17 @@ var Playlist = {
     if (!Object.keys(Playlist.list).length) $('a.playlist-save').addClass('disabled');
   },
   createPlaylist: function createPlaylist() {
-    console.log('create playlist ...'); // axios.post('/playlist').then(function(response){}).catch(function(error){});
+    var data = {
+      name: Playlist.name,
+      video_ids: Object.keys(Playlist.list)
+    };
+    axios.post('/playlist', data).then(function (response) {
+      setTimeout(function () {
+        window.location = '/playlist/' + response.data.slug;
+      }, 2000);
+    }).catch(function (error) {
+      console.log(error);
+    });
   }
 };
 /*

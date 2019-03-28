@@ -36668,10 +36668,10 @@ var Playlist = {
       Playlist.addVideo(id, title);
       return false;
     });
-    $('ol.list-group').on('click', '.remove', function () {
+    $('ul.list-group').on('click', '.remove', function () {
       var id = $(this).data('id');
       Playlist.removeVideo(id);
-      $(this).parent().fadeOut().remove();
+      $('#list_item_' + id).fadeOut().remove();
       return false;
     });
     $('.playlist-save').click(function () {
@@ -36690,7 +36690,6 @@ var Playlist = {
       hide_mature: hide_mature,
       tags: []
     };
-    console.log(data);
     axios.post('/videolist', data).then(function (response) {
       if (response && response.data) {
         if ($('.video-card').length) {
@@ -36709,16 +36708,19 @@ var Playlist = {
     });
   },
   addVideo: function addVideo(id, title) {
-    var list = $('#new_playlist .list-group'); // this should ideally be in some kind of template (handlebars)
-
-    var li = '<li class="list-group-item">' + title + ' <a href="#" data-id="' + id + '" class="remove text-danger ml-2"><i class="fas fa-trash-alt"></i></a></li>';
-    list.append(li);
-    Playlist.list[id] = {
-      id: id,
-      title: title
-    };
-    $('#card_' + id).fadeOut().remove();
-    if ($('a.playlist-save').hasClass('disabled')) $('a.playlist-save').removeClass('disabled');
+    axios.get('/video/' + id).then(function (response) {
+      var li = response.data;
+      var list = $('#new_playlist .list-group');
+      list.append(li);
+      Playlist.list[id] = {
+        id: id,
+        title: title
+      };
+      $('#card_' + id).fadeOut().remove();
+      if ($('a.playlist-save').hasClass('disabled')) $('a.playlist-save').removeClass('disabled');
+    }).catch(function (error) {
+      console.log(error);
+    });
   },
   removeVideo: function removeVideo(id) {
     delete Playlist.list[id];
@@ -36727,7 +36729,17 @@ var Playlist = {
     if (!Object.keys(Playlist.list).length) $('a.playlist-save').addClass('disabled');
   },
   createPlaylist: function createPlaylist() {
-    console.log('create playlist ...'); // axios.post('/playlist').then(function(response){}).catch(function(error){});
+    var data = {
+      name: Playlist.name,
+      video_ids: Object.keys(Playlist.list)
+    };
+    axios.post('/playlist', data).then(function (response) {
+      setTimeout(function () {
+        window.location = '/playlist/' + response.data.slug;
+      }, 2000);
+    }).catch(function (error) {
+      console.log(error);
+    });
   }
 };
 /*
@@ -36757,7 +36769,7 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\wamp\htdocs\veganplaylist\resources\js\playlist.js */"./resources/js/playlist.js");
+module.exports = __webpack_require__(/*! /home/alex/github/veganplaylist/resources/js/playlist.js */"./resources/js/playlist.js");
 
 
 /***/ })
