@@ -8,7 +8,7 @@
             <div class="card-body">
                <b style="font-size: 20px;">About VeganPlaylist.org</b>
 			   <br><br>
-			   <img src="https://i.imgur.com/xFJPf5a.png" style="width:100%">
+			   <img src="https://i.imgur.com/uOBZnaO.png" style="width:100%">
 			   <br><br>
 			   <b style="font-size: 16px;">Create a customized Vegan playlist for your friends or family!</b><br><br> If you have someone in mind and you'd like to introduce them to Veganism, normally you'll just send them the best video(s) that helped you transition first.
 			   Finding the right video, the "best video", the one you think will have the most impact, is often pretty hard. Vegan Playlist allows you to customize and build a playlist of Vegan videos that you think will be the most impactful to share to your friends or family!
