@@ -1,0 +1,91 @@
+@import '~bootstrap/scss/bootstrap';
+
+ul.videos {
+    @media(min-width: 992px) {
+        max-height: 700px;
+        overflow: auto;
+    }
+}
+
+.tagify {
+    @extend .d-flex;
+    @extend .flex-wrap;
+    @extend .form-control;
+    @extend .pb-0;
+
+    height: auto;
+    min-height: calc(1.5em + 0.75rem + 2px);
+
+    tag {
+        @extend .align-items-center;
+        @extend .badge-success;
+        @extend .badge;
+        @extend .d-flex;
+        @extend .mb-1;
+        @extend .mr-1;
+        @extend .position-relative;
+        @extend .pr-3;
+
+        &.tagify--notAllowed {
+            @extend .badge-danger;
+        }
+
+        &.tagify--hide {
+            transition: opacity 0.5s;
+            opacity: 0;
+        }
+
+        x {
+            @extend .position-absolute;
+
+            cursor: pointer;
+            right: 4px;
+
+            &::after {
+                content: "\00D7";
+            }
+        }
+    }
+
+    .tagify__tag-text {
+        @extend .text-white;
+    }
+
+    .tagify__input {
+        @extend .mb-1;
+
+        display: block;
+        min-width: 110px;
+        outline: 0;
+        position: relative;
+    }
+
+    & + input {
+        @extend .d-none;
+    }
+}
+
+.tagify__dropdown {
+    @extend .bg-white;
+    @extend .border-success;
+    @extend .border;
+    @extend .position-absolute;
+    @extend .shadow-sm;
+
+    z-index: 999;
+    max-height: 300px;
+    overflow: auto;
+
+    .tagify__dropdown__item {
+        @extend .p-3;
+        @extend .position-relative;
+
+        cursor: pointer;
+        margin: 2px;
+    }
+
+    .tagify__dropdown__item--active {
+        @extend .bg-success;
+        @extend .text-white;
+    }
+}

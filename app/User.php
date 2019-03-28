@@ -10,7 +10,7 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-	protected $visible = [ 'id', 'name' ];
+    protected $visible = [ 'id', 'name' ];
 
     /**
      * The attributes that are mass assignable.
@@ -31,20 +31,19 @@ class User extends Authenticatable
     ];
 
     public static function boot() {
-        parent::boot(); 
-        static::saving(function ($model) {
-                $model->slug = str_slug($model->name);
+        parent::boot();
+
+        static::saving(function ($user) {
+            $user->slug = str_slug($user->name);
+        });
+
+        static::deleting(function($user) {
+            $user->playlists()->each(function($p) { $p->delete(); });
         });
     }
 
-    public function getRouteKeyName() {
-            return 'slug';
-    }
-
-    public function playlists() {
-        
+    public function playlists()
+    {
         return $this->hasMany('App\Playlist', 'creator_id');
-
     }
-
 }

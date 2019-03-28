@@ -23,6 +23,17 @@ Route::get('/profile/{user}', 'UserProfileController@index')->name('profile');
 Route::view('/about', 'about');
 Route::view('/contact', 'contact');
 
+Route::get('/admin', 'AdminController@dashboard');
+Route::get('/admin/login', 'AdminController@login');
+Route::post('/admin/login', 'AdminController@login');
+Route::get('/admin/logout', 'AdminController@logout');
+
+Route::post('/videos', 'AdminController@addVideo');
+Route::delete('/users/{userId}', 'AdminController@deleteUser');
+Route::delete('/videos/{videoId}', 'AdminController@deleteVideo');
+Route::get('/videos/{videoId}/edit', 'AdminController@editVideo');
+Route::put('/videos/{videoId}', 'AdminController@updateVideo');
+
 // Ajax Routes
 Route::post('/videolist', function(Request $request) {
     $title = $request['title'];
