@@ -2,6 +2,8 @@
     $videos = App\Video::all();
 @endphp
 
+@section('title', 'Create Playlist')
+
 @extends('layouts.page')
 
 @section('page_content')

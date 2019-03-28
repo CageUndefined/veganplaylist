@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Profile Details')
+
 @section('content')
     <div class="container">
     @if (!empty($user))

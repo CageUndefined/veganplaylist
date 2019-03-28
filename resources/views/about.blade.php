@@ -1,5 +1,7 @@
 @extends('layouts.page')
 
+@section('title', 'About VeganPlaylist.org')
+
 @section('page_content')
     <div class="container">
         <div class="card">

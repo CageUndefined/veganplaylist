@@ -1,5 +1,7 @@
 @extends('layouts.page')
 
+@section('title', 'Verify Your Email Address')
+
 @section('page_content')
 <div class="container">
     <div class="row justify-content-center">

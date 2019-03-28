@@ -1,5 +1,7 @@
 @extends('layouts.page')
 
+@section('title', 'View Playlist')
+
 @section('page_content')
     <div id="viewer_app">
         <main-viewer></main-viewer>
