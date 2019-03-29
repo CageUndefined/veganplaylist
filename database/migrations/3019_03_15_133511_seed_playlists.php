@@ -13,7 +13,8 @@ class SeedPlaylists extends Migration
      */
     public function up()
     {
-
+        
+        return;
         for( $i = 0; $i < 9; $i++ ) {
 
             $playlist = new App\Playlist;
