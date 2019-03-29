@@ -1,11 +1,5 @@
 @extends('layouts.admin')
 
-@if (session('error'))
-    <div class="alert">
-        {{ session('error') }}
-    </div>
-@endif
-
 @section('content')
 <div class="container">
     <div class="row">
@@ -25,6 +19,12 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary">Log in</button>
+
+                @if (session('error'))
+                    <div class="alert alert-danger mt-2">
+                        {{ session('error') }}
+                    </div>
+                @endif
             </form>
         </div>
     </div>

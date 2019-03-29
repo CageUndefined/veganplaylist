@@ -50,7 +50,10 @@ class AdminController extends Controller
         $username = $request->input('username');
         $password = $request->input('password');
 
-        if ($username === env('ADMIN_USERNAME') && $password === env('ADMIN_PASSWORD')) {
+        $env_username = env('ADMIN_USERNAME');
+        $env_password = env('ADMIN_PASSWORD');
+
+        if ($username === $env_username && $password === $env_password && strlen($env_username) > 0 && strlen($env_password) > 0) {
             $request->session()->put(self::$ADMIN_SESSION_KEY, true);
             return redirect()->action('AdminController@dashboard');
         }
