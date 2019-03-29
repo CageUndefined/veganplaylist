@@ -103,7 +103,10 @@ class PlaylistController extends Controller {
 		}
 
 		$editUrl = route('playlist.edit', $playlist);
-		$creatorProfileUrl = route('profile', $playlist->creator);
+		if( $playlist->creator )
+			$creatorProfileUrl = route('profile', $playlist->creator);
+		else
+			$creatorProfileUrl = false;
 
 		$playlist->views += 1;
 		Playlist::where('id', $playlist->id)->update(array('views' => $playlist->views));
