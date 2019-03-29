@@ -37,7 +37,7 @@
     background-color: #ff0097;
     border-radius: 25px;
     margin-right: 5px;
-    margin-left: 5px;
+    margin-left: 20px;
     padding-left: 15px;
     padding-right: 15px;"><i class="fas fa-hand-holding-heart"></i>&nbsp;&nbsp;Donate</a>
                 </li>
