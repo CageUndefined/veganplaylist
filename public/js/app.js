@@ -36939,8 +36939,10 @@ var render = function() {
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "title col-md-8" }, [
             _c("h5", [
+              _c("i", { staticClass: "fas fa-play-circle" }),
               _vm._v(
-                _vm._s(_vm.playlist.name) +
+                " " +
+                  _vm._s(_vm.playlist.name) +
                   ": " +
                   _vm._s(_vm.currentVideo.title)
               )

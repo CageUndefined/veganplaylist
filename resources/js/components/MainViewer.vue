@@ -4,7 +4,7 @@
       <div class="container">
         <div class="row">
           <div class="title col-md-8">
-            <h5>{{ playlist.name }}: {{ currentVideo.title }}</h5>
+            <h5><i class="fas fa-play-circle"></i> {{ playlist.name }}: {{ currentVideo.title }}</h5>
           </div>
           <div class="stats col-md-4 row">
           	<div class="col-md-3">
