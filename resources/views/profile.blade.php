@@ -1,29 +1,28 @@
-@extends('layouts.app')
+@extends('layouts.page')
 
 @section('title', 'Profile Details')
 
-@section('content')
+@section('page_content')
     <div class="container">
-    @if (!empty($user))
-    
-        <h3>Profile Details</h3>
-        <ul>
-            <li>Name: {{ $user->name }}</li>
-            <li>Vegan Playlist Creator since: {{ date('m/d/Y', strtotime($user->created_at)) }}</li>
-        </ul>
-
-        <h3>Playlists</h3>
-        <ol>                
-        @foreach( $playlists as $playlist )
-            <li>
-                <strong>{{ $playlist->name }}</strong><br>
-                Created: {{ date('m/d/Y', strtotime($playlist->created_at)) }} <br>
-                Viewed: {{ $playlist->views }} times
-            </li>
-        @endforeach
-        </ol>
-    @else
-        The profile was not found!
-    @endif
+        <center>
+            <b style="font-size: 30px;">
+                {{ $user->name }}
+            </b>
+            <br>
+            <small>
+                Vegan Playlist Creator since {{ date('m/d/Y', strtotime($user->created_at)) }}
+            </small>
+        </center>
+        <br>
+        <br>
+        
+        <p>
+            <b style="font-size: 18px;">Created Playlists:</b>
+        </p>       
+        <div class="card-columns">
+           @foreach( $playlists as $playlist )
+             @include('inc.playlistcard')
+           @endforeach
+        </div>
     </div>
 @endsection
