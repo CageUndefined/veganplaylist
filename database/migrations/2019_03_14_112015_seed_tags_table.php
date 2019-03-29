@@ -68,10 +68,6 @@ class SeedTagsTable extends Migration
                     'color' => 'secondary'
                 ),
                 array(
-                    'name' => 'Philosophy',
-                    'color' => 'light'
-                ),
-                array(
                     'name' => 'Cosmetics',
                     'color' => 'light'
                 ),
@@ -91,6 +87,18 @@ class SeedTagsTable extends Migration
                     'name' => 'News',
                     'color' => 'light'
                 ),
+                array(
+                    'name' => 'Podcast',
+                    'color' => 'light'
+                ),
+                array(
+                    'name' => 'Guides',
+                    'color' => 'light'
+                ),
+                array(
+                    'name' => 'Arguments',
+                    'color' => 'light'
+                )
             )
         );
     }
