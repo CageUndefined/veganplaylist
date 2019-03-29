@@ -10738,6 +10738,10 @@ a.text-dark:focus {
   padding: 10px;
 }
 
+.viewer .navigation div.col-md-2 {
+  line-height: 2.6em;
+}
+
 .viewer .navigation .thumbnail-strip {
   text-align: center;
 }
@@ -10769,6 +10773,8 @@ a.text-dark:focus {
 .viewer .navigation a.arrow {
   color: #fff;
   font-size: 200%;
+  position: relative;
+  bottom: 4px;
 }
 
 .viewer .navigation .creator {

@@ -1841,7 +1841,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1878,22 +1877,19 @@ __webpack_require__.r(__webpack_exports__);
 
       this.init();
     },
+    moveOn: function moveOn() {
+      if (this.index < this.playlist.videos.length) this.changeIndex(this.index + 1);
+    },
     selectVideo: function selectVideo(pageVideoIndex) {
       var i = this.playlist.videos.indexOf(this.pageVideos[pageVideoIndex]);
       this.changeIndex(i);
-    },
-    goToEdit: function goToEdit() {
-      window.location = this.editUrl;
-    },
-    goToProfile: function goToProfile() {
-      window.location = this.creatorProfileUrl;
     }
   },
   created: function created() {
     this.init();
   },
   updated: function updated() {
-    this.init();
+    document.dispatchEvent(new Event('mainviewerready'));
   }
 });
 
@@ -37002,24 +36998,18 @@ var render = function() {
     _c("div", { staticClass: "embed" }, [
       _c("iframe", {
         staticClass: "embed__iframe",
-        attrs: { src: _vm.currentVideo.src }
+        attrs: {
+          id: "vegan-player",
+          onplaying: "alert('I just playin');",
+          enablejsapi: "true",
+          src: _vm.currentVideo.src
+        }
       })
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "navigation row" }, [
       _c("div", { staticClass: "col-md-2" }, [
-        _c(
-          "a",
-          {
-            attrs: { href: "#" },
-            on: {
-              click: function($event) {
-                return _vm.goToEdit()
-              }
-            }
-          },
-          [_vm._v("Edit")]
-        )
+        _c("a", { attrs: { href: _vm.editUrl } }, [_vm._v("Edit")])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "container col-md-8 row" }, [
@@ -37099,18 +37089,9 @@ var render = function() {
         _vm.playlist.creator
           ? _c("span", [
               _vm._v("\n        Created by\n        "),
-              _c(
-                "a",
-                {
-                  attrs: { href: "#" },
-                  on: {
-                    click: function($event) {
-                      return _vm.goToProfile()
-                    }
-                  }
-                },
-                [_vm._v(_vm._s(_vm.playlist.creator.name))]
-              )
+              _c("a", { attrs: { href: _vm.creatorProfileUrl } }, [
+                _vm._v(_vm._s(_vm.playlist.creator.name))
+              ])
             ])
           : _vm._e()
       ])

@@ -86,6 +86,10 @@
 		height: 60px;
 		padding: 10px;
 
+		div.col-md-2 {
+			line-height: 2.6em;
+		}
+
 		.thumbnail-strip {
 			text-align: center;
 		}
@@ -116,6 +120,8 @@
 			&.arrow {
 				color: #fff;
 				font-size: 200%;
+				position: relative;
+				bottom: 4px;
 			} 
 		}
 		.creator {

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Video extends Model {
 
 	protected $fillable = ['service', 'service_video_id', 'title', 'length', 'widescreen', 'graphic', 'mature'];
-	protected $visible = [ 'src', 'thumbnailSrc', 'title', 'slug', 'length', 'widescreen', 'graphic', 'mature', 'tags' ];
+	protected $visible = ['src', 'thumbnailSrc', 'title', 'slug', 'length', 'widescreen', 'graphic', 'mature', 'tags', 'service'];
 
 	public static function boot() {
 		parent::boot();
@@ -44,9 +44,9 @@ class Video extends Model {
 
 		switch ($this['service']) {
 		case 'y':
-			return "https://www.youtube-nocookie.com/embed/" . $this['service_video_id'] ."?autoplay=1&rel=0";
+			return "https://www.youtube-nocookie.com/embed/" . $this['service_video_id'] . "?autoplay=1&rel=0&enablejsapi=1";
 		case 'v':
-			return "https://player.vimeo.com/video/" . $this['service_video_id'];
+			return "https://player.vimeo.com/video/" . $this['service_video_id'] . "?autoplay=1";
 		default:
 			throw new Exception("Service char out of range: '" . $this['service'] . "'..!", 1);
 		}

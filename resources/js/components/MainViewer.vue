@@ -35,11 +35,11 @@
       </div>
     </div>
     <div class="embed">
-      <iframe class="embed__iframe" :src="currentVideo.src"></iframe>
+      <iframe id="vegan-player" onplaying="alert('I just playin');" class="embed__iframe" enablejsapi=true :src="currentVideo.src"></iframe>
     </div>
     <div class="navigation row">
       <div class="col-md-2">
-        <a href="#" v-on:click="goToEdit()">Edit</a>
+        <a :href="editUrl">Edit</a>
       </div>
       <div class="container col-md-8 row">
         <div class="col-md-1">
@@ -70,13 +70,12 @@
       <div class="col-md-2 creator">
         <span v-if="playlist.creator">
           Created by
-          <a href="#" v-on:click="goToProfile()">{{ playlist.creator.name }}</a>
+          <a :href="creatorProfileUrl">{{ playlist.creator.name }}</a>
         </span>
       </div>
     </div>
   </div>
 </template>
-
 <script>
 export default {
   data: function() {
@@ -104,7 +103,6 @@ export default {
         var video = videos[i];
         video.linkClass = i == index ? "active" : "";
       }
-
       this.currentVideo = current;
     },
     changeIndex: function(i) {
@@ -115,22 +113,19 @@ export default {
       }
       this.init();
     },
+    moveOn: function() {
+    	if (this.index < this.playlist.videos.length) this.changeIndex(this.index + 1);
+    },
     selectVideo: function(pageVideoIndex) {
       var i = this.playlist.videos.indexOf(this.pageVideos[pageVideoIndex]);
       this.changeIndex(i);
-    },
-    goToEdit: function() {
-    	window.location = this.editUrl;
-    },
-    goToProfile: function() {
-    	window.location = this.creatorProfileUrl;
     }
   },
   created: function() {
     this.init();
   },
   updated: function() {
-    this.init();
+    document.dispatchEvent(new Event('mainviewerready'));
   }
 };
 </script>
