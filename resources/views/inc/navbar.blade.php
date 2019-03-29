@@ -17,19 +17,19 @@
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
 			<li class="nav-item">
-                    <a class="nav-link" href="/featured">Featured</a>
+                    <a class="nav-link" href="/featured"><i class="fas fa-star"></i>&nbsp;&nbsp;Featured</a>
                 </li>
 				<li class="nav-item">
-                    <a class="nav-link" href="/recent">Recent</a>
+                    <a class="nav-link" href="/recent"><i class="fas fa-history"></i>&nbsp;&nbsp;Recent</a>
                 </li>
 				<li class="nav-item">
                     <a class="nav-link">&#8226;</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/about">About</a>
+                    <a class="nav-link" href="/about"><i class="fas fa-info-circle"></i>&nbsp;&nbsp;About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/contact">Contact</a>
+                    <a class="nav-link" href="/contact"><i class="fas fa-envelope"></i>&nbsp;&nbsp;Contact</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="https://www.patreon.com/youaretheirvoice" target="_blank" style="
@@ -39,7 +39,7 @@
     margin-right: 5px;
     margin-left: 5px;
     padding-left: 15px;
-    padding-right: 15px;">Donate</a>
+    padding-right: 15px;"><i class="fas fa-hand-holding-heart"></i>&nbsp;&nbsp;Donate</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#"> </a>
@@ -69,8 +69,8 @@
                             </a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
-                                             document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
+                                             document.getElementById('logout-form').submit();"><font color="red">
+                                {{ __('Logout') }}</font>
                             </a>
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
