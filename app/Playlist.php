@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 class Playlist extends Model {
 
     protected $visible = ['id', 'name', 'slug', 'creator', 'videos', 'views', 'display_length'];
-    protected $fillable = ['views', 'name'];
+    protected $fillable = ['views', 'name', 'creator_id'];
 
     public function creator() {
         return $this->hasOne('App\User', 'id', 'creator_id');
