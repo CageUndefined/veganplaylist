@@ -162,7 +162,7 @@ function fetchYouTubeVideo(url) {
 
     return fetch(
         `https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails&id=${videoId}&key=${
-            process.env.MIX_YOUTUBE_API_KEY
+            window.MIX_YOUTUBE_API_KEY
         }`,
     )
 }

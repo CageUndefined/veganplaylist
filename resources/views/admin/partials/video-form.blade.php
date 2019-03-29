@@ -24,6 +24,10 @@
     $action = $isNewVideo ? '/videos' : "/videos/{$video->id}";
 @endphp
 
+<script>
+    window.MIX_YOUTUBE_API_KEY = "{{env('MIX_YOUTUBE_API_KEY')}}"
+</script>
+
 <div class="border border-success">
     <div class="bg-success text-white p-3">
         <span class="h2 m-0">@if ($isNewVideo) Add @else Edit @endif video</span>

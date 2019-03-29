@@ -36762,7 +36762,7 @@ function fetchVimeoVideo(url) {
 
 function fetchYouTubeVideo(url) {
   var videoId = new URL(url).searchParams.get('v');
-  return fetch("https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails&id=".concat(videoId, "&key=").concat("AIzaSyB667CkEPs1YtNtiXldaJwV_Cr_jgNPylY"));
+  return fetch("https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails&id=".concat(videoId, "&key=").concat(window.MIX_YOUTUBE_API_KEY));
 }
 
 function getSeconds(duration) {
@@ -36845,7 +36845,7 @@ if (token) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\wamp\htdocs\veganplaylist\resources\js\admin.js */"./resources/js/admin.js");
+module.exports = __webpack_require__(/*! /Users/grardb/dev/vegan/veganplaylist/resources/js/admin.js */"./resources/js/admin.js");
 
 
 /***/ })
