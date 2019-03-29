@@ -3,21 +3,26 @@
     <div class="heading">
       <div class="container">
         <div class="row">
-          <div class="title col-md-9">
-            <h4>{{ playlist.name }}</h4>
+          <div class="title col-md-8">
+            <h5>{{ playlist.name }}: {{ currentVideo.title }}</h5>
           </div>
-          <div class="stats col-md-3 row">
-            <div class="col-md-4">
+          <div class="stats col-md-4 row">
+          	<div class="col-md-3">
+          		playlist
+          		<br>
+          		{{ (index + 1) }} / {{ playlist.videos.length }}
+          	</div>
+            <div class="col-md-3">
               views
               <br>
               {{ playlist.views }}
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
               videos
               <br>
               {{ playlist.videos.length }}
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
               run time
               <br>
               {{ playlist.display_length }}
@@ -26,24 +31,16 @@
         </div>
       </div>
     </div>
-    <div class="subheading">
-      <div class="container">
-        <h5>
-          {{ currentVideo.title }}
-          <small>({{ (index + 1) }} / {{ playlist.videos.length }})</small>
-        </h5>
-      </div>
-    </div>
     <div class="embed">
       <iframe id="vegan-player" class="embed__iframe" enablejsapi=true :src="currentVideo.src"></iframe>
     </div>
     <div class="navigation row">
       <div class="col-md-2">
-        <a :href="editUrl">Edit</a>
+        <a :href="editUrl"><i class="fas fa-edit"></i> Edit this playlist</a>
       </div>
       <div class="container col-md-8 row">
         <div class="col-md-1">
-          <a class="arrow" href="#" v-show="index > 0" v-on:click="changeIndex(index - 1)">&larr;</a>
+          <a class="arrow" href="#" v-show="index > 0" v-on:click="changeIndex(index - 1)"><i class="fas fa-arrow-left"></i></a>
         </div>
         <div class="thumbnail-strip col-md-10">
           <a
@@ -64,13 +61,12 @@
             href="#"
             v-show="index < (playlist.videos.length - 1)"
             v-on:click="changeIndex(index + 1)"
-          >&rarr;</a>
+          ><i class="fas fa-arrow-right"></i></a>
         </div>
       </div>
       <div class="col-md-2 creator">
         <span v-if="playlist.creator">
-          Created by
-          <a :href="creatorProfileUrl">{{ playlist.creator.name }}</a>
+          <a :href="creatorProfileUrl"><i class="fas fa-user"></i> Created by {{ playlist.creator.name }}</a>
         </span>
       </div>
     </div>

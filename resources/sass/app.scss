@@ -38,6 +38,11 @@
 		height: 45px;
 		background: #242424;
 		overflow: hidden;
+		padding: 0 2rem;
+
+		.container {
+			max-width: initial;
+		}
 
 		.title {
 			padding: 10px 0;
@@ -51,29 +56,9 @@
 			}
 		}
 	}
-	.subheading {
-		position: absolute;
-		top: 45px;
-		left: 0;
-		right: 0;
-		height: 25px;
-		overflow: hidden;
-
-		h5 {
-			a {
-				color: white;
-
-				&:active, &:hover {
-					color: green;
-					text-decoration: none;
-					outline: none;
-				}
-			}
-		}
-	}
 	.embed {
 		position: absolute;
-		top: 70px;
+		top: 45px;
 		left: 0;
 		right: 0;
 		bottom: 60px;
@@ -99,6 +84,7 @@
 		}
 
 		a {
+			color: #fff;
 			&.thumbnail {
 				width: 60px;
 				height: 46px;
@@ -118,7 +104,6 @@
 				}
 			}
 			&.arrow {
-				color: #fff;
 				font-size: 200%;
 				position: relative;
 				bottom: 4px;

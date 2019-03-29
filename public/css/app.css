@@ -10686,6 +10686,11 @@ a.text-dark:focus {
   height: 45px;
   background: #242424;
   overflow: hidden;
+  padding: 0 2rem;
+}
+
+.viewer .heading .container {
+  max-width: initial;
 }
 
 .viewer .heading .title {
@@ -10701,29 +10706,9 @@ a.text-dark:focus {
   text-align: center;
 }
 
-.viewer .subheading {
-  position: absolute;
-  top: 45px;
-  left: 0;
-  right: 0;
-  height: 25px;
-  overflow: hidden;
-}
-
-.viewer .subheading h5 a {
-  color: white;
-}
-
-.viewer .subheading h5 a:active,
-.viewer .subheading h5 a:hover {
-  color: green;
-  text-decoration: none;
-  outline: none;
-}
-
 .viewer .embed {
   position: absolute;
-  top: 70px;
+  top: 45px;
   left: 0;
   right: 0;
   bottom: 60px;
@@ -10750,6 +10735,10 @@ a.text-dark:focus {
   text-align: right;
 }
 
+.viewer .navigation a {
+  color: #fff;
+}
+
 .viewer .navigation a.thumbnail {
   width: 60px;
   height: 46px;
@@ -10771,7 +10760,6 @@ a.text-dark:focus {
 }
 
 .viewer .navigation a.arrow {
-  color: #fff;
   font-size: 200%;
   position: relative;
   bottom: 4px;

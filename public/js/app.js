@@ -1837,10 +1837,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -36941,12 +36937,30 @@ var render = function() {
     _c("div", { staticClass: "heading" }, [
       _c("div", { staticClass: "container" }, [
         _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "title col-md-9" }, [
-            _c("h4", [_vm._v(_vm._s(_vm.playlist.name))])
+          _c("div", { staticClass: "title col-md-8" }, [
+            _c("h5", [
+              _vm._v(
+                _vm._s(_vm.playlist.name) +
+                  ": " +
+                  _vm._s(_vm.currentVideo.title)
+              )
+            ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "stats col-md-3 row" }, [
-            _c("div", { staticClass: "col-md-4" }, [
+          _c("div", { staticClass: "stats col-md-4 row" }, [
+            _c("div", { staticClass: "col-md-3" }, [
+              _vm._v("\n        \t\tplaylist\n        \t\t"),
+              _c("br"),
+              _vm._v(
+                "\n        \t\t" +
+                  _vm._s(_vm.index + 1) +
+                  " / " +
+                  _vm._s(_vm.playlist.videos.length) +
+                  "\n        \t"
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-3" }, [
               _vm._v("\n            views\n            "),
               _c("br"),
               _vm._v(
@@ -36954,7 +36968,7 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "col-md-4" }, [
+            _c("div", { staticClass: "col-md-3" }, [
               _vm._v("\n            videos\n            "),
               _c("br"),
               _vm._v(
@@ -36964,7 +36978,7 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "col-md-4" }, [
+            _c("div", { staticClass: "col-md-3" }, [
               _vm._v("\n            run time\n            "),
               _c("br"),
               _vm._v(
@@ -36973,23 +36987,6 @@ var render = function() {
                   "\n          "
               )
             ])
-          ])
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "subheading" }, [
-      _c("div", { staticClass: "container" }, [
-        _c("h5", [
-          _vm._v("\n        " + _vm._s(_vm.currentVideo.title) + "\n        "),
-          _c("small", [
-            _vm._v(
-              "(" +
-                _vm._s(_vm.index + 1) +
-                " / " +
-                _vm._s(_vm.playlist.videos.length) +
-                ")"
-            )
           ])
         ])
       ])
@@ -37008,7 +37005,10 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "navigation row" }, [
       _c("div", { staticClass: "col-md-2" }, [
-        _c("a", { attrs: { href: _vm.editUrl } }, [_vm._v("Edit")])
+        _c("a", { attrs: { href: _vm.editUrl } }, [
+          _c("i", { staticClass: "fas fa-edit" }),
+          _vm._v(" Edit this playlist")
+        ])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "container col-md-8 row" }, [
@@ -37032,7 +37032,7 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("←")]
+            [_c("i", { staticClass: "fas fa-arrow-left" })]
           )
         ]),
         _vm._v(" "),
@@ -37079,7 +37079,7 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("→")]
+            [_c("i", { staticClass: "fas fa-arrow-right" })]
           )
         ])
       ]),
@@ -37087,9 +37087,9 @@ var render = function() {
       _c("div", { staticClass: "col-md-2 creator" }, [
         _vm.playlist.creator
           ? _c("span", [
-              _vm._v("\n        Created by\n        "),
               _c("a", { attrs: { href: _vm.creatorProfileUrl } }, [
-                _vm._v(_vm._s(_vm.playlist.creator.name))
+                _c("i", { staticClass: "fas fa-user" }),
+                _vm._v(" Created by " + _vm._s(_vm.playlist.creator.name))
               ])
             ])
           : _vm._e()
@@ -49533,9 +49533,9 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/grardb/dev/vegan/veganplaylist/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /Users/grardb/dev/vegan/veganplaylist/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /Users/grardb/dev/vegan/veganplaylist/resources/sass/admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! /home/alex/github/veganplaylist/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /home/alex/github/veganplaylist/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /home/alex/github/veganplaylist/resources/sass/admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })
