@@ -13,7 +13,7 @@ class Video extends Model {
     public static function boot() {
         parent::boot();
 
-        static::saving(function ($video) {
+        static::creating(function ($video) {
             $video->slug = str_slug($video->title);
         });
 

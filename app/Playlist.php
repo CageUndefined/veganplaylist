@@ -23,7 +23,7 @@ class Playlist extends Model {
     public static function boot() {
         parent::boot();
 
-        static::saving(function ($playlist) {
+        static::creating(function ($playlist) {
             $playlist->slug = str_slug($playlist->name);
         });
 
