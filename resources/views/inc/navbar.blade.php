@@ -15,19 +15,19 @@
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
 			<li class="nav-item">
-                    <a class="nav-link" href="/featured"><i class="fas fa-star"></i>&nbsp;&nbsp;Featured</a>
+                    <a class="nav-link" href="/featured" style="color:#fff;"><i class="fas fa-star"></i>&nbsp;&nbsp;Featured</a>
                 </li>
 				<li class="nav-item">
-                    <a class="nav-link" href="/recent"><i class="fas fa-history"></i>&nbsp;&nbsp;Recent</a>
+                    <a class="nav-link" href="/recent" style="color:#fff;"><i class="fas fa-history"></i>&nbsp;&nbsp;Recent</a>
                 </li>
 				<li class="nav-item">
-                    <a class="nav-link">&#8226;</a>
+                    <a class="nav-link" style="color:#fff;">&#8226;</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/about"><i class="fas fa-info-circle"></i>&nbsp;&nbsp;About</a>
+                    <a class="nav-link" style="color:#fff;" href="/about"><i class="fas fa-info-circle"></i>&nbsp;&nbsp;About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/contact"><i class="fas fa-envelope"></i>&nbsp;&nbsp;Contact</a>
+                    <a class="nav-link" style="color:#fff;" href="/contact"><i class="fas fa-envelope"></i>&nbsp;&nbsp;Contact</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="https://www.patreon.com/youaretheirvoice" target="_blank" style="
@@ -39,8 +39,8 @@
     padding-left: 15px;
     padding-right: 15px;"><i class="fas fa-hand-holding-heart"></i>&nbsp;&nbsp;Donate</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"> </a>
+                <li class="nav-item" style="color:#fff;">
+                    <a class="nav-link" style="color:#fff;" href="#"> </a>
                 </li>
                 <!-- Authentication Links -->
                 @guest
@@ -53,8 +53,8 @@
                         </li>
                     @endif
                 @else
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    <li class="nav-item dropdown" style="color:#fff;">
+                        <a id="navbarDropdown" style="color:#fff;" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
 
