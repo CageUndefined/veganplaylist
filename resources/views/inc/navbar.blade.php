@@ -23,7 +23,14 @@
                     <a class="nav-link" href="/contact">Contact</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="https://www.patreon.com/youaretheirvoice" target="_blank" style="color: #ff0097;">Donate</a>
+                    <a class="nav-link" href="https://www.patreon.com/youaretheirvoice" target="_blank" style="
+	color: #fff;
+    background-color: #ff0097;
+    border-radius: 25px;
+    margin-right: 5px;
+    margin-left: 5px;
+    padding-left: 15px;
+    padding-right: 15px;">Donate</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#"> </a>
