@@ -44,10 +44,7 @@ class User extends Authenticatable
 
     
     public function getRouteKeyName() {
-            return 'slug';
-        static::deleting(function($user) {
-            $user->playlists()->each(function($p) { $p->delete(); });
-        });
+        return 'slug';
     }
     
 
