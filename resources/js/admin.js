@@ -79,7 +79,10 @@ function onUrlChange(e) {
     const isVimeo = url.indexOf('vimeo.com') >= 0
     const isYouTube = url.indexOf('youtube.com') >= 0
 
-    if (!isYouTube && !isVimeo) return
+    if (!isYouTube && !isVimeo) {
+        updateForm({ duration: '', title: '' })
+        return
+    }
 
     if (url.indexOf('http') !== 0) {
         url = `https://${url}`
@@ -97,6 +100,16 @@ function onUrlChange(e) {
         fetchYouTubeVideo(url)
             .then(r => r.json())
             .then(data => {
+                if (data.hasOwnProperty('error')) {
+                    throw new Error(
+                        data.error.errors.map(e => e.reason).join('\n'),
+                    )
+                }
+
+                if (!(data.items && data.items.length)) {
+                    throw new Error('video does not exist')
+                }
+
                 let {
                     snippet: { title },
                     contentDetails: { duration: durationStr },
@@ -106,7 +119,11 @@ function onUrlChange(e) {
 
                 updateForm({ duration, title })
             })
-            .catch(e => alert('Invalid YouTube URL' + e))
+            .catch(e => {
+                alert('Invalid YouTube URL: ' + e.message)
+
+                updateForm({ duration: '', title: '' })
+            })
     }
 }
 
@@ -116,7 +133,7 @@ function updateForm({ duration, title }) {
 
     durationInput.value = duration
 
-    titleInput.disabled = false
+    titleInput.disabled = title === ''
     titleInput.value = title
 }
 
@@ -160,8 +177,6 @@ function getSeconds(duration) {
     const hours = matches[6] === undefined ? 0 : parseInt(matches[6])
     const minutes = matches[7] === undefined ? 0 : parseInt(matches[7])
     const seconds = matches[8] === undefined ? 0 : parseInt(matches[8])
-
-    console.log(weeks, days, hours, minutes, seconds)
 
     return seconds + minutes * 60 + hours * 3600 + days * 86400 + weeks * 604800
 }
