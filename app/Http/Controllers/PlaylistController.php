@@ -6,6 +6,7 @@ use App\Playlist;
 use App\PseudoCrypt;
 use App\Video;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PlaylistController extends Controller {
 	public function __construct() {
@@ -102,11 +103,15 @@ class PlaylistController extends Controller {
 			$index = $playlist->videos->search(function ($item, $key) use ($video) {return $item->is($video);});
 		}
 
-		$editUrl = route('playlist.edit', $playlist);
-		if( $playlist->creator )
+		$editUrl = false;
+		if ($playlist->creator) {
 			$creatorProfileUrl = route('profile', $playlist->creator);
-		else
+			if ($playlist->creator->is(Auth::user())) {
+				$editUrl = route('playlist.edit', $playlist);
+			}
+		} else {
 			$creatorProfileUrl = false;
+		}
 
 		$playlist->views += 1;
 		Playlist::where('id', $playlist->id)->update(array('views' => $playlist->views));

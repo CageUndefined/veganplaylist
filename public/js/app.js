@@ -37005,10 +37005,12 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "navigation row" }, [
       _c("div", { staticClass: "col-md-2" }, [
-        _c("a", { attrs: { href: _vm.editUrl } }, [
-          _c("i", { staticClass: "fas fa-edit" }),
-          _vm._v(" Edit this playlist")
-        ])
+        _vm.editUrl
+          ? _c("a", { attrs: { href: _vm.editUrl } }, [
+              _c("i", { staticClass: "fas fa-edit" }),
+              _vm._v(" Edit this playlist")
+            ])
+          : _vm._e()
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "container col-md-8 row" }, [

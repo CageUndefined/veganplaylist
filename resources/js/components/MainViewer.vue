@@ -36,7 +36,7 @@
     </div>
     <div class="navigation row">
       <div class="col-md-2">
-        <a :href="editUrl"><i class="fas fa-edit"></i> Edit this playlist</a>
+        <a v-if="editUrl" :href="editUrl"><i class="fas fa-edit"></i> Edit this playlist</a>
       </div>
       <div class="container col-md-8 row">
         <div class="col-md-1">
