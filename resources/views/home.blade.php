@@ -14,7 +14,7 @@
 				<div class="input-group mb-3" style="width: 20rem;">
 					<input class="form-control" style="padding: 6px;" name="name" placeholder="Enter a playlist name to start" />
 					<div class="input-group-append">
-						<button class="btn btn-outline-secondary" style="background-color: #349de4;color: #fff;"type="button" id="button-addon2">Create</button>
+						<button type="submit" class="btn btn-outline-secondary" style="background-color: #349de4;color: #fff;" id="button-addon2">Create</button>
 					</div>
 				</div>
 			</form>
