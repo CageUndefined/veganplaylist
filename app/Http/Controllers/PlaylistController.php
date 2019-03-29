@@ -49,8 +49,8 @@ class PlaylistController extends Controller {
 		if (empty($name)) {
 			$name = PseudoCrypt::hash($ids[0], 8);
 		}
-
-		$playlist = Playlist::create(['name' => $name]);
+		
+		$playlist = Playlist::create(['name' => $name, 'creator_id' => Auth::id()]);
 
 		for ($i = 0; $i < count($ids); $i++) {
 			$id = $ids[$i];
