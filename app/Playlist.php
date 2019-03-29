@@ -25,7 +25,7 @@ class Playlist extends Model {
 
         static::creating(function ($playlist) {
             $playlist->slug = str_slug($playlist->name);
-            if( $playlist->creator->id == 1 )
+            if( $playlist->creator_id == 1 )
                 $playlist->featured = true;
         });
 
