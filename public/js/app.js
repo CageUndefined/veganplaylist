@@ -37000,7 +37000,6 @@ var render = function() {
         staticClass: "embed__iframe",
         attrs: {
           id: "vegan-player",
-          onplaying: "alert('I just playin');",
           enablejsapi: "true",
           src: _vm.currentVideo.src
         }

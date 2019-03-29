@@ -35,7 +35,7 @@
       </div>
     </div>
     <div class="embed">
-      <iframe id="vegan-player" onplaying="alert('I just playin');" class="embed__iframe" enablejsapi=true :src="currentVideo.src"></iframe>
+      <iframe id="vegan-player" class="embed__iframe" enablejsapi=true :src="currentVideo.src"></iframe>
     </div>
     <div class="navigation row">
       <div class="col-md-2">
