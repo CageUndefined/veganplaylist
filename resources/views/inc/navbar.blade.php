@@ -16,6 +16,15 @@
 
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
+			<li class="nav-item">
+                    <a class="nav-link" href="/featured">Featured</a>
+                </li>
+				<li class="nav-item">
+                    <a class="nav-link" href="/recent">Recent</a>
+                </li>
+				<li class="nav-item">
+                    <a class="nav-link">&#8226;</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/about">About</a>
                 </li>
@@ -53,6 +62,9 @@
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('settings.index') }}">
+                                My Playlists
+                            </a>
+							<a class="dropdown-item" href="{{ route('settings.index') }}">
                                 Settings
                             </a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
