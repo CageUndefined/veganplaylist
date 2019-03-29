@@ -391,7 +391,6 @@ h6,
 .h6 {
   margin-bottom: 0.5rem;
   font-weight: 500;
-  line-height: 1.2;
 }
 
 h1,
@@ -10752,7 +10751,7 @@ a.text-dark:focus {
 
 .viewer .navigation a.thumbnail.active,
 .viewer .navigation a.thumbnail:active {
-  border: 2px solid green;
+  border: 2px solid #f13135
 }
 
 .viewer .navigation a.thumbnail img {
