@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 class Playlist extends Model {
 
     protected $visible = ['id', 'name', 'slug', 'creator', 'videos', 'views', 'display_length'];
+    
     protected $fillable = ['views', 'name', 'creator_id'];
 
     public function creator() {
@@ -25,8 +26,8 @@ class Playlist extends Model {
 
         static::creating(function ($playlist) {
             $playlist->slug = str_slug($playlist->name);
-            if( $playlist->creator_id == 1 )
-                $playlist->featured = true;
+            // if( $playlist->creator_id == 1 )
+            //     $playlist->featured = true;
         });
 
         static::deleting(function($playlist) {
