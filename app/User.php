@@ -49,6 +49,7 @@ class User extends Authenticatable
             $user->playlists()->each(function($p) { $p->delete(); });
         });
     }
+    
 
     public function playlists()
     {
