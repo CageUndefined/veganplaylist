@@ -36734,11 +36734,10 @@ var Playlist = {
       video_ids: Object.keys(Playlist.list)
     };
     axios.post('/playlist', data).then(function (response) {
-      setTimeout(function () {
-        window.location = '/playlist/' + response.data.slug;
-      }, 2000);
+      window.location = '/playlist/' + response.data.slug;
     }).catch(function (error) {
       console.log(error);
+      alert('Your playlist name may be taken already!');
     });
   }
 };
@@ -36769,7 +36768,7 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/alex/github/veganplaylist/resources/js/playlist.js */"./resources/js/playlist.js");
+module.exports = __webpack_require__(/*! /Users/grardb/dev/vegan/veganplaylist/resources/js/playlist.js */"./resources/js/playlist.js");
 
 
 /***/ })

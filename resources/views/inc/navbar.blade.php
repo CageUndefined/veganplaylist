@@ -1,7 +1,7 @@
 
 <nav class="navbar navbar-expand-md navbar-dark bg-dark navbar-laravel">
     <div class="container-fluid">
-        <a href="https://veganplaylist.org/"><img src="https://i.imgur.com/guJfRhx.png" style="width: 300px;"></a>
+        <a href="/"><img src="https://i.imgur.com/Hfkiumn.png" style="width: 300px;"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -15,32 +15,27 @@
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
 			<li class="nav-item">
-                    <a class="nav-link" href="/featured"><i class="fas fa-star"></i>&nbsp;&nbsp;Featured</a>
+                    <a class="nav-link" href="/featured" style="color:#fff;"><i class="mr-1 d-md-none d-lg-inline-block fas fa-star"></i>Featured</a>
                 </li>
 				<li class="nav-item">
-                    <a class="nav-link" href="/recent"><i class="fas fa-history"></i>&nbsp;&nbsp;Recent</a>
+                    <a class="nav-link" href="/recent" style="color:#fff;"><i class="mr-1 d-md-none d-lg-inline-block fas fa-history"></i>Recent</a>
                 </li>
-				<li class="nav-item">
-                    <a class="nav-link">&#8226;</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/about"><i class="fas fa-info-circle"></i>&nbsp;&nbsp;About</a>
+				<li class="nav-item d-none d-lg-inline-block">
+                    <a class="nav-link" style="color:#fff;">&#8226;</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/contact"><i class="fas fa-envelope"></i>&nbsp;&nbsp;Contact</a>
+                    <a class="nav-link" style="color:#fff;" href="/about"><i class="mr-1 d-md-none d-lg-inline-block fas fa-info-circle"></i>About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="https://www.patreon.com/youaretheirvoice" target="_blank" style="
-	color: #fff;
-    background-color: #ff0097;
-    border-radius: 25px;
-    margin-right: 5px;
-    margin-left: 20px;
-    padding-left: 15px;
-    padding-right: 15px;"><i class="fas fa-hand-holding-heart"></i>&nbsp;&nbsp;Donate</a>
+                    <a class="nav-link" style="color:#fff;" href="/contact"><i class="mr-1 d-md-none d-lg-inline-block fas fa-envelope"></i>Contact</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"> </a>
+                <li class="nav-item ml-lg-2">
+                    <a class="nav-link text-white btn btn-sm text-left rounded-pill p-2" style="padding-left: 15px !important;background-color: #ff0097;margin-left: 15px;padding-right: 15px !important;font-size: 15px;" href="https://www.patreon.com/youaretheirvoice" target="_blank">
+            <i class="mr-1 d-md-none d-lg-inline-block fas fa-hand-holding-heart"></i>Donate
+    </a>
+                </li>
+                <li class="nav-item" style="color:#fff;">
+                    <a class="nav-link" style="color:#fff;" href="#"> </a>
                 </li>
                 <!-- Authentication Links -->
                 @guest
@@ -53,13 +48,13 @@
                         </li>
                     @endif
                 @else
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    <li class="nav-item dropdown" style="color:#fff;">
+                        <a id="navbarDropdown" style="color:#fff;" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('settings.index') }}">
+                            <a class="dropdown-item" href="{{ route('profile', Auth::user() ) }}">
                                 My Playlists
                             </a>
 							<a class="dropdown-item" href="{{ route('settings.index') }}">

@@ -391,7 +391,6 @@ h6,
 .h6 {
   margin-bottom: 0.5rem;
   font-weight: 500;
-  line-height: 1.2;
 }
 
 h1,
@@ -10670,7 +10669,7 @@ a.text-dark:focus {
 
 .viewer {
   position: fixed;
-  top: 72px;
+  top: 68px;
   left: 0;
   right: 0;
   bottom: 0;
@@ -10694,7 +10693,9 @@ a.text-dark:focus {
 }
 
 .viewer .heading .title {
+  overflow-x: auto;
   padding: 10px 0;
+  white-space: nowrap;
 }
 
 .viewer .heading .stats {
@@ -10728,7 +10729,9 @@ a.text-dark:focus {
 }
 
 .viewer .navigation .thumbnail-strip {
+  overflow-x: auto;
   text-align: center;
+  white-space: nowrap;
 }
 
 .viewer .navigation .next {
@@ -10752,7 +10755,7 @@ a.text-dark:focus {
 
 .viewer .navigation a.thumbnail.active,
 .viewer .navigation a.thumbnail:active {
-  border: 2px solid green;
+  border: 2px solid #f13135;
 }
 
 .viewer .navigation a.thumbnail img {
@@ -10804,7 +10807,7 @@ a.text-dark:focus {
 }
 
 .playlist-scroller__item--active {
-  border: 2px solid green;
+  border: 2px solid #f13135;
 }
 
 .playlist-card .card-header {

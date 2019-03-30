@@ -21,6 +21,15 @@
             </span>
         </div>
     </div>
+    <div class="h3 m-0 p-3 border-bottom border-primary d-flex justify-content-between">
+        Playlists
+
+        <div class="text-truncate" title="{{$numPlaylists}}">
+            <span class="badge badge-primary">
+                {{$numPlaylists}}
+            </span>
+        </div>
+    </div>
     <div class="h3 m-0 p-3 d-flex justify-content-between">
         Playlist views
 
