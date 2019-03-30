@@ -26,7 +26,7 @@
             <i class="fas fa-link"></i> Copy URL
         </button>
         <div class="flex-fill py-0 py-sm-2 py-md-0">
-            Total: <b>1:23:33</b>
+            Total: {{$playlist->display_length}}
         </div>
     </div>
     <ul class="list-group">
