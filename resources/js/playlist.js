@@ -111,8 +111,8 @@ var Playlist = {
         };
         axios.post('/playlist', data)
             .then(function(response){
-                setTimeout(function(){ window.location = '/playlist/' + response.data.slug; }, 2000);
-            }).catch(function(error){ console.log(error) });
+                window.location = '/playlist/' + response.data.slug;
+            }).catch(function(error){ console.log(error); alert(error); });
     }
 };
 
