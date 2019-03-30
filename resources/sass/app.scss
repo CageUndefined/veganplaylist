@@ -108,6 +108,9 @@
 				position: relative;
 				bottom: 4px;
 			} 
+			&:hover {
+				text-decoration: none;
+			}
 		}
 		.creator {
 			text-align: right;
