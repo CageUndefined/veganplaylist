@@ -49408,6 +49408,9 @@ var Playlist = {
     return this;
   },
   bindEvents: function bindEvents() {
+    $('#filter_form').on('submit', function (e) {
+      e.preventDefault();
+    });
     $('.card-columns').on('click', '.btn-add', function () {
       var id = $(this).data('id');
       var title = $('#card_' + id + ' p').text();
