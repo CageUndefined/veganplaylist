@@ -9,7 +9,7 @@ import _ from 'lodash'
 
 var uri = window.location.search.substring(1)
 var params = new URLSearchParams(uri)
-var name_from_get_param = params && params.get('name') ? params.get('name') : ''
+var nameFromGetParams = params && params.get('name') ? params.get('name') : ''
 
 /* Playlist
  *
@@ -17,7 +17,7 @@ var name_from_get_param = params && params.get('name') ? params.get('name') : ''
  *
  */
 var Playlist = {
-    name: name_from_get_param,
+    name: nameFromGetParams,
     list: {},
 
     init() {
@@ -58,13 +58,10 @@ var Playlist = {
     filter() {
         this.cancelRequest()
 
-        var title = $('#name_input').val()
-        var hide_graphic = $('#graphic_input').is(':checked') ? 0 : 1
-        var hide_mature = $('#mature_input').is(':checked') ? 0 : 1
         var data = {
-            title: title,
-            hide_graphic: hide_graphic,
-            hide_mature: hide_mature,
+            title: $('#name_input').val(),
+            hide_graphic: $('#graphic_input').is(':checked') ? 0 : 1,
+            hide_mature: $('#mature_input').is(':checked') ? 0 : 1,
             tags: [],
         }
 
@@ -108,9 +105,7 @@ var Playlist = {
                     id: id,
                     title: title,
                 }
-                $('#card_' + id)
-                    .fadeOut()
-                    .remove()
+                $('#card_' + id).fadeOut()
                 if ($('a.playlist-save').hasClass('disabled'))
                     $('a.playlist-save').removeClass('disabled')
             })
@@ -122,7 +117,7 @@ var Playlist = {
     removeVideo(id) {
         delete Playlist.list[id]
         $('a.playlist-save')
-        Playlist.filter()
+        $('#card_' + id).show()
         if (!Object.keys(Playlist.list).length)
             $('a.playlist-save').addClass('disabled')
     },

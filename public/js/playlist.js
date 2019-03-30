@@ -36651,7 +36651,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 var uri = window.location.search.substring(1);
 var params = new URLSearchParams(uri);
-var name_from_get_param = params && params.get('name') ? params.get('name') : '';
+var nameFromGetParams = params && params.get('name') ? params.get('name') : '';
 /* Playlist
  *
  *  Define our Playlist object
@@ -36659,7 +36659,7 @@ var name_from_get_param = params && params.get('name') ? params.get('name') : ''
  */
 
 var Playlist = {
-  name: name_from_get_param,
+  name: nameFromGetParams,
   list: {},
   init: function init() {
     this.cancelRequest = lodash__WEBPACK_IMPORTED_MODULE_0___default.a.noop;
@@ -36693,13 +36693,10 @@ var Playlist = {
     var _this = this;
 
     this.cancelRequest();
-    var title = $('#name_input').val();
-    var hide_graphic = $('#graphic_input').is(':checked') ? 0 : 1;
-    var hide_mature = $('#mature_input').is(':checked') ? 0 : 1;
     var data = {
-      title: title,
-      hide_graphic: hide_graphic,
-      hide_mature: hide_mature,
+      title: $('#name_input').val(),
+      hide_graphic: $('#graphic_input').is(':checked') ? 0 : 1,
+      hide_mature: $('#mature_input').is(':checked') ? 0 : 1,
       tags: []
     };
     axios.post('/videolist', data, {
@@ -36734,7 +36731,7 @@ var Playlist = {
         id: id,
         title: title
       };
-      $('#card_' + id).fadeOut().remove();
+      $('#card_' + id).fadeOut();
       if ($('a.playlist-save').hasClass('disabled')) $('a.playlist-save').removeClass('disabled');
     }).catch(function (error) {
       console.log(error);
@@ -36743,7 +36740,7 @@ var Playlist = {
   removeVideo: function removeVideo(id) {
     delete Playlist.list[id];
     $('a.playlist-save');
-    Playlist.filter();
+    $('#card_' + id).show();
     if (!Object.keys(Playlist.list).length) $('a.playlist-save').addClass('disabled');
   },
   createPlaylist: function createPlaylist() {
