@@ -9,7 +9,7 @@
     <meta property="og:url" content="{{ route( 'playlist.show', $playlist ) }}" />
     <meta property="og:image" content="{{ $playlist->videos[0]->getThumbnailSrcAttribute() }}" />
     <meta property="og:image:alt" content="{{ $playlist->videos[0]->title }}" />
-    <meta property="og:description" content="Watch &#34;{{ $playlist->name }}&#34; on VeganPlaylist.org!" />
+    <meta property="og:description" content="{{ $playlist->description }}" />
 @endsection
 
 @section('page_content')

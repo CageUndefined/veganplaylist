@@ -37,6 +37,7 @@ class Playlist extends Model {
         static::retrieved(function ($playlist) {
             $playlist->display_duration = $playlist->getDisplayDurationAttribute();
             $playlist->display_length = $playlist->getDisplayLengthAttribute();
+            $playlist->description = "Watch \"$playlist->name\" and many other playlists of vegan videos on VeganPlaylist.org!";
         });
     }
 
