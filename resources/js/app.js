@@ -8,6 +8,8 @@ require('./bootstrap')
 
 require('./playlist')
 
+import ClipboardJS from 'clipboard'
+
 window.Vue = require('vue')
 
 /**
@@ -28,3 +30,7 @@ window.Vue = require('vue')
  */
 
 Vue.component('main-viewer', require('./components/MainViewer.vue').default)
+
+$(() => {
+    new ClipboardJS('.copy-playlist-url-btn')
+})

@@ -12,9 +12,12 @@
         <div class="flex-fill py-0 py-sm-2 py-md-0">
             <i class="fas fa-share"></i> Share
         </div>
-        <div class="flex-fill py-0 py-sm-2 py-md-0">
+        <button
+            class="flex-fill py-0 py-sm-2 py-md-0 bg-transparent border-0 copy-playlist-url-btn"
+            data-clipboard-text="{{route('playlist.show', $playlist)}}"
+        >
             <i class="fas fa-link"></i> Copy URL
-        </div>
+        </button>
         <div class="flex-fill py-0 py-sm-2 py-md-0">
             Total: <b>1:23:33</b>
         </div>
