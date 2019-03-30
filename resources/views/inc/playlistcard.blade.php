@@ -9,9 +9,16 @@
            href="{{ route( 'playlist.show', $playlist ) }}">{{ $playlist->name }}</a>
     </div>
     <div class="d-flex flex-row flex-sm-column flex-md-row text-center py-3 py-sm-0 py-md-3">
-        <div class="flex-fill py-0 py-sm-2 py-md-0">
+        <button
+            class="flex-fill py-0 py-sm-2 py-md-0 bg-transparent border-0 st-custom-button"
+            data-network="sharethis"
+            data-url="{{ $playlist->getShortUrl() }}"
+            data-title="{{ $playlist->name }}"
+            data-image="{{ $playlist->videos[0]->getThumbnailSrcAttribute() }}"
+        >
+            <span class="count"></span>
             <i class="fas fa-share"></i> Share
-        </div>
+        </button>
         <button
             class="flex-fill py-0 py-sm-2 py-md-0 bg-transparent border-0 copy-playlist-url-btn"
             data-clipboard-text="{{route('playlist.show', $playlist)}}"
