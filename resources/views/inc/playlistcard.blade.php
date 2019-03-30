@@ -22,19 +22,18 @@
         @foreach( $playlist->videos as $video )
             @if ($loop->iteration > 10)
                 @if ($loop->last)
-                    <li class="list-group-item text-center" style="padding-left: 20px; padding-right: 10px;">
+                    <li class="list-group-item text-center">
                         <a href="{{ route( 'playlist.show', $playlist ) }}" class="text-muted">
                             And {{ $playlist->videos->count() - 10 }} more!
                         </a>
                     </li>
                 @endif
             @else
-                <li class="list-group-item" style="padding-left: 20px;padding-right: 10px;">
-                    <a class="row" href="{{ route( 'playlist.video.show', [ $playlist, $video ] ) }}">
-                        <div class="col-3">@include('inc.videothumb')</div>
-                        <div class="col-7 text-truncate"
-                             style="white-space: inherit !important;color: #000;text-decoration: none;font-weight: 600;margin: -10px 0px 0px 15px;">{{ $video->title }}</div>
-                    <!--<small class="col-1 text-right" style="padding: 0px;">{{ $video->getTime() }}</small>-->
+                <li class="list-group-item">
+                    <a class="d-flex align-items-center align-items-sm-start align-items-lg-center flex-row flex-sm-column flex-lg-row" href="{{ route( 'playlist.video.show', [ $playlist, $video ] ) }}">
+                        <div class="mr-2 mb-0 mb-sm-2 mb-lg-0">@include('inc.videothumb')</div>
+                        <div class="text-truncate"
+                             style="white-space: inherit !important;color: #000;text-decoration: none;font-weight: 600;">{{ $video->title }}</div>
                     </a>
                 </li>
             @endif
