@@ -30,7 +30,7 @@
                     <a class="nav-link" style="color:#fff;" href="/contact"><i class="mr-1 d-md-none d-lg-inline-block fas fa-envelope"></i>Contact</a>
                 </li>
                 <li class="nav-item ml-lg-2">
-                    <a class="nav-link text-white btn btn-sm text-left rounded-pill p-2" style="background-color: #ff0097;" href="https://www.patreon.com/youaretheirvoice" target="_blank">
+                    <a class="nav-link text-white btn btn-sm text-left rounded-pill p-2" style="padding-left: 15px !important;background-color: #ff0097;margin-left: 15px;padding-right: 15px !important;font-size: 15px;" href="https://www.patreon.com/youaretheirvoice" target="_blank">
             <i class="mr-1 d-md-none d-lg-inline-block fas fa-hand-holding-heart"></i>Donate
     </a>
                 </li>

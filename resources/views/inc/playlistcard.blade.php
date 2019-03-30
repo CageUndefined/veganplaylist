@@ -5,7 +5,7 @@
          style="background-size: cover; background-repeat: no-repeat;padding-top: 8px;border-radius: 10px 10px 0px 0px;padding-bottom: 5px;background-image: url(https://i.imgur.com/ESi8MTp.jpg);color: black; cursor: pointer;"
          onclick="window.location.href = '{{ route( 'playlist.show', $playlist ) }}'">
         <i class="fas fa-play-circle mr-2 text-white" style="font-size: 25px;"></i>
-        <a style="font-weight: 600;letter-spacing: 2px;"
+        <a style="font-weight: 600;letter-spacing: 2px;text-decoration:none;"
            href="{{ route( 'playlist.show', $playlist ) }}">{{ $playlist->name }}</a>
     </div>
     <div class="d-flex flex-row flex-sm-column flex-md-row text-center py-3 py-sm-0 py-md-3">
