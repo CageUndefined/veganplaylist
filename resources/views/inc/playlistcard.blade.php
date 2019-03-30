@@ -21,7 +21,7 @@
         </button>
         <button
             class="flex-fill py-0 py-sm-2 py-md-0 bg-transparent border-0 copy-playlist-url-btn"
-            data-clipboard-text="{{route('playlist.show', $playlist)}}"
+            data-clipboard-text="{{$playlist->getShortUrl()}}"
         >
             <i class="fas fa-link"></i> Copy URL
         </button>
