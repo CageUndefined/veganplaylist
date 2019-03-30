@@ -6,19 +6,15 @@
     <div class="container">
         <center>
             <b style="font-size: 30px;">
-                {{ $user->name }}
+                Playlists created by {{ $user->name }}
             </b>
-            <br>
-            <small>
-                Vegan Playlist Creator since {{ date('m/d/Y', strtotime($user->created_at)) }}
-            </small>
+			<br>
+			<b style="font-size: 18px;">View and share the below curated playlists by {{ $user->name }} since {{ date('m/d/Y', strtotime($user->created_at)) }}!</b>
+			<br>
         </center>
         <br>
         <br>
-        
-        <p>
-            <b style="font-size: 18px;">Created Playlists:</b>
-        </p>       
+             
         <div class="card-columns">
            @foreach( $playlists as $playlist )
              @include('inc.playlistcard')
