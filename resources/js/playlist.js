@@ -112,7 +112,7 @@ var Playlist = {
         axios.post('/playlist', data)
             .then(function(response){
                 window.location = '/playlist/' + response.data.slug;
-            }).catch(function(error){ console.log(error); alert(error); });
+            }).catch(function(error){ console.log(error); alert('Your playlist name may be taken already!'); });
     }
 };
 

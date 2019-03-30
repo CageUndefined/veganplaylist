@@ -36737,7 +36737,7 @@ var Playlist = {
       window.location = '/playlist/' + response.data.slug;
     }).catch(function (error) {
       console.log(error);
-      alert(error);
+      alert('Your playlist name may be taken already!');
     });
   }
 };
