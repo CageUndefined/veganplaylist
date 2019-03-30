@@ -100,7 +100,7 @@
                 border: 2px solid white;
 
                 &.active, &:active {
-                    border: 2px solid green;
+                    border: 2px solid #f13135;
                 }
 
                 img {
@@ -111,6 +111,9 @@
                 font-size: 200%;
                 position: relative;
                 bottom: 4px;
+            }
+            &:hover {
+            	text-decoration: none;
             }
         }
         .creator {
@@ -154,7 +157,7 @@
         display: inline-block;
 
         &--active {
-            border: 2px solid green;
+            border: 2px solid #f13135;
         }
     }
 }
