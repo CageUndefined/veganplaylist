@@ -1,5 +1,6 @@
 @php
     $videos = App\Video::all();
+    $tags   = App\Tag::all();
 @endphp
 
 @section('title', 'Create Playlist')
@@ -35,30 +36,17 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="tags" class="col mr-2">
+                        <div id="tags" class="col mr-2 ml-2">
                             <div class="row mb-3 mt-2 justify-content-end">
-                                <div id="labels-inactive" class="">
+                                <div id="labels_inactive" class="">
                                     <span class="text-secondary mr-2">Tags: </span>
-                                    <a href="#" class="badge badge-pill badge-primary">Ethics</a>
-                                    <a href="#" class="badge badge-pill badge-secondary">Humor</a>
-                                    <a href="#" class="badge badge-pill badge-success">Environment</a>
-                                    <a href="#" class="badge badge-pill badge-danger">Health</a>
-                                    <a href="#" class="badge badge-pill badge-primary">Inspiring</a>
-                                    <a href="#" class="badge badge-pill badge-warning">Documentary</a>
-                                    <a href="#" class="badge badge-pill badge-info">Information</a>
-                                    <!-- <a href="#" class="badge badge-pill badge-success">Fitness</a> -->
-                                    <a href="#" class="badge badge-pill badge-dark">Activism</a>
-                                    <a href="#" class="badge badge-pill badge-light">Speech</a>
-                                    <a href="#" class="badge badge-pill badge-warning">Music</a>
-                                    <a href="#" class="badge badge-pill badge-danger">Recipes</a>
-                                    <!-- <a href="#" class="badge badge-pill badge-secondary">Science</a> -->
+                                    @foreach ($tags as $t)
+                                        <a href="#" class="badge badge-pill badge-{{ $t->{'color'} }}" data-id="{{ $t->{'id'} }}">{{ $t->{'name'} }}</a>
+                                    @endforeach
                                 </div>
                             </div>
-                            <div class="row justify-content-end">
-                                <div id="labels-active">
-                                    <a href="#" class="badge badge-secondary">Science | x</a>
-                                    <a href="#" class="badge badge-success">Fitness | x</a>
-                                </div>
+                            <div class="row">
+                                <div id="labels_active"></div>
                             </div>
                         </div>
                     </div>
