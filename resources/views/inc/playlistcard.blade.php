@@ -41,10 +41,12 @@
                 @endif
             @else
                 <li class="list-group-item">
-                    <a class="d-flex align-items-center align-items-sm-start align-items-lg-center flex-row flex-sm-column flex-lg-row" href="{{ route( 'playlist.video.show', [ $playlist, $video ] ) }}">
+                    <a
+                        class="d-flex align-items-center align-items-sm-start align-items-lg-center flex-row flex-sm-column flex-lg-row text-truncate text-wrap font-weight-bold text-dark text-decoration-none"
+                        href="{{ route( 'playlist.video.show', [ $playlist, $video ] ) }}"
+                    >
                         <div class="mr-2 mb-0 mb-sm-2 mb-lg-0">@include('inc.videothumb')</div>
-                        <div class="text-truncate"
-                             style="white-space: inherit !important;color: #000;text-decoration: none;font-weight: 600;">{{ $video->title }}</div>
+                        {{ $video->title }}
                     </a>
                 </li>
             @endif
