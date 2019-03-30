@@ -36634,29 +36634,35 @@ if (token) {
 /*!**********************************!*\
   !*** ./resources/js/playlist.js ***!
   \**********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
 /*
-*
-*  Dependencies and URL Query Params
-*
-*/
+ *
+ *  Dependencies and URL Query Params
+ *
+ */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
 
 var uri = window.location.search.substring(1);
 var params = new URLSearchParams(uri);
 var name_from_get_param = params && params.get('name') ? params.get('name') : '';
 /* Playlist
-*
-*  Define our Playlist object
-*
-*/
+ *
+ *  Define our Playlist object
+ *
+ */
 
 var Playlist = {
   name: name_from_get_param,
   list: {},
   init: function init() {
+    this.cancelRequest = lodash__WEBPACK_IMPORTED_MODULE_0___default.a.noop;
     if ($('#playlist_name').length && this.name.length) $('#playlist_name').text(this.name);
     this.bindEvents();
     return this;
@@ -36684,16 +36690,23 @@ var Playlist = {
     });
   },
   filter: function filter() {
+    var _this = this;
+
+    this.cancelRequest();
     var title = $('#name_input').val();
-    var hide_graphic = $('#graphic_input').is(":checked") ? 0 : 1;
-    var hide_mature = $('#mature_input').is(":checked") ? 0 : 1;
+    var hide_graphic = $('#graphic_input').is(':checked') ? 0 : 1;
+    var hide_mature = $('#mature_input').is(':checked') ? 0 : 1;
     var data = {
       title: title,
       hide_graphic: hide_graphic,
       hide_mature: hide_mature,
       tags: []
     };
-    axios.post('/videolist', data).then(function (response) {
+    axios.post('/videolist', data, {
+      cancelToken: new axios.CancelToken(function (c) {
+        return _this.cancelRequest = c;
+      })
+    }).then(function (response) {
       if (response && response.data) {
         if ($('.video-card').length) {
           $('.video-card').fadeOut('fast', function () {
@@ -36707,7 +36720,9 @@ var Playlist = {
         $('.video-card').detach();
       }
     }).catch(function (error) {
-      console.log(error);
+      if (!axios.isCancel(error)) {
+        console.log(error);
+      }
     });
   },
   addVideo: function addVideo(id, title) {
@@ -36728,7 +36743,7 @@ var Playlist = {
   removeVideo: function removeVideo(id) {
     delete Playlist.list[id];
     $('a.playlist-save');
-    $('#name_input').trigger('keyup');
+    Playlist.filter();
     if (!Object.keys(Playlist.list).length) $('a.playlist-save').addClass('disabled');
   },
   createPlaylist: function createPlaylist() {
@@ -36745,21 +36760,21 @@ var Playlist = {
   }
 };
 /*
-*
-* document ready
-*
-*/
+ *
+ * document ready
+ *
+ */
 
 $(function () {
   window.Playlist = Playlist.init();
-  $('#name_input').keyup(function () {
+
+  var debouncedFilter = lodash__WEBPACK_IMPORTED_MODULE_0___default.a.debounce(function () {
     Playlist.filter();
     return false;
-  });
-  $('input[type=checkbox]').change(function () {
-    Playlist.filter();
-    return false;
-  });
+  }, 300);
+
+  $('#name_input').on('input', debouncedFilter);
+  $('input[type=checkbox]').on('change', debouncedFilter);
 });
 
 /***/ }),
