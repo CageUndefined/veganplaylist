@@ -18,38 +18,38 @@
                     <a class="nav-link" href="/featured" style="color:#fff;"><i class="mr-1 d-md-none d-lg-inline-block fas fa-star"></i>Featured</a>
                 </li>
 				<li class="nav-item">
-                    <a class="nav-link" href="/recent" style="color:#fff;"><i class="mr-1 d-md-none d-lg-inline-block fas fa-history"></i>Recent</a>
+                    <a class="nav-link text-white" href="/recent"><i class="mr-1 d-md-none d-lg-inline-block fas fa-history"></i>Recent</a>
                 </li>
 				<li class="nav-item d-none d-lg-inline-block">
-                    <a class="nav-link" style="color:#fff;">&#8226;</a>
+                    <a class="nav-link text-white">&#8226;</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" style="color:#fff;" href="/about"><i class="mr-1 d-md-none d-lg-inline-block fas fa-info-circle"></i>About</a>
+                    <a class="nav-link text-white" href="/about"><i class="mr-1 d-md-none d-lg-inline-block fas fa-info-circle"></i>About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" style="color:#fff;" href="/contact"><i class="mr-1 d-md-none d-lg-inline-block fas fa-envelope"></i>Contact</a>
+                    <a class="nav-link text-white" href="/contact"><i class="mr-1 d-md-none d-lg-inline-block fas fa-envelope"></i>Contact</a>
                 </li>
                 <li class="nav-item ml-lg-2">
-                    <a class="nav-link text-white btn btn-sm text-left rounded-pill p-2" style="padding-left: 15px !important;background-color: #ff0097;margin-left: 15px;padding-right: 15px !important;font-size: 15px;" href="https://www.patreon.com/youaretheirvoice" target="_blank">
-            <i class="mr-1 d-md-none d-lg-inline-block fas fa-hand-holding-heart"></i>Donate
-    </a>
+                    <a class="nav-link text-white btn btn-sm text-left rounded-pill p-2 mr-3 mr-md-0" style="background-color: #ff0097;" href="https://www.patreon.com/youaretheirvoice" target="_blank">
+                        <i class="mr-1 d-md-none d-lg-inline-block fas fa-hand-holding-heart"></i>Donate
+                    </a>
                 </li>
                 <li class="nav-item" style="color:#fff;">
-                    <a class="nav-link" style="color:#fff;" href="#"> </a>
+                    <a class="nav-link text-white" href="#"> </a>
                 </li>
                 <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">
-                        <a class="nav-link" style="color:#fff;" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        <a class="nav-link text-white" href="{{ route('login') }}">{{ __('Login') }}</a>
                     </li>
                     @if (Route::has('register'))
                         <li class="nav-item">
-                            <a class="nav-link" style="color:#fff;" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a class="nav-link text-white" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
                     @endif
                 @else
                     <li class="nav-item dropdown" style="color:#fff;">
-                        <a id="navbarDropdown" style="color:#fff;" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <a id="navbarDropdown" class="nav-link text-white dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
 
