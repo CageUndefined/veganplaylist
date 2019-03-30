@@ -2,6 +2,16 @@
 
 @section('title', $playlist->name)
 
+@section('head')
+    <meta property="og:title" content="{{ $playlist->name }}" />
+    <meta property="og:type" content="video.playlist" />
+    <meta property="og:site_name" content="Vegan Playlist" />
+    <meta property="og:url" content="{{ $playlist->getShortURL() }}" />
+    <meta property="og:image" content="{{ $playlist->videos[0]->getThumbnailSrcAttribute() }}" />
+    <meta property="og:description" content="Watch {{ $playlist->name }} and many other playlists of vegan videos on VeganPlaylist.org, or create your own!" />
+    <meta property="og:video:duration" content="{{ $playlist->display_duration }}" />
+@endsection
+
 @section('page_content')
 	<script type="text/javascript" src="https://www.youtube.com/iframe_api"></script>
 	<script src="https://player.vimeo.com/api/player.js"></script>
