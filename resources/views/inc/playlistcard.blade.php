@@ -8,17 +8,18 @@
         <a style="font-weight: 600;letter-spacing: 2px;"
            href="{{ route( 'playlist.show', $playlist ) }}">{{ $playlist->name }}</a>
     </div>
+    <div class="d-flex flex-row flex-sm-column flex-md-row text-center py-3 py-sm-0 py-md-3">
+        <div class="flex-fill py-0 py-sm-2 py-md-0">
+            <i class="fas fa-share"></i> Share
+        </div>
+        <div class="flex-fill py-0 py-sm-2 py-md-0">
+            <i class="fas fa-link"></i> Copy URL
+        </div>
+        <div class="flex-fill py-0 py-sm-2 py-md-0">
+            Total: <b>1:23:33</b>
+        </div>
+    </div>
     <ul class="list-group">
-        <table>
-
-            <tr>
-                <td align="center" style="padding: 15px;"><i class="fas fa-share"></i> Share</td>
-                <td><i class="fas fa-link"></i> Copy URL</td>
-                <td align="right" style="padding-right: 18px;">Total: <b>1:23:33</b></td>
-            </tr>
-
-        </table>
-
         @foreach( $playlist->videos as $video )
             @if ($loop->iteration > 10)
                 @if ($loop->last)
