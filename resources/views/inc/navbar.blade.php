@@ -13,7 +13,7 @@
             </ul>
 
             <!-- Right Side Of Navbar -->
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav ml-auto align-items-start align-items-md-center">
 			<li class="nav-item">
                     <a class="nav-link" href="/featured" style="color:#fff;"><i class="mr-1 d-md-none d-lg-inline-block fas fa-star"></i>Featured</a>
                 </li>
@@ -29,8 +29,13 @@
                 <li class="nav-item">
                     <a class="nav-link text-white" href="/contact"><i class="mr-1 d-md-none d-lg-inline-block fas fa-envelope"></i>Contact</a>
                 </li>
-                <li class="nav-item ml-lg-2">
-                    <a class="nav-link text-white btn btn-sm text-left rounded-pill p-2 mr-3 mr-md-0" style="background-color: #ff0097;" href="https://www.patreon.com/youaretheirvoice" target="_blank">
+                <li class="nav-item ml-lg-3">
+                    <a
+                        class="nav-link text-white btn text-left rounded-pill px-3 mr-3 mr-md-0 font-bold"
+                        style="background-color: #ff0097"
+                        href="https://www.patreon.com/youaretheirvoice"
+                        target="_blank"
+                    >
                         <i class="mr-1 d-md-none d-lg-inline-block fas fa-hand-holding-heart"></i>Donate
                     </a>
                 </li>
