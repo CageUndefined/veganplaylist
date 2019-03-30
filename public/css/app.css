@@ -10694,7 +10694,9 @@ a.text-dark:focus {
 }
 
 .viewer .heading .title {
+  overflow-x: auto;
   padding: 10px 0;
+  white-space: nowrap;
 }
 
 .viewer .heading .stats {

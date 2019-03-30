@@ -45,7 +45,9 @@
         }
 
         .title {
+            overflow-x: auto;
             padding: 10px 0;
+            white-space: nowrap;
         }
 
         .stats {
