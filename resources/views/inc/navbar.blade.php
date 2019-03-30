@@ -29,7 +29,7 @@
                 <li class="nav-item">
                     <a class="nav-link text-white" href="/contact"><i class="mr-1 d-md-none d-lg-inline-block fas fa-envelope"></i>Contact</a>
                 </li>
-                <li class="nav-item ml-lg-3">
+                <li class="nav-item mx-lg-3">
                     <a
                         class="nav-link text-white btn text-left rounded-pill px-3 mr-3 mr-md-0 font-bold"
                         style="background-color: #ff0097"
@@ -38,9 +38,6 @@
                     >
                         <i class="mr-1 d-md-none d-lg-inline-block fas fa-hand-holding-heart"></i>Donate
                     </a>
-                </li>
-                <li class="nav-item" style="color:#fff;">
-                    <a class="nav-link text-white" href="#"> </a>
                 </li>
                 <!-- Authentication Links -->
                 @guest
