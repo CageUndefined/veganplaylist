@@ -15,29 +15,24 @@
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
 			<li class="nav-item">
-                    <a class="nav-link" href="/featured" style="color:#fff;"><i class="fas fa-star"></i>&nbsp;&nbsp;Featured</a>
+                    <a class="nav-link" href="/featured" style="color:#fff;"><i class="mr-1 d-md-none d-lg-inline-block fas fa-star"></i>Featured</a>
                 </li>
 				<li class="nav-item">
-                    <a class="nav-link" href="/recent" style="color:#fff;"><i class="fas fa-history"></i>&nbsp;&nbsp;Recent</a>
+                    <a class="nav-link" href="/recent" style="color:#fff;"><i class="mr-1 d-md-none d-lg-inline-block fas fa-history"></i>Recent</a>
                 </li>
-				<li class="nav-item">
+				<li class="nav-item d-none d-lg-inline-block">
                     <a class="nav-link" style="color:#fff;">&#8226;</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" style="color:#fff;" href="/about"><i class="fas fa-info-circle"></i>&nbsp;&nbsp;About</a>
+                    <a class="nav-link" style="color:#fff;" href="/about"><i class="mr-1 d-md-none d-lg-inline-block fas fa-info-circle"></i>About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" style="color:#fff;" href="/contact"><i class="fas fa-envelope"></i>&nbsp;&nbsp;Contact</a>
+                    <a class="nav-link" style="color:#fff;" href="/contact"><i class="mr-1 d-md-none d-lg-inline-block fas fa-envelope"></i>Contact</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="https://www.patreon.com/youaretheirvoice" target="_blank" style="
-	color: #fff;
-    background-color: #ff0097;
-    border-radius: 25px;
-    margin-right: 5px;
-    margin-left: 20px;
-    padding-left: 15px;
-    padding-right: 15px;"><i class="fas fa-hand-holding-heart"></i>&nbsp;&nbsp;Donate</a>
+                <li class="nav-item ml-lg-2">
+                    <a class="nav-link text-white btn btn-sm text-left rounded-pill p-2" style="background-color: #ff0097;" href="https://www.patreon.com/youaretheirvoice" target="_blank">
+            <i class="mr-1 d-md-none d-lg-inline-block fas fa-hand-holding-heart"></i>Donate
+    </a>
                 </li>
                 <li class="nav-item" style="color:#fff;">
                     <a class="nav-link" style="color:#fff;" href="#"> </a>
