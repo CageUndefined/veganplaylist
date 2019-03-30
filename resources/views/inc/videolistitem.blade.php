@@ -3,7 +3,7 @@
         <div class="col-3">
             <img style="max-width: 80px; max-height: 45px;" src="{{ $video->getThumbnailSrcAttribute() }}"/>
         </div>
-        <div class="col-7 align-middle text-truncate">
+        <div class="col-7 align-middle">
             {{ $video->title }}
         </div>
         <div class="col-1 align-middle">

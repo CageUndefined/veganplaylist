@@ -33,7 +33,7 @@ var Playlist = {
         $('#filter_form').on('submit', e => {
             e.preventDefault()
         })
-        $('.card-columns').on('click', '.btn-add', function() {
+        $('.search-results').on('click', '.btn-add', function() {
             var id = $(this).data('id')
             var title = $('#card_' + id + ' p').text()
             Playlist.addVideo(id, title)
@@ -77,11 +77,11 @@ var Playlist = {
                         $('.video-card')
                             .fadeOut('fast', () => {
                                 $('.video-card').detach()
-                                $(response.data).appendTo('.card-columns')
+                                $(response.data).appendTo('.search-results')
                             })
                             .fadeIn()
                     } else {
-                        $(response.data).appendTo('.card-columns')
+                        $(response.data).appendTo('.search-results')
                     }
                 } else if (response.data === '') {
                     $('.video-card').detach()

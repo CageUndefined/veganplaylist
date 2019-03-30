@@ -36671,7 +36671,7 @@ var Playlist = {
     $('#filter_form').on('submit', function (e) {
       e.preventDefault();
     });
-    $('.card-columns').on('click', '.btn-add', function () {
+    $('.search-results').on('click', '.btn-add', function () {
       var id = $(this).data('id');
       var title = $('#card_' + id + ' p').text();
       Playlist.addVideo(id, title);
@@ -36708,10 +36708,10 @@ var Playlist = {
         if ($('.video-card').length) {
           $('.video-card').fadeOut('fast', function () {
             $('.video-card').detach();
-            $(response.data).appendTo('.card-columns');
+            $(response.data).appendTo('.search-results');
           }).fadeIn();
         } else {
-          $(response.data).appendTo('.card-columns');
+          $(response.data).appendTo('.search-results');
         }
       } else if (response.data === '') {
         $('.video-card').detach();

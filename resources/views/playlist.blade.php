@@ -65,14 +65,13 @@
                 </form>
             </div>
         </div>
-        <br><br>
-        <div class="row">
-            <div class="col-8">
-                <div class="card-columns">
+        <div class="row mt-3">
+            <div class="col-12 col-lg-8 order-last order-lg-first">
+                <div class="search-results">
                     @include('inc.videolist')
                 </div>
             </div>
-            <div class="col">
+            <div class="col-12 col-lg-4 order-first order-lg-last mb-3">
                 <div class="card">
                     <div id="new_playlist">
                         <div class="card-header text-center" id="playlist_name">Your Playlist</div>
