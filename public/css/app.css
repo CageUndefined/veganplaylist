@@ -10728,7 +10728,9 @@ a.text-dark:focus {
 }
 
 .viewer .navigation .thumbnail-strip {
+  overflow-x: auto;
   text-align: center;
+  white-space: nowrap;
 }
 
 .viewer .navigation .next {
