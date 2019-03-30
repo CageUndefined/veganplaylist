@@ -1,6 +1,6 @@
 @extends('layouts.page')
 
-@section('title', 'View Playlist')
+@section('title', $playlist->name)
 
 @section('page_content')
 	<script type="text/javascript" src="https://www.youtube.com/iframe_api"></script>
