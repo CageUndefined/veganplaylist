@@ -22,6 +22,7 @@ class AdminController extends Controller
 
     public function dashboard(Request $request)
     {
+        $numPlaylists = Playlist::count();
         $numPlaylistViews = Playlist::sum('views');
         $numUsers = User::count();
         $numVideos = Video::count();
@@ -30,6 +31,7 @@ class AdminController extends Controller
         $videos = Video::all();
 
         return view('admin.dashboard', [
+            'numPlaylists' => $numPlaylists,
             'numPlaylistViews' => $numPlaylistViews,
             'numUsers' => $numUsers,
             'numVideos' => $numVideos,

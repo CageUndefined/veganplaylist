@@ -36768,7 +36768,7 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/tristan/prog/vegan activists/veganplaylist/resources/js/playlist.js */"./resources/js/playlist.js");
+module.exports = __webpack_require__(/*! /Users/grardb/dev/vegan/veganplaylist/resources/js/playlist.js */"./resources/js/playlist.js");
 
 
 /***/ })
