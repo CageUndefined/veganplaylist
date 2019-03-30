@@ -17,13 +17,23 @@
 </table>
 
     @foreach( $playlist->videos as $video )
-      <li class="list-group-item" style="padding-left: 20px;padding-right: 10px;">
-          <a class="row" href="{{ route( 'playlist.video.show', [ $playlist, $video ] ) }}">
-              <div class="col-3">@include('inc.videothumb')</div>
-              <div class="col-7 text-truncate" style="white-space: inherit !important;color: #000;text-decoration: none;font-weight: 600;margin: -10px 0px 0px 15px;">{{ $video->title }}</div>
-              <!--<small class="col-1 text-right" style="padding: 0px;">{{ $video->getTime() }}</small>-->
-          </a>
-      </li>
+        @if ($loop->iteration > 10)
+            @if ($loop->last)
+                <li class="list-group-item text-center" style="padding-left: 20px; padding-right: 10px;">
+                    <a href="{{ route( 'playlist.show', $playlist ) }}" class="text-muted">
+                        And {{ $playlist->videos->count() - 10 }} more!
+                    </a>
+                </li>
+            @endif
+        @else
+          <li class="list-group-item" style="padding-left: 20px;padding-right: 10px;">
+              <a class="row" href="{{ route( 'playlist.video.show', [ $playlist, $video ] ) }}">
+                  <div class="col-3">@include('inc.videothumb')</div>
+                  <div class="col-7 text-truncate" style="white-space: inherit !important;color: #000;text-decoration: none;font-weight: 600;margin: -10px 0px 0px 15px;">{{ $video->title }}</div>
+                  <!--<small class="col-1 text-right" style="padding: 0px;">{{ $video->getTime() }}</small>-->
+              </a>
+          </li>
+        @endif
     @endforeach
     </ul>
     <!--<div class="card-body text-center">
