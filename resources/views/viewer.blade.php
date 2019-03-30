@@ -4,12 +4,12 @@
 
 @section('head')
     <meta property="og:title" content="{{ $playlist->name }}" />
-    <meta property="og:type" content="video.playlist" />
+    <meta property="og:type" content="video.other" />
     <meta property="og:site_name" content="Vegan Playlist" />
-    <meta property="og:url" content="{{ $playlist->getShortURL() }}" />
+    <meta property="og:url" content="{{ route( 'playlist.show', $playlist ) }}" />
     <meta property="og:image" content="{{ $playlist->videos[0]->getThumbnailSrcAttribute() }}" />
-    <meta property="og:description" content="Watch {{ $playlist->name }} and many other playlists of vegan videos on VeganPlaylist.org, or create your own!" />
-    <meta property="og:video:duration" content="{{ $playlist->display_duration }}" />
+    <meta property="og:image:alt" content="{{ $playlist->videos[0]->title }}" />
+    <meta property="og:description" content="Watch &#34;{{ $playlist->name }}&#34; on VeganPlaylist.org!" />
 @endsection
 
 @section('page_content')
