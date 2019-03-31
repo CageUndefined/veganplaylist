@@ -39162,6 +39162,19 @@ var Playlist = {
     return this;
   },
   bindEvents: function bindEvents() {
+    var $modal = $('#playlist-editor-video-modal');
+    var $modalTitle = $('#playlist-editor-video-modal .modal-title');
+    var $modalVideo = $('#playlist-editor-video-modal iframe');
+    $('.search-results').on('click', '.playlist-editor-thumbnail', function (e) {
+      e.preventDefault();
+      var $this = $(this);
+      $modalTitle.text($this.data('title'));
+      $modalVideo.attr('src', $(this).attr('href'));
+      $modal.modal();
+    });
+    $modal.on('hidden.bs.modal', function () {
+      $modalVideo.attr('src', '');
+    });
     $('#filter_form').on('submit', function (e) {
       e.preventDefault();
     });
