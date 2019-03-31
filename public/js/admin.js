@@ -36845,7 +36845,7 @@ if (token) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/grardb/dev/vegan/veganplaylist/resources/js/admin.js */"./resources/js/admin.js");
+module.exports = __webpack_require__(/*! C:\wamp\htdocs\veganplaylist\resources\js\admin.js */"./resources/js/admin.js");
 
 
 /***/ })

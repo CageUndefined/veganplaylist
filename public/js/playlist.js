@@ -36634,35 +36634,44 @@ if (token) {
 /*!**********************************!*\
   !*** ./resources/js/playlist.js ***!
   \**********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
 /*
-*
-*  Dependencies and URL Query Params
-*
-*/
+ *
+ *  Dependencies and URL Query Params
+ *
+ */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
 
 var uri = window.location.search.substring(1);
 var params = new URLSearchParams(uri);
-var name_from_get_param = params && params.get('name') ? params.get('name') : '';
+var nameFromGetParams = params && params.get('name') ? params.get('name') : '';
 /* Playlist
-*
-*  Define our Playlist object
-*
-*/
+ *
+ *  Define our Playlist object
+ *
+ */
 
 var Playlist = {
-  name: name_from_get_param,
+  name: nameFromGetParams,
   list: {},
   init: function init() {
-    if ($('#playlist_name').length && this.name.length) $('#playlist_name').text(this.name);
+    this.cancelRequest = lodash__WEBPACK_IMPORTED_MODULE_0___default.a.noop;
+    $('#playlist_name').val(this.name);
     this.bindEvents();
     return this;
   },
   bindEvents: function bindEvents() {
-    $('.card-columns').on('click', '.btn-add', function () {
+    $('#filter_form').on('submit', function (e) {
+      e.preventDefault();
+    });
+    $('.search-results').on('click', '.btn-add', function () {
       var id = $(this).data('id');
       var title = $('#card_' + id + ' p').text();
       Playlist.addVideo(id, title);
@@ -36675,36 +36684,45 @@ var Playlist = {
       return false;
     });
     $('.playlist-save').click(function () {
-      Playlist.createPlaylist(); // go to viewer
-
+      Playlist.createPlaylist();
       return false;
     });
   },
   filter: function filter() {
-    var title = $('#name_input').val();
-    var hide_graphic = $('#graphic_input').is(":checked") ? 0 : 1;
-    var hide_mature = $('#mature_input').is(":checked") ? 0 : 1;
+    var _this = this;
+
+    this.cancelRequest();
+    var labels = [];
+    $('#labels_active a').each(function (i, el) {
+      labels.push($(el).data('id'));
+    });
     var data = {
-      title: title,
-      hide_graphic: hide_graphic,
-      hide_mature: hide_mature,
-      tags: []
+      title: $('#name_input').val(),
+      hide_graphic: $('#graphic_input').is(':checked') ? 0 : 1,
+      hide_mature: $('#mature_input').is(':checked') ? 0 : 1,
+      tags: labels
     };
-    axios.post('/videolist', data).then(function (response) {
+    axios.post('/videolist', data, {
+      cancelToken: new axios.CancelToken(function (c) {
+        return _this.cancelRequest = c;
+      })
+    }).then(function (response) {
       if (response && response.data) {
         if ($('.video-card').length) {
           $('.video-card').fadeOut('fast', function () {
             $('.video-card').detach();
-            $(response.data).appendTo('.card-columns');
+            $(response.data).appendTo('.search-results');
           }).fadeIn();
         } else {
-          $(response.data).appendTo('.card-columns');
+          $(response.data).appendTo('.search-results');
         }
       } else if (response.data === '') {
         $('.video-card').detach();
       }
     }).catch(function (error) {
-      console.log(error);
+      if (!axios.isCancel(error)) {
+        console.log(error);
+      }
     });
   },
   addVideo: function addVideo(id, title) {
@@ -36716,7 +36734,7 @@ var Playlist = {
         id: id,
         title: title
       };
-      $('#card_' + id).fadeOut().remove();
+      $('#card_' + id).fadeOut();
       if ($('a.playlist-save').hasClass('disabled')) $('a.playlist-save').removeClass('disabled');
     }).catch(function (error) {
       console.log(error);
@@ -36725,12 +36743,12 @@ var Playlist = {
   removeVideo: function removeVideo(id) {
     delete Playlist.list[id];
     $('a.playlist-save');
-    $('#name_input').trigger('keyup');
+    $('#card_' + id).show();
     if (!Object.keys(Playlist.list).length) $('a.playlist-save').addClass('disabled');
   },
   createPlaylist: function createPlaylist() {
     var data = {
-      name: Playlist.name,
+      name: $('#playlist_name').val(),
       video_ids: Object.keys(Playlist.list)
     };
     axios.post('/playlist', data).then(function (response) {
@@ -36742,20 +36760,40 @@ var Playlist = {
   }
 };
 /*
-*
-* document ready
-*
-*/
+ *
+ * document ready
+ *
+ */
 
 $(function () {
   window.Playlist = Playlist.init();
-  $('#name_input').keyup(function () {
+
+  var debouncedFilter = lodash__WEBPACK_IMPORTED_MODULE_0___default.a.debounce(function () {
     Playlist.filter();
     return false;
-  });
-  $('input[type=checkbox]').change(function () {
-    Playlist.filter();
-    return false;
+  }, 300);
+
+  $('#name_input').on('input', debouncedFilter);
+  $('input[type=checkbox]').on('change', debouncedFilter);
+  $('#labels_inactive, #labels_active').on('click', 'a', function (e) {
+    var el = e.target;
+    var node_cp = $(el).clone();
+    var target_group;
+
+    if ($(el).parent().attr('id').match(/_active/)) {
+      target_group = $('#labels_inactive');
+      node_cp.addClass('badge-pill');
+    } else {
+      target_group = $('#labels_active');
+      node_cp.removeClass('badge-pill');
+    }
+
+    $(el).fadeOut('fast', function () {
+      $(el).remove();
+      target_group.append(node_cp);
+      Playlist.filter();
+      return false;
+    });
   });
 });
 
@@ -36768,7 +36806,7 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/grardb/dev/vegan/veganplaylist/resources/js/playlist.js */"./resources/js/playlist.js");
+module.exports = __webpack_require__(/*! C:\wamp\htdocs\veganplaylist\resources\js\playlist.js */"./resources/js/playlist.js");
 
 
 /***/ })

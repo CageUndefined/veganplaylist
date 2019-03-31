@@ -1,6 +1,16 @@
 @extends('layouts.page')
 
-@section('title', 'View Playlist')
+@section('title', $playlist->name)
+
+@section('head')
+    <meta property="og:title" content="{{ $playlist->name }}" />
+    <meta property="og:type" content="video.other" />
+    <meta property="og:site_name" content="Vegan Playlist" />
+    <meta property="og:url" content="{{ route( 'playlist.show', $playlist ) }}" />
+    <meta property="og:image" content="{{ $playlist->videos[0]->getThumbnailSrcAttribute() }}" />
+    <meta property="og:image:alt" content="{{ $playlist->videos[0]->title }}" />
+    <meta property="og:description" content="{{ $playlist->description }}" />
+@endsection
 
 @section('page_content')
 	<script type="text/javascript" src="https://www.youtube.com/iframe_api"></script>

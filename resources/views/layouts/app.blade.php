@@ -22,6 +22,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+@yield('head')
 
     <title>Vegan Playlist | @yield('title')</title>
 
@@ -39,6 +40,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
 </head>
 <body>
     <div id="app">

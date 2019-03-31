@@ -1,138 +1,178 @@
-
 /*
-*
-*  Dependencies and URL Query Params
-*
-*/
+ *
+ *  Dependencies and URL Query Params
+ *
+ */
 require('./bootstrap')
 
-var uri = window.location.search.substring(1);
-var params = new URLSearchParams(uri);
-var name_from_get_param = (params && params.get('name')) ? params.get('name') : '';
+import _ from 'lodash'
 
+var uri = window.location.search.substring(1)
+var params = new URLSearchParams(uri)
+var nameFromGetParams = params && params.get('name') ? params.get('name') : ''
 
 /* Playlist
-*
-*  Define our Playlist object
-*
-*/
+ *
+ *  Define our Playlist object
+ *
+ */
 var Playlist = {
-
-    name: name_from_get_param,
+    name: nameFromGetParams,
     list: {},
 
-    init: function () {
-        if ($('#playlist_name').length && this.name.length) $('#playlist_name').text( this.name );
-        this.bindEvents();
-        return this;
+    init() {
+        this.cancelRequest = _.noop
+
+
+        $('#playlist_name').val(this.name)
+        this.bindEvents()
+        return this
     },
 
-    bindEvents: function () {
-        $('.card-columns').on('click', '.btn-add', function(){
-            var id = $(this).data('id');
-            var title = $('#card_'+id+' p').text();
-            Playlist.addVideo(id, title);
-            return false;
-        });
-        $('ul.list-group').on('click', '.remove', function(){
-            var id = $(this).data('id');
-            Playlist.removeVideo(id);
-            $('#list_item_'+id).fadeOut().remove();
-            return false;
-        });
-        $('.playlist-save').click(function(){
-            Playlist.createPlaylist();
-            // go to viewer
-            return false;
-        });
+    bindEvents() {
+        $('#filter_form').on('submit', e => {
+            e.preventDefault()
+        })
+        $('.search-results').on('click', '.btn-add', function() {
+            var id = $(this).data('id')
+            var title = $('#card_' + id + ' p').text()
+            Playlist.addVideo(id, title)
+            return false
+        })
+        $('ul.list-group').on('click', '.remove', function() {
+            var id = $(this).data('id')
+
+            Playlist.removeVideo(id)
+            $('#list_item_' + id)
+                .fadeOut()
+                .remove()
+            return false
+        })
+        $('.playlist-save').click(() => {
+            Playlist.createPlaylist()
+            return false
+        })
     },
 
-    filter: function() {
-        var title        = $('#name_input').val();
-        var hide_graphic = $('#graphic_input').is(":checked") ? 0 : 1;
-        var hide_mature  = $('#mature_input').is(":checked")  ? 0 : 1;
+    filter() {
+        this.cancelRequest()
+
+        var labels = []
+        $('#labels_active a').each(function (i, el) {
+            labels.push($(el).data('id'))
+        })
         var data = {
-            title: title,
-            hide_graphic: hide_graphic,
-            hide_mature: hide_mature,
-            tags: []
-        };
-        axios.post('/videolist', data)
-            .then(function (response) {
+            title: $('#name_input').val(),
+            hide_graphic: $('#graphic_input').is(':checked') ? 0 : 1,
+            hide_mature: $('#mature_input').is(':checked') ? 0 : 1,
+            tags: labels,
+        }
+
+        axios
+            .post('/videolist', data, {
+                cancelToken: new axios.CancelToken(
+                    c => (this.cancelRequest = c),
+                ),
+            })
+            .then(response => {
                 if (response && response.data) {
                     if ($('.video-card').length) {
-                        $('.video-card').fadeOut('fast', function(){
-                            $('.video-card').detach();
-                            $( response.data ).appendTo('.card-columns');
-                        }).fadeIn();
+                        $('.video-card')
+                            .fadeOut('fast', () => {
+                                $('.video-card').detach()
+                                $(response.data).appendTo('.search-results')
+                            })
+                            .fadeIn()
+                    } else {
+                        $(response.data).appendTo('.search-results')
                     }
-                    else {
-                        $( response.data ).appendTo('.card-columns');
-                    }
-                }
-                else if (response.data === '') {
-                    $('.video-card').detach();
+                } else if (response.data === '') {
+                    $('.video-card').detach()
                 }
             })
-            .catch(function (error) {
-                console.log(error);
-            });
+            .catch(error => {
+                if (!axios.isCancel(error)) {
+                    console.log(error)
+                }
+            })
     },
 
-    addVideo: function( id, title ) {
-        axios.get('/video/' + id)
-            .then(function(response){
-                var li = response.data;
-                var list = $('#new_playlist .list-group');
-                list.append(li);
+    addVideo(id, title) {
+        axios
+            .get('/video/' + id)
+            .then(response => {
+                var li = response.data
+                var list = $('#new_playlist .list-group')
+                list.append(li)
                 Playlist.list[id] = {
                     id: id,
-                    title: title
-                };
-                $('#card_' + id).fadeOut().remove();
-                if ($('a.playlist-save').hasClass('disabled')) $('a.playlist-save').removeClass('disabled');
+                    title: title,
+                }
+                $('#card_' + id).fadeOut()
+                if ($('a.playlist-save').hasClass('disabled'))
+                    $('a.playlist-save').removeClass('disabled')
             })
-            .catch(function (error) {
-                console.log(error);
-            });
+            .catch(error => {
+                console.log(error)
+            })
     },
 
-    removeVideo: function( id ) {
-        delete Playlist.list[id];
+    removeVideo(id) {
+        delete Playlist.list[id]
         $('a.playlist-save')
-        $('#name_input').trigger('keyup');
-        if (!Object.keys(Playlist.list).length) $('a.playlist-save').addClass('disabled');
+        $('#card_' + id).show()
+        if (!Object.keys(Playlist.list).length)
+            $('a.playlist-save').addClass('disabled')
     },
 
-    createPlaylist: function() {
+    createPlaylist() {
         var data = {
-            name: Playlist.name,
-            video_ids: Object.keys(Playlist.list)
-        };
-        axios.post('/playlist', data)
-            .then(function(response){
-                window.location = '/playlist/' + response.data.slug;
-            }).catch(function(error){ console.log(error); alert('Your playlist name may be taken already!'); });
-    }
-};
-
+            name: $('#playlist_name').val(),
+            video_ids: Object.keys(Playlist.list),
+        }
+        axios
+            .post('/playlist', data)
+            .then(response => {
+                window.location = '/playlist/' + response.data.slug
+            })
+            .catch(error => {
+                console.log(error)
+                alert('Your playlist name may be taken already!')
+            })
+    },
+}
 
 /*
-*
-* document ready
-*
-*/
-$(function() {
+ *
+ * document ready
+ *
+ */
+$(() => {
+    window.Playlist = Playlist.init()
 
-    window.Playlist = Playlist.init();
+    const debouncedFilter = _.debounce(() => {
+        Playlist.filter()
+        return false
+    }, 300)
 
-    $('#name_input').keyup(function(){
-        Playlist.filter();
-        return false;
-    });
-    $('input[type=checkbox]').change(function(){
-        Playlist.filter();
-        return false;
-    });
-
-});
+    $('#name_input').on('input', debouncedFilter)
+    $('input[type=checkbox]').on('change', debouncedFilter)
+    $('#labels_inactive, #labels_active').on('click', 'a', (e) => {
+        var el = e.target
+        var node_cp = $(el).clone()
+        var target_group;
+        if ($(el).parent().attr('id').match(/_active/)) {
+            target_group = $('#labels_inactive')
+            node_cp.addClass('badge-pill')
+        } else {
+            target_group = $('#labels_active')
+            node_cp.removeClass('badge-pill')
+        }
+        $(el).fadeOut('fast', () => {
+            $(el).remove()
+            target_group.append(node_cp);
+            Playlist.filter()
+            return false
+        })
+    })
+})

@@ -1,0 +1,11 @@
+.search-results {
+    @extend .card-columns;
+
+    @media (min-width: 576px) and (max-width: 991px) { // sm and md breakpoint
+        column-count: 2;
+    }
+}
+
+a.badge {
+    margin-left: 2px;
+}

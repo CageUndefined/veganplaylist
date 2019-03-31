@@ -1,5 +1,6 @@
 @php
     $videos = App\Video::all();
+    $tags   = App\Tag::all();
 @endphp
 
 @section('title', 'Create Playlist')
@@ -34,30 +35,17 @@
                                     <input type="checkbox" id="mature_input" value="1" checked />
                                 </div>
                             </div>
-                        </div>
-                        <div id="tags" class="col mr-2">
-                            <div class="row mb-3 mt-2 justify-content-end">
-                                <div id="labels-inactive" class="">
-                                    <span class="text-secondary mr-2">Tags: </span>
-                                    <a href="#" class="badge badge-pill badge-primary">Ethics</a>
-                                    <a href="#" class="badge badge-pill badge-secondary">Humor</a>
-                                    <a href="#" class="badge badge-pill badge-success">Environment</a>
-                                    <a href="#" class="badge badge-pill badge-danger">Health</a>
-                                    <a href="#" class="badge badge-pill badge-primary">Inspiring</a>
-                                    <a href="#" class="badge badge-pill badge-warning">Documentary</a>
-                                    <a href="#" class="badge badge-pill badge-info">Information</a>
-                                    <!-- <a href="#" class="badge badge-pill badge-success">Fitness</a> -->
-                                    <a href="#" class="badge badge-pill badge-dark">Activism</a>
-                                    <a href="#" class="badge badge-pill badge-light">Speech</a>
-                                    <a href="#" class="badge badge-pill badge-warning">Music</a>
-                                    <a href="#" class="badge badge-pill badge-danger">Recipes</a>
-                                    <!-- <a href="#" class="badge badge-pill badge-secondary">Science</a> -->
-                                </div>
+                            <div class="row">
+                                <div id="labels_active"></div>
                             </div>
-                            <div class="row justify-content-end">
-                                <div id="labels-active">
-                                    <a href="#" class="badge badge-secondary">Science | x</a>
-                                    <a href="#" class="badge badge-success">Fitness | x</a>
+                        </div>
+                        <div id="tags" class="col mr-2 ml-2">
+                            <div class="row mb-3 mt-2 justify-content-end">
+                                <div id="labels_inactive" class="">
+                                    <span class="text-secondary mr-2">Tags: </span>
+                                    @foreach ($tags as $t)
+                                        <a href="#" class="badge badge-pill badge-{{ $t->{'color'} }}" data-id="{{ $t->{'id'} }}">{{ $t->{'name'} }}</a>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -65,17 +53,28 @@
                 </form>
             </div>
         </div>
-        <br><br>
-        <div class="row">
-            <div class="col-8">
-                <div class="card-columns">
+        <div class="row mt-3">
+            <div class="col-12 col-lg-8 order-last order-lg-first">
+                <div class="search-results">
                     @include('inc.videolist')
                 </div>
             </div>
-            <div class="col">
+            <div class="col-12 col-lg-4 order-first order-lg-last mb-3">
                 <div class="card">
                     <div id="new_playlist">
-                        <div class="card-header text-center" id="playlist_name">Your Playlist</div>
+                        <div class="card-header text-center">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-signature"></i>
+                                    </span>
+                                </div>
+                                <input type="text"
+                                       class="form-control"
+                                       placeholder="Playlist Name"
+                                       id="playlist_name">
+                            </div>
+                        </div>
                         <div class="card-body text-center">
                             <p><em>Search for videos using the filter above</em></p>
                             <ul class="list-group text-left"></ul>

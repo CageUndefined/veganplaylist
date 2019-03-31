@@ -35,7 +35,9 @@ class Playlist extends Model {
         });
 
         static::retrieved(function ($playlist) {
+            $playlist->display_duration = $playlist->getDisplayDurationAttribute();
             $playlist->display_length = $playlist->getDisplayLengthAttribute();
+            $playlist->description = "Watch \"$playlist->name\" and many other playlists of vegan videos on VeganPlaylist.org!";
         });
     }
 
@@ -51,13 +53,17 @@ class Playlist extends Model {
         $hash = $this->getHash();
         return "https://vgn.soy/$hash";
     }
-
-    public function getDisplayLengthAttribute() {
+    
+    public function getDisplayDurationAttribute() {
         $secondLength = 0;
         $videoModels = $this->videos;
         foreach ($videoModels as $vm) {
             $secondLength += $vm->length;
         }
-        return gmdate("H:i:s", $secondLength);
+        return $secondLength;
+    }
+
+    public function getDisplayLengthAttribute() {
+        return gmdate("H:i:s", $this->display_duration);
     }
 }
