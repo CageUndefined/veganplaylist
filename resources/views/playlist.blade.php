@@ -101,7 +101,14 @@
                                 @endforeach
                             </ul>
                         </div>
-                        <div class="card-footer text-center">
+                        <script>
+                            var recaptchachecked = false;
+                            function recaptchaCallback() {
+                                recaptchachecked = true;
+                            }
+                        </script>
+                        <div class="card-footer">
+                            <div class="g-recaptcha mb-3" data-sitekey="6LcGrJkUAAAAACeRz1SNpm5iYeI7f6AavxskMFKv" data-callback="recaptchaCallback"></div>
                             <button class="btn btn-primary playlist-save {{ $disabled }}" {{ $disabled }}>{{ $edit_action }}</button>
                         </div>
                     </div>
