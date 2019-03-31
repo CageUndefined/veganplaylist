@@ -3,6 +3,22 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Spread the compassionate Vegan message with our curated playlists, or create your own from our huge video library.">
+    <meta name="keywords" content="vegan, videos, playlists, activism, activist, hacktivists, veganism, share, youtube">
+    <meta property="og:url" content="{{ url('/') }}">
+    <meta property="og:image" content="https://i.imgur.com/Hfkiumn.png">
+    <meta property="og:description" content="Spread the compassionate Vegan message with our curated playlists, or create your own from our huge video library.">
+    <meta property="og:title" content="Vegan Playlist | Find and share inspirational Vegan videos">
+    <meta property="og:site_name" content="Vegan Playlist | Find and share inspirational Vegan videos">
+    <meta property="og:see_also" content="{{ url('/') }}">
+    <meta itemprop="name" content="Vegan Playlist | Find and share inspirational Vegan videos">
+    <meta itemprop="description" content="Spread the compassionate Vegan message with our curated playlists, or create your own from our huge video library.">
+    <meta itemprop="image" content="https://i.imgur.com/Hfkiumn.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:url" content="{{ url('/') }}">
+    <meta name="twitter:title" content="Vegan Playlist | Find and share inspirational Vegan videos">
+    <meta name="twitter:description" content="Spread the compassionate Vegan message with our curated playlists, or create your own from our huge video library.">
+    <meta name="twitter:image" content="https://i.imgur.com/Hfkiumn.png">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
