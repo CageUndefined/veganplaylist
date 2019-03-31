@@ -15,10 +15,10 @@
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto align-items-start align-items-md-center">
 			<li class="nav-item">
-                    <a class="nav-link" href="/featured" style="color:#fff;"><i class="mr-1 d-md-none d-lg-inline-block fas fa-star"></i>Featured</a>
+                    <a class="nav-link" href="/featured" style="color:#fff;"><i class="mr-1 d-md-none d-lg-inline-block fas fa-star"></i>Featured playlists</a>
                 </li>
 				<li class="nav-item">
-                    <a class="nav-link text-white" href="/recent"><i class="mr-1 d-md-none d-lg-inline-block fas fa-history"></i>Recent</a>
+                    <a class="nav-link text-white" href="/recent"><i class="mr-1 d-md-none d-lg-inline-block fas fa-history"></i>Recently added</a>
                 </li>
 				<li class="nav-item d-none d-lg-inline-block">
                     <a class="nav-link text-white">&#8226;</a>
