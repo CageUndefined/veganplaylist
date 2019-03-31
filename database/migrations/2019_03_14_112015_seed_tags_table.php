@@ -69,11 +69,11 @@ class SeedTagsTable extends Migration
                 ),
                 array(
                     'name' => 'Cosmetics',
-                    'color' => 'light'
+                    'color' => 'success'
                 ),
                 array(
                     'name' => 'Debate',
-                    'color' => 'light'
+                    'color' => 'warning'
                 ),
                 array(
                     'name' => 'Sketches',
@@ -81,23 +81,23 @@ class SeedTagsTable extends Migration
                 ),
                 array(
                     'name' => 'Undercover',
-                    'color' => 'light'
+                    'color' => 'dark'
                 ),
                 array(
                     'name' => 'News',
-                    'color' => 'light'
+                    'color' => 'info'
                 ),
                 array(
                     'name' => 'Podcast',
-                    'color' => 'light'
+                    'color' => 'danger'
                 ),
                 array(
                     'name' => 'Guides',
-                    'color' => 'light'
+                    'color' => 'success'
                 ),
                 array(
                     'name' => 'Arguments',
-                    'color' => 'light'
+                    'color' => 'secondary'
                 )
             )
         );
