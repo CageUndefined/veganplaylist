@@ -7,22 +7,21 @@ require('./bootstrap')
 
 import _ from 'lodash'
 
-var uri = window.location.search.substring(1)
-var params = new URLSearchParams(uri)
-var nameFromGetParams = params && params.get('name') ? params.get('name') : ''
+const uri = window.location.search.substring(1)
+const params = new URLSearchParams(uri)
+const nameFromGetParams = params && params.get('name') ? params.get('name') : ''
 
 /* Playlist
  *
  *  Define our Playlist object
  *
  */
-var Playlist = {
+const Playlist = {
     name: nameFromGetParams,
     list: {},
 
     init() {
         this.cancelRequest = _.noop
-
 
         $('#playlist_name').val(this.name)
         this.bindEvents()
@@ -34,13 +33,13 @@ var Playlist = {
             e.preventDefault()
         })
         $('.search-results').on('click', '.btn-add', function() {
-            var id = $(this).data('id')
-            var title = $('#card_' + id + ' p').text()
+            const id = $(this).data('id')
+            const title = $('#card_' + id + ' p').text()
             Playlist.addVideo(id, title)
             return false
         })
         $('ul.list-group').on('click', '.remove', function() {
-            var id = $(this).data('id')
+            const id = $(this).data('id')
 
             Playlist.removeVideo(id)
             $('#list_item_' + id)
@@ -48,7 +47,11 @@ var Playlist = {
                 .remove()
             return false
         })
-        $('.playlist-save').click(() => {
+        $('.playlist-save').on('click', function() {
+            $(this)
+                .text('Saving…')
+                .addClass('disabled')
+                .attr('disabled', true)
             Playlist.createPlaylist()
             return false
         })
@@ -57,11 +60,11 @@ var Playlist = {
     filter() {
         this.cancelRequest()
 
-        var labels = []
-        $('#labels_active a').each(function (i, el) {
+        const labels = []
+        $('#labels_active a').each(function(i, el) {
             labels.push($(el).data('id'))
         })
-        var data = {
+        const data = {
             title: $('#name_input').val(),
             hide_graphic: $('#graphic_input').is(':checked') ? 0 : 1,
             hide_mature: $('#mature_input').is(':checked') ? 0 : 1,
@@ -101,8 +104,8 @@ var Playlist = {
         axios
             .get('/video/' + id)
             .then(response => {
-                var li = response.data
-                var list = $('#new_playlist .list-group')
+                const li = response.data
+                const list = $('#new_playlist .list-group')
                 list.append(li)
                 Playlist.list[id] = {
                     id: id,
@@ -119,14 +122,13 @@ var Playlist = {
 
     removeVideo(id) {
         delete Playlist.list[id]
-        $('a.playlist-save')
         $('#card_' + id).show()
         if (!Object.keys(Playlist.list).length)
             $('a.playlist-save').addClass('disabled')
     },
 
     createPlaylist() {
-        var data = {
+        const data = {
             name: $('#playlist_name').val(),
             video_ids: Object.keys(Playlist.list),
         }
@@ -136,6 +138,10 @@ var Playlist = {
                 window.location = '/playlist/' + response.data.slug
             })
             .catch(error => {
+                $('a.playlist-save')
+                    .text('Create Playlist')
+                    .removeClass('disabled')
+                    .attr('disabled', false)
                 console.log(error)
                 alert('Your playlist name may be taken already!')
             })
@@ -157,20 +163,25 @@ $(() => {
 
     $('#name_input').on('input', debouncedFilter)
     $('input[type=checkbox]').on('change', debouncedFilter)
-    $('#labels_inactive, #labels_active').on('click', 'a', (e) => {
-        var el = e.target
-        var node_cp = $(el).clone()
-        var target_group;
-        if ($(el).parent().attr('id').match(/_active/)) {
-            target_group = $('#labels_inactive')
-            node_cp.addClass('badge-pill')
+    $('#labels_inactive, #labels_active').on('click', 'a', e => {
+        const el = e.target
+        const nodeCp = $(el).clone()
+        let targetGroup
+        if (
+            $(el)
+                .parent()
+                .attr('id')
+                .match(/_active/)
+        ) {
+            targetGroup = $('#labels_inactive')
+            nodeCp.addClass('badge-pill')
         } else {
-            target_group = $('#labels_active')
-            node_cp.removeClass('badge-pill')
+            targetGroup = $('#labels_active')
+            nodeCp.removeClass('badge-pill')
         }
         $(el).fadeOut('fast', () => {
             $(el).remove()
-            target_group.append(node_cp);
+            targetGroup.append(nodeCp)
             Playlist.filter()
             return false
         })

@@ -50430,7 +50430,8 @@ var Playlist = {
       $('#list_item_' + id).fadeOut().remove();
       return false;
     });
-    $('.playlist-save').click(function () {
+    $('.playlist-save').on('click', function () {
+      $(this).text('Saving…').addClass('disabled').attr('disabled', true);
       Playlist.createPlaylist();
       return false;
     });
@@ -50489,7 +50490,6 @@ var Playlist = {
   },
   removeVideo: function removeVideo(id) {
     delete Playlist.list[id];
-    $('a.playlist-save');
     $('#card_' + id).show();
     if (!Object.keys(Playlist.list).length) $('a.playlist-save').addClass('disabled');
   },
@@ -50501,6 +50501,7 @@ var Playlist = {
     axios.post('/playlist', data).then(function (response) {
       window.location = '/playlist/' + response.data.slug;
     }).catch(function (error) {
+      $('a.playlist-save').text('Create Playlist').removeClass('disabled').attr('disabled', false);
       console.log(error);
       alert('Your playlist name may be taken already!');
     });
@@ -50524,20 +50525,20 @@ $(function () {
   $('input[type=checkbox]').on('change', debouncedFilter);
   $('#labels_inactive, #labels_active').on('click', 'a', function (e) {
     var el = e.target;
-    var node_cp = $(el).clone();
-    var target_group;
+    var nodeCp = $(el).clone();
+    var targetGroup;
 
     if ($(el).parent().attr('id').match(/_active/)) {
-      target_group = $('#labels_inactive');
-      node_cp.addClass('badge-pill');
+      targetGroup = $('#labels_inactive');
+      nodeCp.addClass('badge-pill');
     } else {
-      target_group = $('#labels_active');
-      node_cp.removeClass('badge-pill');
+      targetGroup = $('#labels_active');
+      nodeCp.removeClass('badge-pill');
     }
 
     $(el).fadeOut('fast', function () {
       $(el).remove();
-      target_group.append(node_cp);
+      targetGroup.append(nodeCp);
       Playlist.filter();
       return false;
     });
@@ -50575,9 +50576,9 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\wamp\htdocs\veganplaylist\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\wamp\htdocs\veganplaylist\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\wamp\htdocs\veganplaylist\resources\sass\admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! /Users/grardb/dev/vegan/veganplaylist/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Users/grardb/dev/vegan/veganplaylist/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /Users/grardb/dev/vegan/veganplaylist/resources/sass/admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })
