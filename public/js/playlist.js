@@ -36769,7 +36769,6 @@ $(function () {
   window.Playlist = Playlist.init();
 
   var debouncedFilter = lodash__WEBPACK_IMPORTED_MODULE_0___default.a.debounce(function () {
-    console.log('made it');
     Playlist.filter();
     return false;
   }, 300);

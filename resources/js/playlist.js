@@ -151,7 +151,6 @@ $(() => {
     window.Playlist = Playlist.init()
 
     const debouncedFilter = _.debounce(() => {
-        console.log('made it')
         Playlist.filter()
         return false
     }, 300)
