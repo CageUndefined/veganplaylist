@@ -50494,7 +50494,7 @@ var Playlist = {
   addVideo: function addVideo(id, title) {
     axios.get('/video/' + id).then(function (response) {
       var li = response.data;
-      var list = $('#new_playlist .list-group');
+      var list = $('#the_playlist .list-group');
       list.append(li);
       Playlist.list[id] = {
         id: id,

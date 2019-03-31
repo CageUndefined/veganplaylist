@@ -128,7 +128,7 @@ const Playlist = {
             .get('/video/' + id)
             .then(response => {
                 const li = response.data
-                const list = $('#new_playlist .list-group')
+                const list = $('#the_playlist .list-group')
                 list.append(li)
                 Playlist.list[id] = {
                     id: id,
