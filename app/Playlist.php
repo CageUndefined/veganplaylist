@@ -18,7 +18,7 @@ class Playlist extends Model {
     }
 
     public function videos() {
-        return $this->belongsToMany('App\Video', 'playlist_video_map');
+        return $this->belongsToMany('App\Video', 'playlist_video_map')->withPivot('order')->orderBy('playlist_video_map.order');
     }
 
     public static function boot() {

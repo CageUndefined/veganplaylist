@@ -9,79 +9,79 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class PlaylistController extends Controller {
-	public function __construct() {
-		//$this->middleware('auth');
-	}
+    public function __construct() {
+        //$this->middleware('auth');
+    }
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
-	public function index() {
-		return redirect('playlist/create');
-	}
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index() {
+        return redirect('playlist/create');
+    }
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
-	public function create(Request $request) {
-		if ($request->has('name')) {
-			$name = $request->input('name');
-		} else {
-			$name = '';
-		}
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create(Request $request) {
+        if ($request->has('name')) {
+            $name = $request->input('name');
+        } else {
+            $name = '';
+        }
 
-		return view('playlist', ['name' => $name]);
-	}
+        return view('playlist', ['name' => $name]);
+    }
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @return \Illuminate\Http\Response
-	 */
-	public function store(Request $request) {
-		$name = $request->input('name');
-		$ids = $request->input('video_ids');
-		if (empty($name)) {
-			$name = PseudoCrypt::hash($ids[0], 8);
-		}
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request) {
+        $name = $request->input('name');
+        $ids = $request->input('video_ids');
+        if (empty($name)) {
+            $name = PseudoCrypt::hash($ids[0], 8);
+        }
 
-		$playlist = Playlist::create(['name' => $name, 'creator_id' => Auth::id()]);
+        $playlist = Playlist::create(['name' => $name, 'creator_id' => Auth::id()]);
 
-		for ($i = 0; $i < count($ids); $i++) {
-			$id = $ids[$i];
-			$playlist->videos()->attach([
-				$id => ['order' => $i],
-			]);
-		}
-		return response()->json($playlist, 200);
-	}
+        for ($i = 0; $i < count($ids); $i++) {
+            $id = $ids[$i];
+            $playlist->videos()->attach([
+                $id => ['order' => $i],
+            ]);
+        }
+        return response()->json($playlist, 200);
+    }
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  \App\Playlist  $playlist
-	 * @return \Illuminate\Http\Response
-	 */
-	public function edit(Playlist $playlist) {
-		return view('playlist', ['playlist' => $playlist]);
-	}
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Playlist  $playlist
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Playlist $playlist) {
+        return view('playlist', ['playlist' => $playlist]);
+    }
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @param  \App\Playlist  $playlist
-	 * @return \Illuminate\Http\Response
-	 */
-	public function update(Request $request, Playlist $playlist) {
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Playlist  $playlist
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Playlist $playlist) {
         $slug = $request->input('slug');
         $name = $request->input('name');
-		$ids  = $request->input('video_ids');
+        $ids  = $request->input('video_ids');
 
         $playlist = Playlist::where('slug', $slug)->firstOrFail();
 
@@ -90,49 +90,49 @@ class PlaylistController extends Controller {
 
         $playlist->videos()->detach();
 
-		for ($i = 0; $i < count($ids); $i++) {
-			$id = $ids[$i];
-			$playlist->videos()->attach([
-				$id => ['order' => $i],
-			]);
-		}
-		return response()->json($playlist, 200);
-	}
+        for ($i = 0; $i < count($ids); $i++) {
+            $id = $ids[$i];
+            $playlist->videos()->attach([
+                $id => ['order' => $i],
+            ]);
+        }
+        return response()->json($playlist, 200);
+    }
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  \App\Playlist  $playlist
-	 * @return \Illuminate\Http\Response
-	 */
-	public function destroy(Playlist $playlist) {
-		//
-	}
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Playlist  $playlist
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Playlist $playlist) {
+        //
+    }
 
-	public function show(Playlist $playlist, Video $video = null) {
-		// Reference them once so it populates and shows up in the json, TODO: find a setting to make that happen auto
-		$playlist->creator;
-		$playlist->videos;
+    public function show(Playlist $playlist, Video $video = null) {
+        // Reference them once so it populates and shows up in the json, TODO: find a setting to make that happen auto
+        $playlist->creator;
+        $playlist->videos;
 
-		if (is_null($video)) {
-			$index = 0;
-		} else {
-			$index = $playlist->videos->search(function ($item, $key) use ($video) {return $item->is($video);});
-		}
+        if (is_null($video)) {
+            $index = 0;
+        } else {
+            $index = $playlist->videos->search(function ($item, $key) use ($video) {return $item->is($video);});
+        }
 
-		$editUrl = false;
-		if ($playlist->creator) {
-			$creatorProfileUrl = route('profile', $playlist->creator);
-			if ($playlist->creator->is(Auth::user())) {
-				$editUrl = route('playlist.edit', $playlist);
-			}
-		} else {
-			$creatorProfileUrl = false;
-		}
+        $editUrl = false;
+        if ($playlist->creator) {
+            $creatorProfileUrl = route('profile', $playlist->creator);
+            if ($playlist->creator->is(Auth::user())) {
+                $editUrl = route('playlist.edit', $playlist);
+            }
+        } else {
+            $creatorProfileUrl = false;
+        }
 
-		$playlist->views += 1;
-		Playlist::where('id', $playlist->id)->update(array('views' => $playlist->views));
+        $playlist->views += 1;
+        Playlist::where('id', $playlist->id)->update(array('views' => $playlist->views));
 
-		return view('viewer', ["index" => $index, "playlist" => $playlist, "editUrl" => $editUrl, "creatorProfileUrl" => $creatorProfileUrl]);
-	}
+        return view('viewer', ["index" => $index, "playlist" => $playlist, "editUrl" => $editUrl, "creatorProfileUrl" => $creatorProfileUrl]);
+    }
 }

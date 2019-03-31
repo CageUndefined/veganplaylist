@@ -6,6 +6,7 @@
 require('./bootstrap')
 
 import _ from 'lodash'
+import Sortable from 'sortablejs'
 
 const uri = window.location.search.substring(1)
 const params = new URLSearchParams(uri)
@@ -19,7 +20,7 @@ const nameFromGetParams = params && params.get('name') ? params.get('name') : ''
 const Playlist = {
     name: nameFromGetParams,
     action: 'create',
-    list: {},
+    list: [],
 
     init() {
         this.cancelRequest = _.noop
@@ -27,24 +28,24 @@ const Playlist = {
         if (this.name) $('#playlist_name').val(this.name)
         else this.name = $('#playlist_name').val()
 
-        if (
-            !$('.playlist-save')
-                .text()
-                .match(/Create/)
+        if (window.location.href.match(/edit\/?$/)) this.action = 'edit'
+
+        const sortablePlaylist = document.querySelector(
+            '#the_playlist ul.list-group',
         )
-            this.action = 'edit'
+        if (sortablePlaylist) new Sortable(sortablePlaylist)
 
         // Build our playlist if it exists
-        $('ul.list-group li').each(function(i, el) {
+        $('#the_playlist ul.list-group li').each(function(i, el) {
             var id_match = $(el)
                 .attr('id')
                 .match(/_(\d+)$/)
             var li_id = id_match[1]
             var li_title = $('#' + $(el).attr('id') + ' div.title').text()
-            Playlist.list[li_id] = {
+            Playlist.list.push({
                 id: li_id,
                 title: li_title,
-            }
+            })
         })
 
         this.bindEvents()
@@ -61,7 +62,7 @@ const Playlist = {
             Playlist.addVideo(id, title)
             return false
         })
-        $('ul.list-group').on('click', '.remove', function() {
+        $('#the_playlist ul.list-group').on('click', '.remove', function() {
             const id = $(this).data('id')
 
             Playlist.removeVideo(id)
@@ -133,10 +134,10 @@ const Playlist = {
                 const li = response.data
                 const list = $('#the_playlist .list-group')
                 list.append(li)
-                Playlist.list[id] = {
+                Playlist.list.push({
                     id: id,
                     title: title,
-                }
+                })
                 $('#card_' + id).fadeOut()
                 $('.playlist-save')
                     .removeClass('disabled')
@@ -148,9 +149,9 @@ const Playlist = {
     },
 
     removeVideo(id) {
-        delete Playlist.list[id]
+        Playlist.list = Playlist.list.filter(v => v.id !== id)
         $('#card_' + id).show()
-        if (!Object.keys(Playlist.list).length)
+        if (!Playlist.list.length)
             $('.playlist-save')
                 .addClass('disabled')
                 .attr('disabled', true)
@@ -159,7 +160,7 @@ const Playlist = {
     createPlaylist() {
         const data = {
             name: $('#playlist_name').val(),
-            video_ids: Object.keys(Playlist.list),
+            video_ids: Playlist.list.map(v => v.id),
         }
         axios
             .post('/playlist', data)
@@ -181,7 +182,7 @@ const Playlist = {
         var data = {
             slug: slug,
             name: $('#playlist_name').val(),
-            video_ids: Object.keys(Playlist.list),
+            video_ids: Playlist.list.map(v => v.id),
         }
         axios
             .put('/playlist/' + slug, data)

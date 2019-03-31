@@ -19,6 +19,7 @@
         <main-viewer id="main-viewer"></main-viewer>
     </div>
     <script>
+        console.log(@json( $playlist ))
         const viewer = new Vue({
             el: '#viewer_app',
             data: {
