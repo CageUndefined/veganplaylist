@@ -41,6 +41,10 @@ class PlaylistController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
+        $request->validate([
+            'g-recaptcha-response' => 'required|captcha',
+        ]);
+
         $name = $request->input('name');
         $ids = $request->input('video_ids');
         if (empty($name)) {

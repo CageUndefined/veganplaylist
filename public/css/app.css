@@ -10665,8 +10665,9 @@ a.text-dark:focus {
   }
 }
 
-a.badge {
+button.badge {
   margin-left: 2px;
+  font-size: 14px;
 }
 
 .navbar-laravel {

@@ -83,10 +83,6 @@ const Playlist = {
             return false
         })
         $('.playlist-save').on('click', function() {
-            $(this)
-                .text('Saving…')
-                .addClass('disabled')
-                .attr('disabled', true)
             if (Playlist.action === 'create') {
                 Playlist.createPlaylist()
             } else {
@@ -164,9 +160,21 @@ const Playlist = {
     },
 
     createPlaylist() {
+        const recaptchaResponse = grecaptcha.getResponse()
+        if (!recaptchaResponse.length) {
+            alert('Please confirm that you are not a robot!')
+            return
+        }
+
+        $('.playlist-save')
+            .text('Saving…')
+            .addClass('disabled')
+            .attr('disabled', true)
+
         const data = {
             name: $('#playlist_name').val(),
             video_ids: Playlist.getVideoIds(),
+            'g-recaptcha-response': recaptchaResponse,
         }
         axios
             .post('/playlist', data)
@@ -184,6 +192,11 @@ const Playlist = {
     },
 
     updatePlaylist() {
+        $('.playlist-save')
+            .text('Saving…')
+            .addClass('disabled')
+            .attr('disabled', true)
+
         var slug = $('#playlist_slug').val()
         var data = {
             slug: slug,

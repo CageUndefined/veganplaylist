@@ -1837,12 +1837,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       playlist: this.$parent.playlist,
       index: this.$parent.index,
       editUrl: this.$parent.editUrl,
+      deleteUrl: this.$parent.deleteUrl,
       creatorProfileUrl: this.$parent.creatorProfileUrl,
       maxThumbs: 10
     };
@@ -1879,6 +1881,14 @@ __webpack_require__.r(__webpack_exports__);
     selectVideo: function selectVideo(pageVideoIndex) {
       var i = this.playlist.videos.indexOf(this.pageVideos[pageVideoIndex]);
       this.changeIndex(i);
+    },
+    deletePlaylist: function deletePlaylist(playlist) {
+      console.log(playlist);
+      axios.delete('/playlist/' + playlist.slug).then(function (response) {
+        window.location = '/';
+      }).catch(function (error) {
+        console.log(error);
+      });
     }
   },
   created: function created() {
@@ -40475,8 +40485,27 @@ var render = function() {
         _vm.editUrl
           ? _c("a", { attrs: { href: _vm.editUrl } }, [
               _c("i", { staticClass: "fas fa-edit" }),
-              _vm._v(" Edit this playlist")
+              _vm._v(" Edit playlist")
             ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.deleteUrl
+          ? _c(
+              "a",
+              {
+                staticClass: "ml-4",
+                attrs: { href: "#" },
+                on: {
+                  click: function($event) {
+                    return _vm.deletePlaylist(_vm.playlist)
+                  }
+                }
+              },
+              [
+                _c("i", { staticClass: "fas fa-trash" }),
+                _vm._v(" Delete playlist")
+              ]
+            )
           : _vm._e()
       ]),
       _vm._v(" "),
@@ -52938,8 +52967,6 @@ var Playlist = {
       return false;
     });
     $('.playlist-save').on('click', function () {
-      $(this).text('Saving…').addClass('disabled').attr('disabled', true);
-
       if (Playlist.action === 'create') {
         Playlist.createPlaylist();
       } else {
@@ -53003,9 +53030,18 @@ var Playlist = {
     if (!Playlist.getVideoIds()) $('.playlist-save').addClass('disabled').attr('disabled', true);
   },
   createPlaylist: function createPlaylist() {
+    var recaptchaResponse = grecaptcha.getResponse();
+
+    if (!recaptchaResponse.length) {
+      alert('Please confirm that you are not a robot!');
+      return;
+    }
+
+    $('.playlist-save').text('Saving…').addClass('disabled').attr('disabled', true);
     var data = {
       name: $('#playlist_name').val(),
-      video_ids: Playlist.getVideoIds()
+      video_ids: Playlist.getVideoIds(),
+      'g-recaptcha-response': recaptchaResponse
     };
     axios.post('/playlist', data).then(function (response) {
       window.location = '/playlist/' + response.data.slug;
@@ -53016,6 +53052,7 @@ var Playlist = {
     });
   },
   updatePlaylist: function updatePlaylist() {
+    $('.playlist-save').text('Saving…').addClass('disabled').attr('disabled', true);
     var slug = $('#playlist_slug').val();
     var data = {
       slug: slug,

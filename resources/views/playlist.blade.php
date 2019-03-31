@@ -8,7 +8,8 @@
     $playlist_slug = isset($playlist) ? $playlist->slug : '';
     $playlist_name = isset($playlist) ? $playlist->name : '';
     $playlist_items = [];
-    if ($action == 'Edit Playlist') {
+    $isEdit = $action == 'Edit Playlist';
+    if ($isEdit) {
         $edit_action = preg_replace( '/Edit/', 'Save', $action);
         $playlist_items = $playlist->videos;
         $disabled = '';
@@ -101,14 +102,17 @@
                                 @endforeach
                             </ul>
                         </div>
-                        <script>
-                            var recaptchachecked = false;
-                            function recaptchaCallback() {
-                                recaptchachecked = true;
-                            }
-                        </script>
                         <div class="card-footer">
-                            <div class="g-recaptcha mb-3" data-sitekey="6LcGrJkUAAAAACeRz1SNpm5iYeI7f6AavxskMFKv" data-callback="recaptchaCallback"></div>
+                            @if (!$isEdit)
+                                <div class="mb-2">
+                                    {!! app('captcha')->display() !!}
+                                    @if ($errors->has('g-recaptcha-response'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            @endif
                             <button class="btn btn-primary playlist-save {{ $disabled }}" {{ $disabled }}>{{ $edit_action }}</button>
                         </div>
                     </div>
@@ -127,10 +131,10 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe src="" frameborder="0" class="embed-responsive-item">
-                            </iframe>
-                        </div>
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe src="" frameborder="0" class="embed-responsive-item">
+                        </iframe>
+                    </div>
                 </div>
             </div>
         </div>
