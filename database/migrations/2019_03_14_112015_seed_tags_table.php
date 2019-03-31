@@ -65,7 +65,7 @@ class SeedTagsTable extends Migration
                 ),
                 array(
                     'name' => 'Science',
-                    'color' => 'secondary'
+                    'color' => 'info'
                 ),
                 array(
                     'name' => 'Cosmetics',
@@ -85,7 +85,7 @@ class SeedTagsTable extends Migration
                 ),
                 array(
                     'name' => 'News',
-                    'color' => 'info'
+                    'color' => 'primary'
                 ),
                 array(
                     'name' => 'Podcast',
