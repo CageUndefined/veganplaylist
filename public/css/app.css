@@ -10853,3 +10853,7 @@ h6,
   line-height: inherit;
 }
 
+.loading-indicator {
+  width: 50px;
+}
+

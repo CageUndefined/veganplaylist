@@ -50440,6 +50440,12 @@ var Playlist = {
     var _this = this;
 
     this.cancelRequest();
+    var $loadingIndicator = $('.loading-indicator');
+    var $emptyState = $('.no-results');
+    var $searchResults = $('.search-results');
+    $searchResults.find('.video-card').remove();
+    $emptyState.addClass('d-none');
+    $loadingIndicator.removeClass('d-none');
     var labels = [];
     $('#labels_active a').each(function (i, el) {
       labels.push($(el).data('id'));
@@ -50455,17 +50461,12 @@ var Playlist = {
         return _this.cancelRequest = c;
       })
     }).then(function (response) {
+      $loadingIndicator.addClass('d-none');
+
       if (response && response.data) {
-        if ($('.video-card').length) {
-          $('.video-card').fadeOut('fast', function () {
-            $('.video-card').detach();
-            $(response.data).appendTo('.search-results');
-          }).fadeIn();
-        } else {
-          $(response.data).appendTo('.search-results');
-        }
+        $searchResults.append(response.data);
       } else if (response.data === '') {
-        $('.video-card').detach();
+        $emptyState.removeClass('d-none');
       }
     }).catch(function (error) {
       if (!axios.isCancel(error)) {

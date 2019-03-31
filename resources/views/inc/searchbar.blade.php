@@ -29,5 +29,4 @@
 
         <input type="text" class="form-control" id="short_url_input" value="http://vegn.list/8uazL2"  readonly><br>
     </form>
-    @include('inc.listbuttons')
 </div>

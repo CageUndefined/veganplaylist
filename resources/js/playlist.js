@@ -59,6 +59,13 @@ const Playlist = {
 
     filter() {
         this.cancelRequest()
+        const $loadingIndicator = $('.loading-indicator')
+        const $emptyState = $('.no-results')
+        const $searchResults = $('.search-results')
+
+        $searchResults.find('.video-card').remove()
+        $emptyState.addClass('d-none')
+        $loadingIndicator.removeClass('d-none')
 
         const labels = []
         $('#labels_active a').each(function(i, el) {
@@ -78,19 +85,11 @@ const Playlist = {
                 ),
             })
             .then(response => {
+                $loadingIndicator.addClass('d-none')
                 if (response && response.data) {
-                    if ($('.video-card').length) {
-                        $('.video-card')
-                            .fadeOut('fast', () => {
-                                $('.video-card').detach()
-                                $(response.data).appendTo('.search-results')
-                            })
-                            .fadeIn()
-                    } else {
-                        $(response.data).appendTo('.search-results')
-                    }
+                    $searchResults.append(response.data)
                 } else if (response.data === '') {
-                    $('.video-card').detach()
+                    $emptyState.removeClass('d-none')
                 }
             })
             .catch(error => {

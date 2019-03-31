@@ -44,7 +44,7 @@
                                 <div id="labels_inactive" class="">
                                     <span class="text-secondary mr-2">Tags: </span>
                                     @foreach ($tags as $t)
-                                        <a href="#" class="badge badge-pill badge-{{ $t->{'color'} }}" data-id="{{ $t->{'id'} }}">{{ $t->{'name'} }}</a>
+                                        <button class="border-0 badge badge-pill badge-{{ $t->{'color'} }}" data-id="{{ $t->{'id'} }}">{{ $t->{'name'} }}</button>
                                     @endforeach
                                 </div>
                             </div>
@@ -55,6 +55,10 @@
         </div>
         <div class="row mt-3">
             <div class="col-12 col-lg-8 order-last order-lg-first">
+                <img src="{{ asset('img/loading.svg') }}" alt="Loading" class="loading-indicator d-none" />
+
+                <div class="no-results d-none">No videos found</div>
+
                 <div class="search-results">
                     @include('inc.videolist')
                 </div>
@@ -80,7 +84,7 @@
                             <ul class="list-group text-left"></ul>
                         </div>
                         <div class="card-footer text-center">
-                            <a href="#" class="btn btn-primary playlist-save disabled">Create Playlist</a>
+                            <button class="btn btn-primary playlist-save disabled">Create Playlist</button>
                         </div>
                     </div>
                 </div>
