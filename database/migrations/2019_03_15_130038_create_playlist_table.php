@@ -15,9 +15,9 @@ class CreatePlaylistTable extends Migration {
 			$table->bigIncrements('id');
 			$table->string('name');
 			$table->string('slug')->unique();
-
 			$table->unsignedBigInteger('creator_id')->nullable();
 			$table->foreign('creator_id')->references('id')->on('users');
+			$table->tinyInteger('active')->default(1);
 			$table->boolean('featured')->default(false);
 			$table->bigInteger('views')->default(0);
 			$table->timestamps();

@@ -28,8 +28,8 @@ class UserProfileController extends Controller
      */
     public function index(User $user)
     {
-        $playlists = $user->playlists;
-        
+        $playlists = $user->playlists->where('active', 1);
+
         return view( 'profile', [ 'user' => $user, 'playlists' => $playlists ] );
     }
 }

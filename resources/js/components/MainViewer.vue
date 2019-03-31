@@ -36,7 +36,8 @@
     </div>
     <div class="navigation row">
       <div class="col-md-2">
-        <a v-if="editUrl" :href="editUrl"><i class="fas fa-edit"></i> Edit this playlist</a>
+        <a v-if="editUrl" :href="editUrl"><i class="fas fa-edit"></i> Edit playlist</a>
+        <a v-if="deleteUrl" v-on:click="deletePlaylist(playlist)" href="#" class="ml-4"><i class="fas fa-trash"></i> Delete playlist</a>
       </div>
       <div class="container col-md-8 row">
         <div class="col-md-1">
@@ -79,6 +80,7 @@ export default {
       playlist: this.$parent.playlist,
       index: this.$parent.index,
       editUrl: this.$parent.editUrl,
+      deleteUrl: this.$parent.deleteUrl,
       creatorProfileUrl: this.$parent.creatorProfileUrl,
       maxThumbs: 10
     };
@@ -115,6 +117,17 @@ export default {
     selectVideo: function(pageVideoIndex) {
       var i = this.playlist.videos.indexOf(this.pageVideos[pageVideoIndex]);
       this.changeIndex(i);
+    },
+    deletePlaylist: function(playlist) {
+        console.log(playlist);
+        axios
+            .delete('/playlist/' + playlist.slug)
+            .then(response => {
+                window.location = '/'
+            })
+            .catch(error => {
+                console.log(error)
+            })
     }
   },
   created: function() {

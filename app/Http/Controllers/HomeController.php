@@ -24,19 +24,25 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $pl = Playlist::where( 'creator_id', 1 )->limit(100)->get();
+        $pl = Playlist::where([
+            ['creator_id', '=', 1],
+            ['active', '=', 1]
+        ])->limit(100)->get();
         return view( 'home', [ 'playlists' => $pl ] );
     }
 
     public function featured()
     {
-        $pl = Playlist::where( 'featured', true )->limit(100)->get();
+        $pl = Playlist::where([
+            ['featured', '=', true],
+            [ 'active', '=', 1 ]
+        ])->limit(100)->get();
         return view( 'home', [ 'playlists' => $pl ] );
     }
 
     public function recent()
-    {   
-        $pl = Playlist::latest()->limit(100)->get();
+    {
+        $pl = Playlist::where( 'active', 1 )->latest()->limit(100)->get();
         return view( 'home', [ 'playlists' => $pl ] );
     }
 }

@@ -26,6 +26,7 @@
                 playlist: @json( $playlist ),
                 index: @json( $index ),
                 editUrl: @json($editUrl),
+                deleteUrl: @json($deleteUrl),
                 creatorProfileUrl: @json($creatorProfileUrl)
             },
             computed: {
