@@ -2,7 +2,7 @@
      style="box-shadow: -1px 1px 11px 0px rgba(0, 0, 0, 0.26);border-radius: 10px 10px 10px 10px;">
 
     <div class="card-header text-center d-flex align-items-center justify-content-center"
-         style="background-size: cover; background-position-y: 50%; background-repeat: no-repeat;padding-top: 8px;border-radius: 10px 10px 0px 0px;padding-bottom: 5px;background-image: url({{ $playlist->videos[0]->getThumbnailSrcAttribute() }});color: black; cursor: pointer;"
+         style="background-size: cover; background-position-y: 50%; background-repeat: no-repeat;padding-top: 8px;border-radius: 10px 10px 0px 0px;padding-bottom: 5px;background-image:linear-gradient(to bottom, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),  url({{ $playlist->videos[0]->getThumbnailSrcAttribute() }});color: black; cursor: pointer;"
          onclick="window.location.href = '{{ route( 'playlist.show', $playlist ) }}'">
         <i class="fas fa-play-circle mr-2 text-white" style="font-size: 25px;"></i>
         <a style="font-weight: 600;letter-spacing: 2px;text-decoration:none;"
