@@ -62,7 +62,19 @@
             <div class="col-12 col-lg-4 order-first order-lg-last mb-3">
                 <div class="card">
                     <div id="new_playlist">
-                        <div class="card-header text-center" id="playlist_name">Your Playlist</div>
+                        <div class="card-header text-center">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-signature"></i>
+                                    </span>
+                                </div>
+                                <input type="text"
+                                       class="form-control"
+                                       placeholder="Playlist Name"
+                                       id="playlist_name">
+                            </div>
+                        </div>
                         <div class="card-body text-center">
                             <p><em>Search for videos using the filter above</em></p>
                             <ul class="list-group text-left"></ul>

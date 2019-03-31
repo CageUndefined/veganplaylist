@@ -23,8 +23,8 @@ var Playlist = {
     init() {
         this.cancelRequest = _.noop
 
-        if ($('#playlist_name').length && this.name.length)
-            $('#playlist_name').text(this.name)
+
+        $('#playlist_name').val(this.name)
         this.bindEvents()
         return this
     },
@@ -127,7 +127,7 @@ var Playlist = {
 
     createPlaylist() {
         var data = {
-            name: Playlist.name,
+            name: $('#playlist_name').val(),
             video_ids: Object.keys(Playlist.list),
         }
         axios
