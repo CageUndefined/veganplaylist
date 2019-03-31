@@ -50,7 +50,6 @@ var Playlist = {
         })
         $('.playlist-save').click(() => {
             Playlist.createPlaylist()
-            // go to viewer
             return false
         })
     },
@@ -58,11 +57,15 @@ var Playlist = {
     filter() {
         this.cancelRequest()
 
+        var labels = []
+        $('#labels_active a').each(function (i, el) {
+            labels.push($(el).data('id'))
+        })
         var data = {
             title: $('#name_input').val(),
             hide_graphic: $('#graphic_input').is(':checked') ? 0 : 1,
             hide_mature: $('#mature_input').is(':checked') ? 0 : 1,
-            tags: [],
+            tags: labels,
         }
 
         axios
@@ -148,10 +151,29 @@ $(() => {
     window.Playlist = Playlist.init()
 
     const debouncedFilter = _.debounce(() => {
+        console.log('made it')
         Playlist.filter()
         return false
     }, 300)
 
     $('#name_input').on('input', debouncedFilter)
     $('input[type=checkbox]').on('change', debouncedFilter)
+    $('#labels_inactive, #labels_active').on('click', 'a', (e) => {
+        var el = e.target
+        var node_cp = $(el).clone()
+        var target_group;
+        if ($(el).parent().attr('id').match(/_active/)) {
+            target_group = $('#labels_inactive')
+            node_cp.addClass('badge-pill')
+        } else {
+            target_group = $('#labels_active')
+            node_cp.removeClass('badge-pill')
+        }
+        $(el).fadeOut('fast', () => {
+            $(el).remove()
+            target_group.append(node_cp);
+            Playlist.filter()
+            return false
+        })
+    })
 })

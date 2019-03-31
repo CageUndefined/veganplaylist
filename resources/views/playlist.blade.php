@@ -35,6 +35,9 @@
                                     <input type="checkbox" id="mature_input" value="1" checked />
                                 </div>
                             </div>
+                            <div class="row">
+                                <div id="labels_active"></div>
+                            </div>
                         </div>
                         <div id="tags" class="col mr-2 ml-2">
                             <div class="row mb-3 mt-2 justify-content-end">
@@ -44,9 +47,6 @@
                                         <a href="#" class="badge badge-pill badge-{{ $t->{'color'} }}" data-id="{{ $t->{'id'} }}">{{ $t->{'name'} }}</a>
                                     @endforeach
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div id="labels_active"></div>
                             </div>
                         </div>
                     </div>

@@ -37,16 +37,7 @@ Route::get('/videos/{videoId}/edit', 'AdminController@editVideo');
 Route::put('/videos/{videoId}', 'AdminController@updateVideo');
 
 // Ajax Routes
-Route::post('/videolist', function(Request $request) {
-    $title = $request['title'];
-    $where = array( array('title', 'LIKE', "%$title%") );
-    if ($request['hide_graphic']) $where[] = array('graphic', '!=', '1');
-    if ($request['hide_mature'])  $where[] = array('mature', '!=', '1');
-    $videos = Video::where( $where )->get();
-    return view('inc.videolist', [
-        'videos' => $videos
-    ]);
-});
+Route::post('/videolist', 'VideoController@list');
 Route::get('/video/{id}', function($id){
     $video = Video::findOrFail($id);
     return view('inc.videolistitem', ['video' => $video]);

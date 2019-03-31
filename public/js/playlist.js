@@ -36684,8 +36684,7 @@ var Playlist = {
       return false;
     });
     $('.playlist-save').click(function () {
-      Playlist.createPlaylist(); // go to viewer
-
+      Playlist.createPlaylist();
       return false;
     });
   },
@@ -36693,11 +36692,15 @@ var Playlist = {
     var _this = this;
 
     this.cancelRequest();
+    var labels = [];
+    $('#labels_active a').each(function (i, el) {
+      labels.push($(el).data('id'));
+    });
     var data = {
       title: $('#name_input').val(),
       hide_graphic: $('#graphic_input').is(':checked') ? 0 : 1,
       hide_mature: $('#mature_input').is(':checked') ? 0 : 1,
-      tags: []
+      tags: labels
     };
     axios.post('/videolist', data, {
       cancelToken: new axios.CancelToken(function (c) {
@@ -36766,12 +36769,33 @@ $(function () {
   window.Playlist = Playlist.init();
 
   var debouncedFilter = lodash__WEBPACK_IMPORTED_MODULE_0___default.a.debounce(function () {
+    console.log('made it');
     Playlist.filter();
     return false;
   }, 300);
 
   $('#name_input').on('input', debouncedFilter);
   $('input[type=checkbox]').on('change', debouncedFilter);
+  $('#labels_inactive, #labels_active').on('click', 'a', function (e) {
+    var el = e.target;
+    var node_cp = $(el).clone();
+    var target_group;
+
+    if ($(el).parent().attr('id').match(/_active/)) {
+      target_group = $('#labels_inactive');
+      node_cp.addClass('badge-pill');
+    } else {
+      target_group = $('#labels_active');
+      node_cp.removeClass('badge-pill');
+    }
+
+    $(el).fadeOut('fast', function () {
+      $(el).remove();
+      target_group.append(node_cp);
+      Playlist.filter();
+      return false;
+    });
+  });
 });
 
 /***/ }),
@@ -36783,7 +36807,7 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/grardb/dev/vegan/veganplaylist/resources/js/playlist.js */"./resources/js/playlist.js");
+module.exports = __webpack_require__(/*! /Users/kboren/src/veganplaylist/resources/js/playlist.js */"./resources/js/playlist.js");
 
 
 /***/ })
