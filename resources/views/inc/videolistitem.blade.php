@@ -1,4 +1,4 @@
-<li class="list-group-item">
+<li class="list-group-item" id="list_item_{{ $video->id }}">
     <div class="d-flex align-items-center flex-row">
         <div class="mr-2">@include('inc.videothumb')</div>
         <div class="font-weight-bold text-wrap">{{ $video->title }}</div>
