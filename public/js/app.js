@@ -50506,7 +50506,6 @@ $(function () {
   window.Playlist = Playlist.init();
 
   var debouncedFilter = lodash__WEBPACK_IMPORTED_MODULE_0___default.a.debounce(function () {
-    console.log('made it');
     Playlist.filter();
     return false;
   }, 300);
@@ -50566,9 +50565,9 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/kboren/src/veganplaylist/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /Users/kboren/src/veganplaylist/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /Users/kboren/src/veganplaylist/resources/sass/admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! C:\wamp\htdocs\veganplaylist\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\wamp\htdocs\veganplaylist\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\wamp\htdocs\veganplaylist\resources\sass\admin.scss */"./resources/sass/admin.scss");
 
 
 /***/ })

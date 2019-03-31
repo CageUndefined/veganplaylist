@@ -391,6 +391,7 @@ h6,
 .h6 {
   margin-bottom: 0.5rem;
   font-weight: 500;
+  line-height: 1.2;
 }
 
 h1,
@@ -10662,6 +10663,10 @@ a.text-dark:focus {
     -webkit-column-count: 2;
             column-count: 2;
   }
+}
+
+a.badge {
+  margin-left: 2px;
 }
 
 .navbar-laravel {
