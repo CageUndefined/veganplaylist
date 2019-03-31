@@ -1,9 +1,21 @@
 @php
     $videos = App\Video::all();
     $tags   = App\Tag::all();
+
+    preg_match('/([^@]+)$/', Route::currentRouteAction(), $match);
+    $edit_action = $action = ucfirst($match[0]) . ' Playlist';
+    $disabled = 'disabled';
+    $playlist_slug = isset($playlist) ? $playlist->slug : '';
+    $playlist_name = isset($playlist) ? $playlist->name : '';
+    $playlist_items = [];
+    if ($action == 'Edit Playlist') {
+        $edit_action = preg_replace( '/Edit/', 'Save', $action);
+        $playlist_items = $playlist->videos;
+        $disabled = '';
+    }
 @endphp
 
-@section('title', 'Create Playlist')
+@section('title', $action)
 
 @extends('layouts.page')
 
@@ -61,7 +73,7 @@
             </div>
             <div class="col-12 col-lg-4 order-first order-lg-last mb-3">
                 <div class="card">
-                    <div id="new_playlist">
+                    <div id="the_playlist">
                         <div class="card-header text-center">
                             <div class="input-group">
                                 <div class="input-group-prepend">
@@ -69,18 +81,24 @@
                                         <i class="fas fa-signature"></i>
                                     </span>
                                 </div>
+                                <input type="hidden" id="playlist_slug" value="{{ $playlist_slug }}">
                                 <input type="text"
                                        class="form-control"
                                        placeholder="Playlist Name"
-                                       id="playlist_name">
+                                       id="playlist_name"
+                                       value="{{ $playlist_name }}">
                             </div>
                         </div>
                         <div class="card-body text-center">
                             <p><em>Search for videos using the filter above</em></p>
-                            <ul class="list-group text-left"></ul>
+                            <ul class="list-group text-left">
+                                @foreach ($playlist_items as $video)
+                                    @include('inc.videolistitem')
+                                @endforeach
+                            </ul>
                         </div>
                         <div class="card-footer text-center">
-                            <a href="#" class="btn btn-primary playlist-save disabled">Create Playlist</a>
+                        <a href="#" class="btn btn-primary playlist-save {{ $disabled }}">{{ $edit_action }}</a>
                         </div>
                     </div>
                 </div>
