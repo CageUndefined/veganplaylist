@@ -32,5 +32,16 @@ window.Vue = require('vue')
 Vue.component('main-viewer', require('./components/MainViewer.vue').default)
 
 $(() => {
-    new ClipboardJS('.copy-playlist-url-btn')
+    var clipboard = new ClipboardJS('.copy-playlist-url-btn');
+    clipboard.on('success', function(e) {
+        var el = $(e.trigger);
+
+        $(el).tooltip({
+            title: 'Link copied!'
+        });
+
+        $(el).tooltip('show');
+
+        setTimeout(function() {$(el).tooltip('dispose');}, 2000);
+    })
 })
