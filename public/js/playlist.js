@@ -39146,7 +39146,6 @@ var nameFromGetParams = params && params.get('name') ? params.get('name') : '';
 var Playlist = {
   name: nameFromGetParams,
   action: 'create',
-  list: [],
   init: function init() {
     this.cancelRequest = lodash__WEBPACK_IMPORTED_MODULE_0___default.a.noop;
     if (this.name) $('#playlist_name').val(this.name);else this.name = $('#playlist_name').val();
@@ -39158,10 +39157,6 @@ var Playlist = {
       var id_match = $(el).attr('id').match(/_(\d+)$/);
       var li_id = id_match[1];
       var li_title = $('#' + $(el).attr('id') + ' div.title').text();
-      Playlist.list.push({
-        id: li_id,
-        title: li_title
-      });
     });
     this.bindEvents();
     return this;
@@ -39237,10 +39232,6 @@ var Playlist = {
       var li = response.data;
       var list = $('#the_playlist .list-group');
       list.append(li);
-      Playlist.list.push({
-        id: id,
-        title: title
-      });
       $('#card_' + id).fadeOut();
       $('.playlist-save').removeClass('disabled').attr('disabled', false);
     }).catch(function (error) {
@@ -39248,18 +39239,13 @@ var Playlist = {
     });
   },
   removeVideo: function removeVideo(id) {
-    Playlist.list = Playlist.list.filter(function (v) {
-      return v.id !== id;
-    });
     $('#card_' + id).show();
-    if (!Playlist.list.length) $('.playlist-save').addClass('disabled').attr('disabled', true);
+    if (!Playlist.getVideoIds()) $('.playlist-save').addClass('disabled').attr('disabled', true);
   },
   createPlaylist: function createPlaylist() {
     var data = {
       name: $('#playlist_name').val(),
-      video_ids: Playlist.list.map(function (v) {
-        return v.id;
-      })
+      video_ids: Playlist.getVideoIds()
     };
     axios.post('/playlist', data).then(function (response) {
       window.location = '/playlist/' + response.data.slug;
@@ -39274,15 +39260,18 @@ var Playlist = {
     var data = {
       slug: slug,
       name: $('#playlist_name').val(),
-      video_ids: Playlist.list.map(function (v) {
-        return v.id;
-      })
+      video_ids: Playlist.getVideoIds()
     };
     axios.put('/playlist/' + slug, data).then(function (response) {
       window.location = '/playlist/' + slug;
     }).catch(function (error) {
       console.log(error);
     });
+  },
+  getVideoIds: function getVideoIds() {
+    return $('#the_playlist ul.list-group li').map(function (i, v) {
+      return $(v).data('id');
+    }).toArray();
   }
 };
 /*

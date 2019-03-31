@@ -20,7 +20,6 @@ const nameFromGetParams = params && params.get('name') ? params.get('name') : ''
 const Playlist = {
     name: nameFromGetParams,
     action: 'create',
-    list: [],
 
     init() {
         this.cancelRequest = _.noop
@@ -42,10 +41,6 @@ const Playlist = {
                 .match(/_(\d+)$/)
             var li_id = id_match[1]
             var li_title = $('#' + $(el).attr('id') + ' div.title').text()
-            Playlist.list.push({
-                id: li_id,
-                title: li_title,
-            })
         })
 
         this.bindEvents()
@@ -134,10 +129,6 @@ const Playlist = {
                 const li = response.data
                 const list = $('#the_playlist .list-group')
                 list.append(li)
-                Playlist.list.push({
-                    id: id,
-                    title: title,
-                })
                 $('#card_' + id).fadeOut()
                 $('.playlist-save')
                     .removeClass('disabled')
@@ -149,9 +140,8 @@ const Playlist = {
     },
 
     removeVideo(id) {
-        Playlist.list = Playlist.list.filter(v => v.id !== id)
         $('#card_' + id).show()
-        if (!Playlist.list.length)
+        if (!Playlist.getVideoIds())
             $('.playlist-save')
                 .addClass('disabled')
                 .attr('disabled', true)
@@ -160,7 +150,7 @@ const Playlist = {
     createPlaylist() {
         const data = {
             name: $('#playlist_name').val(),
-            video_ids: Playlist.list.map(v => v.id),
+            video_ids: Playlist.getVideoIds(),
         }
         axios
             .post('/playlist', data)
@@ -182,7 +172,7 @@ const Playlist = {
         var data = {
             slug: slug,
             name: $('#playlist_name').val(),
-            video_ids: Playlist.list.map(v => v.id),
+            video_ids: Playlist.getVideoIds(),
         }
         axios
             .put('/playlist/' + slug, data)
@@ -192,6 +182,12 @@ const Playlist = {
             .catch(error => {
                 console.log(error)
             })
+    },
+
+    getVideoIds() {
+        return $('#the_playlist ul.list-group li')
+            .map((i, v) => $(v).data('id'))
+            .toArray()
     },
 }
 
