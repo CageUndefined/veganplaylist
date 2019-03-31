@@ -50235,7 +50235,17 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 Vue.component('main-viewer', __webpack_require__(/*! ./components/MainViewer.vue */ "./resources/js/components/MainViewer.vue").default);
 $(function () {
-  new clipboard__WEBPACK_IMPORTED_MODULE_0___default.a('.copy-playlist-url-btn');
+  var clipboard = new clipboard__WEBPACK_IMPORTED_MODULE_0___default.a('.copy-playlist-url-btn');
+  clipboard.on('success', function (e) {
+    var el = $(e.trigger);
+    $(el).tooltip({
+      title: 'Link copied!'
+    });
+    $(el).tooltip('show');
+    setTimeout(function () {
+      $(el).tooltip('dispose');
+    }, 2000);
+  });
 });
 
 /***/ }),
@@ -50400,7 +50410,7 @@ var Playlist = {
   list: {},
   init: function init() {
     this.cancelRequest = lodash__WEBPACK_IMPORTED_MODULE_0___default.a.noop;
-    if ($('#playlist_name').length && this.name.length) $('#playlist_name').text(this.name);
+    $('#playlist_name').val(this.name);
     this.bindEvents();
     return this;
   },
@@ -50485,7 +50495,7 @@ var Playlist = {
   },
   createPlaylist: function createPlaylist() {
     var data = {
-      name: Playlist.name,
+      name: $('#playlist_name').val(),
       video_ids: Object.keys(Playlist.list)
     };
     axios.post('/playlist', data).then(function (response) {

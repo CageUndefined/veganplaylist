@@ -36663,7 +36663,7 @@ var Playlist = {
   list: {},
   init: function init() {
     this.cancelRequest = lodash__WEBPACK_IMPORTED_MODULE_0___default.a.noop;
-    if ($('#playlist_name').length && this.name.length) $('#playlist_name').text(this.name);
+    $('#playlist_name').val(this.name);
     this.bindEvents();
     return this;
   },
@@ -36748,7 +36748,7 @@ var Playlist = {
   },
   createPlaylist: function createPlaylist() {
     var data = {
-      name: Playlist.name,
+      name: $('#playlist_name').val(),
       video_ids: Object.keys(Playlist.list)
     };
     axios.post('/playlist', data).then(function (response) {
