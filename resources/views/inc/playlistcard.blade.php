@@ -16,7 +16,7 @@
             data-short-url="{{ $playlist->getShortUrl() }}"
             data-title="{{ $playlist->name }}"
             data-image="{{ $playlist->videos[0]->getThumbnailSrcAttribute() }}"
-            data-description="{{ $playlist->description }}"
+            data-description="Watch {{ $playlist->name }} and many other playlists of vegan videos on VeganPlaylist.org!"
         >
             <span class="count"></span>
             <i class="fas fa-share"></i> Share
@@ -28,7 +28,7 @@
             <i class="fas fa-link"></i> Copy URL
         </button>
         <div class="flex-fill py-0 py-sm-2 py-md-0">
-            Total: {{$playlist->display_length}}
+            Total: {{ $playlist->getDisplayLengthAttribute() }}
         </div>
     </div>
     <ul class="list-group">

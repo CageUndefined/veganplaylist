@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 class Playlist extends Model {
 
     protected $visible = ['id', 'name', 'slug', 'creator', 'videos', 'views', 'display_length'];
-    
+
     protected $fillable = ['views', 'name', 'creator_id'];
 
     public function creator() {
@@ -26,18 +26,10 @@ class Playlist extends Model {
 
         static::creating(function ($playlist) {
             $playlist->slug = str_slug($playlist->name);
-            // if( $playlist->creator_id == 1 )
-            //     $playlist->featured = true;
         });
 
         static::deleting(function($playlist) {
             $playlist->videos()->detach();
-        });
-
-        static::retrieved(function ($playlist) {
-            $playlist->display_duration = $playlist->getDisplayDurationAttribute();
-            $playlist->display_length = $playlist->getDisplayLengthAttribute();
-            $playlist->description = "Watch \"$playlist->name\" and many other playlists of vegan videos on VeganPlaylist.org!";
         });
     }
 
@@ -53,7 +45,7 @@ class Playlist extends Model {
         $hash = $this->getHash();
         return "https://vgn.soy/$hash";
     }
-    
+
     public function getDisplayDurationAttribute() {
         $secondLength = 0;
         $videoModels = $this->videos;

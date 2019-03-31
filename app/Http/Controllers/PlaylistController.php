@@ -49,7 +49,7 @@ class PlaylistController extends Controller {
 		if (empty($name)) {
 			$name = PseudoCrypt::hash($ids[0], 8);
 		}
-		
+
 		$playlist = Playlist::create(['name' => $name, 'creator_id' => Auth::id()]);
 
 		for ($i = 0; $i < count($ids); $i++) {
@@ -79,7 +79,24 @@ class PlaylistController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function update(Request $request, Playlist $playlist) {
-		//
+        $slug = $request->input('slug');
+        $name = $request->input('name');
+		$ids  = $request->input('video_ids');
+
+        $playlist = Playlist::where('slug', $slug)->firstOrFail();
+
+        $playlist->name = $name;
+        $playlist->save();
+
+        $playlist->videos()->detach();
+
+		for ($i = 0; $i < count($ids); $i++) {
+			$id = $ids[$i];
+			$playlist->videos()->attach([
+				$id => ['order' => $i],
+			]);
+		}
+		return response()->json($playlist, 200);
 	}
 
 	/**

@@ -18,12 +18,35 @@ const nameFromGetParams = params && params.get('name') ? params.get('name') : ''
  */
 const Playlist = {
     name: nameFromGetParams,
+    action: 'create',
     list: {},
 
     init() {
         this.cancelRequest = _.noop
 
-        $('#playlist_name').val(this.name)
+        if (this.name) $('#playlist_name').val(this.name)
+        else this.name = $('#playlist_name').val()
+
+        if (
+            !$('.playlist-save')
+                .text()
+                .match(/Create/)
+        )
+            this.action = 'edit'
+
+        // Build our playlist if it exists
+        $('ul.list-group li').each(function(i, el) {
+            var id_match = $(el)
+                .attr('id')
+                .match(/_(\d+)$/)
+            var li_id = id_match[1]
+            var li_title = $('#' + $(el).attr('id') + ' div.title').text()
+            Playlist.list[li_id] = {
+                id: li_id,
+                title: li_title,
+            }
+        })
+
         this.bindEvents()
         return this
     },
@@ -52,7 +75,11 @@ const Playlist = {
                 .text('Saving…')
                 .addClass('disabled')
                 .attr('disabled', true)
-            Playlist.createPlaylist()
+            if (Playlist.action === 'create') {
+                Playlist.createPlaylist()
+            } else {
+                Playlist.updatePlaylist()
+            }
             return false
         })
     },
@@ -68,7 +95,7 @@ const Playlist = {
         $loadingIndicator.removeClass('d-none')
 
         const labels = []
-        $('#labels_active a').each(function(i, el) {
+        $('#labels_active button').each(function(i, el) {
             labels.push($(el).data('id'))
         })
         const data = {
@@ -104,15 +131,16 @@ const Playlist = {
             .get('/video/' + id)
             .then(response => {
                 const li = response.data
-                const list = $('#new_playlist .list-group')
+                const list = $('#the_playlist .list-group')
                 list.append(li)
                 Playlist.list[id] = {
                     id: id,
                     title: title,
                 }
                 $('#card_' + id).fadeOut()
-                if ($('a.playlist-save').hasClass('disabled'))
-                    $('a.playlist-save').removeClass('disabled')
+                $('.playlist-save')
+                    .removeClass('disabled')
+                    .attr('disabled', false)
             })
             .catch(error => {
                 console.log(error)
@@ -123,7 +151,9 @@ const Playlist = {
         delete Playlist.list[id]
         $('#card_' + id).show()
         if (!Object.keys(Playlist.list).length)
-            $('a.playlist-save').addClass('disabled')
+            $('.playlist-save')
+                .addClass('disabled')
+                .attr('disabled', true)
     },
 
     createPlaylist() {
@@ -137,12 +167,29 @@ const Playlist = {
                 window.location = '/playlist/' + response.data.slug
             })
             .catch(error => {
-                $('a.playlist-save')
+                $('.playlist-save')
                     .text('Create Playlist')
                     .removeClass('disabled')
                     .attr('disabled', false)
                 console.log(error)
                 alert('Your playlist name may be taken already!')
+            })
+    },
+
+    updatePlaylist() {
+        var slug = $('#playlist_slug').val()
+        var data = {
+            slug: slug,
+            name: $('#playlist_name').val(),
+            video_ids: Object.keys(Playlist.list),
+        }
+        axios
+            .put('/playlist/' + slug, data)
+            .then(response => {
+                window.location = '/playlist/' + slug
+            })
+            .catch(error => {
+                console.log(error)
             })
     },
 }
