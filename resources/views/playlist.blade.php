@@ -5,7 +5,6 @@
     preg_match('/([^@]+)$/', Route::currentRouteAction(), $match);
     $edit_action = $action = ucfirst($match[0]) . ' Playlist';
     $disabled = 'disabled';
-    $playlist_slug = isset($playlist) ? $playlist->slug : '';
     $playlist_name = isset($playlist) ? $playlist->name : '';
     $playlist_items = [];
     $isEdit = $action == 'Edit Playlist';
@@ -86,7 +85,6 @@
                                         <i class="fas fa-signature"></i>
                                     </span>
                                 </div>
-                                <input type="hidden" id="playlist_slug" value="{{ $playlist_slug }}">
                                 <input type="text"
                                        class="form-control"
                                        placeholder="Playlist Name"

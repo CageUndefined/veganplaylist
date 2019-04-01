@@ -71,6 +71,7 @@ class PlaylistController extends Controller {
      */
     public function edit(Playlist $playlist) {
         if (!$playlist->active) abort(404);
+        if (is_null($playlist->creator) or !$playlist->creator->is(Auth::user())) abort(401);
         return view('playlist', ['playlist' => $playlist]);
     }
 
@@ -82,7 +83,7 @@ class PlaylistController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Playlist $playlist) {
-        $slug = $request->input('slug');
+        if (is_null($playlist->creator) or !$playlist->creator->is(Auth::user())) abort(401);
         $name = $request->input('name');
         $ids  = $request->input('video_ids');
 
@@ -107,6 +108,7 @@ class PlaylistController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy(Playlist $playlist) {
+        if (is_null($playlist->creator) or !$playlist->creator->is(Auth::user())) abort(401);
         $playlist->active = 0;
         $playlist->save();
         return response()->json($playlist, 200);
