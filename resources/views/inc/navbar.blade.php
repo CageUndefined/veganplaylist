@@ -31,8 +31,7 @@
                 </li>
                 <li class="nav-item mx-lg-3">
                     <a
-                        class="nav-link text-white btn text-left rounded-pill px-3 mr-3 mr-md-0 font-bold"
-                        style="background-color: #ff0097"
+                        class="nav-link text-white btn text-left rounded-pill px-3 mr-3 mr-md-0 font-bold bg-pink"
                         href="https://www.patreon.com/youaretheirvoice"
                         target="_blank"
                     >

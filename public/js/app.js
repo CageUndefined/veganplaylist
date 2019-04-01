@@ -1837,7 +1837,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -40481,119 +40480,120 @@ var render = function() {
       })
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "navigation row" }, [
-      _c("div", { staticClass: "col-md-2" }, [
-        _vm.editUrl
-          ? _c("a", { attrs: { href: _vm.editUrl } }, [
-              _c("i", { staticClass: "fas fa-edit" }),
-              _vm._v(" Edit playlist")
-            ])
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.deleteUrl
-          ? _c(
-              "a",
-              {
-                staticClass: "ml-4",
-                attrs: { href: "#" },
-                on: {
-                  click: function($event) {
-                    return _vm.deletePlaylist(_vm.playlist)
-                  }
-                }
-              },
-              [
-                _c("i", { staticClass: "fas fa-trash" }),
-                _vm._v(" Delete playlist")
-              ]
-            )
-          : _vm._e()
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "container col-md-8 row" }, [
-        _c("div", { staticClass: "col-md-1" }, [
-          _c(
-            "a",
-            {
-              directives: [
+    _c(
+      "div",
+      { staticClass: "navigation d-flex py-0 justify-content-between" },
+      [
+        _c("div", { staticClass: "d-flex align-items-center" }, [
+          _vm.editUrl
+            ? _c("a", { staticClass: "ml-4", attrs: { href: _vm.editUrl } }, [
+                _c("i", { staticClass: "fas fa-edit" }),
+                _vm._v(" Edit playlist")
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.deleteUrl
+            ? _c(
+                "a",
                 {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.index > 0,
-                  expression: "index > 0"
-                }
-              ],
-              staticClass: "arrow",
-              attrs: { href: "#" },
-              on: {
-                click: function($event) {
-                  return _vm.changeIndex(_vm.index - 1)
-                }
-              }
-            },
-            [_c("i", { staticClass: "fas fa-arrow-left" })]
+                  staticClass: "ml-4 text-danger",
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      return _vm.deletePlaylist(_vm.playlist)
+                    }
+                  }
+                },
+                [_vm._v("Delete playlist")]
+              )
+            : _vm._e()
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "d-flex" }, [
+          _c(
+            "div",
+            { staticClass: "thumbnail-strip d-flex align-items-center" },
+            [
+              _c(
+                "a",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.index > 0,
+                      expression: "index > 0"
+                    }
+                  ],
+                  staticClass: "arrow mr-2",
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      return _vm.changeIndex(_vm.index - 1)
+                    }
+                  }
+                },
+                [_c("i", { staticClass: "fas fa-arrow-left" })]
+              ),
+              _vm._v(" "),
+              _vm._l(_vm.pageVideos, function(video, i) {
+                return _c(
+                  "a",
+                  {
+                    key: i,
+                    staticClass: "thumbnail mr-2",
+                    class: video.linkClass,
+                    attrs: { href: "#", title: video.title },
+                    on: {
+                      click: function($event) {
+                        return _vm.selectVideo(i)
+                      }
+                    }
+                  },
+                  [_c("img", { attrs: { src: video.thumbnailSrc, alt: "" } })]
+                )
+              }),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.index < _vm.playlist.videos.length - 1,
+                      expression: "index < (playlist.videos.length - 1)"
+                    }
+                  ],
+                  staticClass: "arrow",
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      return _vm.changeIndex(_vm.index + 1)
+                    }
+                  }
+                },
+                [_c("i", { staticClass: "fas fa-arrow-right" })]
+              )
+            ],
+            2
           )
         ]),
         _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "thumbnail-strip col-md-10" },
-          _vm._l(_vm.pageVideos, function(video, i) {
-            return _c(
-              "a",
-              {
-                key: i,
-                staticClass: "thumbnail",
-                class: video.linkClass,
-                attrs: { href: "#", title: video.title },
-                on: {
-                  click: function($event) {
-                    return _vm.selectVideo(i)
-                  }
-                }
-              },
-              [_c("img", { attrs: { src: video.thumbnailSrc, alt: "" } })]
-            )
-          }),
-          0
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-1 next" }, [
-          _c(
-            "a",
-            {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.index < _vm.playlist.videos.length - 1,
-                  expression: "index < (playlist.videos.length - 1)"
-                }
-              ],
-              staticClass: "arrow",
-              attrs: { href: "#" },
-              on: {
-                click: function($event) {
-                  return _vm.changeIndex(_vm.index + 1)
-                }
-              }
-            },
-            [_c("i", { staticClass: "fas fa-arrow-right" })]
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-2 creator" }, [
-        _vm.playlist.creator
-          ? _c("span", [
-              _c("a", { attrs: { href: _vm.creatorProfileUrl } }, [
-                _c("i", { staticClass: "fas fa-user" }),
-                _vm._v(" Created by " + _vm._s(_vm.playlist.creator.name))
+        _c("div", { staticClass: " d-flex align-items-center mr-4" }, [
+          _vm.playlist.creator
+            ? _c("span", [
+                _c("a", { attrs: { href: _vm.creatorProfileUrl } }, [
+                  _vm._v("\n          Created by\n          "),
+                  _c("span", { staticClass: "pink" }, [
+                    _vm._v(_vm._s(_vm.playlist.creator.name))
+                  ])
+                ])
               ])
-            ])
-          : _vm._e()
-      ])
-    ])
+            : _vm._e()
+        ])
+      ]
+    )
   ])
 }
 var staticRenderFns = []

@@ -10815,7 +10815,6 @@ body {
   right: 0;
   bottom: 0;
   height: 60px;
-  padding: 10px;
 }
 
 .viewer .navigation div.col-md-2 {
@@ -10841,7 +10840,6 @@ body {
   height: 46px;
   background: black;
   display: inline-block;
-  margin-right: 10px;
   overflow: hidden;
   position: relative;
   border: 2px solid white;
@@ -10858,16 +10856,10 @@ body {
 
 .viewer .navigation a.arrow {
   font-size: 200%;
-  position: relative;
-  bottom: 4px;
 }
 
 .viewer .navigation a:hover {
   text-decoration: none;
-}
-
-.viewer .navigation .creator {
-  text-align: right;
 }
 
 .embed__aspect-ratio {
@@ -10934,5 +10926,13 @@ h6 {
 
 .loading-indicator {
   width: 50px;
+}
+
+.pink {
+  color: #ff0097;
+}
+
+.bg-pink {
+  background-color: #ff0097;
 }
 

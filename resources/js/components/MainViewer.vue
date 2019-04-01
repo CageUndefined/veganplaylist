@@ -34,18 +34,16 @@
     <div class="embed">
       <iframe id="vegan-player" class="embed__iframe" enablejsapi=true :src="currentVideo.src"></iframe>
     </div>
-    <div class="navigation row">
-      <div class="col-md-2">
-        <a v-if="editUrl" :href="editUrl"><i class="fas fa-edit"></i> Edit playlist</a>
-        <a v-if="deleteUrl" v-on:click="deletePlaylist(playlist)" href="#" class="ml-4"><i class="fas fa-trash"></i> Delete playlist</a>
+    <div class="navigation d-flex py-0 justify-content-between">
+      <div class="d-flex align-items-center">
+        <a v-if="editUrl" :href="editUrl" class="ml-4"><i class="fas fa-edit"></i> Edit playlist</a>
+        <a v-if="deleteUrl" v-on:click="deletePlaylist(playlist)" href="#" class="ml-4 text-danger">Delete playlist</a>
       </div>
-      <div class="container col-md-8 row">
-        <div class="col-md-1">
-          <a class="arrow" href="#" v-show="index > 0" v-on:click="changeIndex(index - 1)"><i class="fas fa-arrow-left"></i></a>
-        </div>
-        <div class="thumbnail-strip col-md-10">
+      <div class="d-flex">
+        <div class="thumbnail-strip d-flex align-items-center">
+          <a class="arrow mr-2" href="#" v-show="index > 0" v-on:click="changeIndex(index - 1)"><i class="fas fa-arrow-left"></i></a>
           <a
-            class="thumbnail"
+            class="thumbnail mr-2"
             href="#"
             v-for="(video, i) in pageVideos"
             v-bind:key="i"
@@ -55,8 +53,6 @@
           >
             <img :src="video.thumbnailSrc" alt>
           </a>
-        </div>
-        <div class="col-md-1 next">
           <a
             class="arrow"
             href="#"
@@ -65,9 +61,12 @@
           ><i class="fas fa-arrow-right"></i></a>
         </div>
       </div>
-      <div class="col-md-2 creator">
+      <div class=" d-flex align-items-center mr-4">
         <span v-if="playlist.creator">
-          <a :href="creatorProfileUrl"><i class="fas fa-user"></i> Created by {{ playlist.creator.name }}</a>
+          <a :href="creatorProfileUrl">
+            Created by
+            <span class="pink">{{ playlist.creator.name }}</span>
+          </a>
         </span>
       </div>
     </div>
