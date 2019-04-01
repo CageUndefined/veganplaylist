@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Playlist extends Model {
 
-    protected $visible = ['id', 'name', 'slug', 'creator', 'videos', 'views'];
+    protected $visible = ['id', 'name', 'slug', 'creator', 'videos', 'views', 'display_length'];
 
     protected $fillable = ['views', 'name', 'creator_id'];
 
