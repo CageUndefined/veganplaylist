@@ -173,6 +173,7 @@ const Playlist = {
                 window.location = '/playlist/' + response.data.slug
             })
             .catch(error => {
+                grecaptcha.reset()
                 $('.playlist-save')
                     .text('Create Playlist')
                     .removeClass('disabled')

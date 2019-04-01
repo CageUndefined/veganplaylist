@@ -39151,13 +39151,7 @@ var Playlist = {
     if (this.name) $('#playlist_name').val(this.name);else this.name = $('#playlist_name').val();
     if (window.location.href.match(/edit\/?$/)) this.action = 'edit';
     var sortablePlaylist = document.querySelector('#the_playlist ul.list-group');
-    if (sortablePlaylist) new sortablejs__WEBPACK_IMPORTED_MODULE_1___default.a(sortablePlaylist); // Build our playlist if it exists
-
-    $('#the_playlist ul.list-group li').each(function (i, el) {
-      var id_match = $(el).attr('id').match(/_(\d+)$/);
-      var li_id = id_match[1];
-      var li_title = $('#' + $(el).attr('id') + ' div.title').text();
-    });
+    if (sortablePlaylist) new sortablejs__WEBPACK_IMPORTED_MODULE_1___default.a(sortablePlaylist);
     this.bindEvents();
     return this;
   },
@@ -39270,6 +39264,7 @@ var Playlist = {
     axios.post('/playlist', data).then(function (response) {
       window.location = '/playlist/' + response.data.slug;
     }).catch(function (error) {
+      grecaptcha.reset();
       $('.playlist-save').text('Create Playlist').removeClass('disabled').attr('disabled', false);
       console.log(error);
       alert('Your playlist name may be taken already!');
@@ -39311,7 +39306,7 @@ $(function () {
 
   $('#name_input').on('input', debouncedFilter);
   $('input[type=checkbox]').on('change', debouncedFilter);
-  $('#labels_inactive, #labels_active').on('click', 'a', function (e) {
+  $('#labels_inactive, #labels_active').on('click', 'button', function (e) {
     var el = e.target;
     var nodeCp = $(el).clone();
     var targetGroup;
