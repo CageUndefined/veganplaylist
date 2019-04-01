@@ -35,3 +35,11 @@ button.badge {
     margin-left: 2px;
     font-size: 14px;
 }
+
+.playlist-list-group-item {
+    cursor: grab;
+
+    .remove {
+        cursor: pointer;
+    }
+}

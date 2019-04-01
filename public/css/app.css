@@ -10726,6 +10726,15 @@ button.badge {
   font-size: 14px;
 }
 
+.playlist-list-group-item {
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+
+.playlist-list-group-item .remove {
+  cursor: pointer;
+}
+
 html {
   height: 100%;
 }
