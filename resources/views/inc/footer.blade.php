@@ -13,16 +13,14 @@
                 </li>
             </ul>
 
-            @if (!isset($suppressFooter) || !$suppressFooter)
-                <ul class="navbar-nav ml-auto align-items-start align-items-md-center">
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="/contact">Suggest a video</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="/contact">Report a video</a>
-                    </li>
-                </ul>
-            @endif
+            <ul class="navbar-nav ml-auto align-items-start align-items-md-center">
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/contact">Suggest a video</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/contact">Report a video</a>
+                </li>
+            </ul>
         </div>
     </div>
 </footer>

@@ -6,5 +6,7 @@
     <main class="py-4">
         @yield('page_content')
     </main>
-    @include('inc.footer')
+    @if (!isset($suppressFooter) || !$suppressFooter)
+        @include('inc.footer')
+    @endif
 @endsection
