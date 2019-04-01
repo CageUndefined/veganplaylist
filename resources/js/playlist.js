@@ -34,15 +34,6 @@ const Playlist = {
         )
         if (sortablePlaylist) new Sortable(sortablePlaylist)
 
-        // Build our playlist if it exists
-        $('#the_playlist ul.list-group li').each(function(i, el) {
-            var id_match = $(el)
-                .attr('id')
-                .match(/_(\d+)$/)
-            var li_id = id_match[1]
-            var li_title = $('#' + $(el).attr('id') + ' div.title').text()
-        })
-
         this.bindEvents()
         return this
     },
@@ -235,7 +226,7 @@ $(() => {
 
     $('#name_input').on('input', debouncedFilter)
     $('input[type=checkbox]').on('change', debouncedFilter)
-    $('#labels_inactive, #labels_active').on('click', 'a', e => {
+    $('#labels_inactive, #labels_active').on('click', 'button', e => {
         const el = e.target
         const nodeCp = $(el).clone()
         let targetGroup
