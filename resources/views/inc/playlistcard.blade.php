@@ -25,8 +25,16 @@
         >
             <i class="fas fa-link"></i> Copy URL
         </button>
+        @if( $playlist->creator->is( Auth::user() ) )
+            <button
+                class="flex-fill py-0 py-sm-2 py-md-0 bg-transparent border-0"
+                onclick="document.location = '{{ route( 'playlist.edit', $playlist ) }}'"
+            >
+                <i class="fas fa-link"></i> Edit
+            </button>
+        @endif
         <div class="flex-fill py-0 py-sm-2 py-md-0">
-            Total: {{ $playlist->getDisplayLengthAttribute() }}
+            Total: <b>{{$playlist->display_length}}</b>
         </div>
     </div>
     <ul class="list-group">
