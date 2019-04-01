@@ -90,60 +90,61 @@ class PlaylistController extends Controller {
 
         $playlist->videos()->detach();
 
-		for ($i = 0; $i < count($ids); $i++) {
-			$id = $ids[$i];
-			$playlist->videos()->attach([
-				$id => ['order' => $i],
-			]);
-		}
-		return response()->json($playlist, 200);
-	}
+        for ($i = 0; $i < count($ids); $i++) {
+            $id = $ids[$i];
+            $playlist->videos()->attach([
+                $id => ['order' => $i],
+            ]);
+        }
+        return response()->json($playlist, 200);
+    }
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  \App\Playlist  $playlist
-	 * @return \Illuminate\Http\Response
-	 */
-	public function destroy(Playlist $playlist) {
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Playlist  $playlist
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Playlist $playlist) {
         $playlist->active = 0;
         $playlist->save();
-		return response()->json($playlist, 200);
-	}
+        return response()->json($playlist, 200);
+    }
 
-	public function show(Playlist $playlist, Video $video = null) {
+    public function show(Playlist $playlist, Video $video = null) {
         if (!$playlist->active) abort(404);
-		// Reference them once so it populates and shows up in the json, TODO: find a setting to make that happen auto
-		$playlist->creator;
+        // Reference them once so it populates and shows up in the json, TODO: find a setting to make that happen auto
+        $playlist->creator;
         $playlist->videos;
 
-		if (is_null($video)) {
-			$index = 0;
-		} else {
-			$index = $playlist->videos->search(function ($item, $key) use ($video) {return $item->is($video);});
-		}
+        if (is_null($video)) {
+            $index = 0;
+        } else {
+            $index = $playlist->videos->search(function ($item, $key) use ($video) {return $item->is($video);});
+        }
 
-		$editUrl = false;
-		$deleteUrl = false;
-		if ($playlist->creator) {
-			$creatorProfileUrl = route('profile', $playlist->creator);
-			if ($playlist->creator->is(Auth::user())) {
-				$editUrl   = route('playlist.edit',    $playlist);
-				$deleteUrl = route('playlist.destroy', $playlist);
-			}
-		} else {
-			$creatorProfileUrl = false;
-		}
+        $editUrl = false;
+        $deleteUrl = false;
+        if ($playlist->creator) {
+            $creatorProfileUrl = route('profile', $playlist->creator);
+            if ($playlist->creator->is(Auth::user())) {
+                $editUrl   = route('playlist.edit',    $playlist);
+                $deleteUrl = route('playlist.destroy', $playlist);
+            }
+        } else {
+            $creatorProfileUrl = false;
+        }
+        $playlist->display_length = $playlist->getDisplayLengthAttribute();
 
-		$playlist->views += 1;
-		Playlist::where('id', $playlist->id)->update(array('views' => $playlist->views));
+        $playlist->views += 1;
+        Playlist::where('id', $playlist->id)->update(array('views' => $playlist->views));
 
-		return view('viewer', [
+        return view('viewer', [
             'index'             => $index,
             'playlist'          => $playlist,
             'editUrl'           => $editUrl,
             'deleteUrl'         => $deleteUrl,
             'creatorProfileUrl' => $creatorProfileUrl
         ]);
-	}
+    }
 }
