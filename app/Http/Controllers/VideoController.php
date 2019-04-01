@@ -17,9 +17,9 @@ class VideoController extends Controller
 
         $query = Video::where( $where );
 
-        foreach( $tags as $tag ) {
-            $query->whereHas( 'tags', function( $query ) use ( $tag ) {
-                return $query->where( 'id', $tag );
+        if (!empty($tags)) {
+            $query->whereHas( 'tags', function( $query ) use ($tags) {
+                return $query->whereIn( 'id', $tags );
             });
         }
 
