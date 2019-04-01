@@ -21,7 +21,7 @@
                     <a class="nav-link text-white" href="/recent"><i class="mr-1 d-md-none d-lg-inline-block fas fa-history"></i>Recently added</a>
                 </li>
 				<li class="nav-item d-none d-lg-inline-block">
-                    <a class="nav-link text-white">&#8226;</a>
+                    <span class="nav-link text-white">&#8226;</span>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="/about"><i class="mr-1 d-md-none d-lg-inline-block fas fa-info-circle"></i>About</a>

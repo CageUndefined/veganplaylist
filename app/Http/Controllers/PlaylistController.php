@@ -145,7 +145,8 @@ class PlaylistController extends Controller {
             'playlist'          => $playlist,
             'editUrl'           => $editUrl,
             'deleteUrl'         => $deleteUrl,
-            'creatorProfileUrl' => $creatorProfileUrl
+            'creatorProfileUrl' => $creatorProfileUrl,
+            'suppressFooter'    => true
         ]);
     }
 }
