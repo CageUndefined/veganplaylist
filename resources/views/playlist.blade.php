@@ -95,7 +95,7 @@
                             </div>
                         </div>
                         <div class="card-body text-center">
-                            <p><em>Search for videos using the filter above</em></p>
+                            <p><em>Search for videos using the filter above, drag to re-order videos below!</em></p>
                             <ul class="list-group text-left">
                                 @foreach ($playlist_items as $video)
                                     @include('inc.videolistitem')
