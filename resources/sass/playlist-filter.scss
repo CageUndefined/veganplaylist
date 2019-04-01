@@ -4,6 +4,31 @@
     @media (min-width: 576px) and (max-width: 991px) { // sm and md breakpoint
         column-count: 2;
     }
+
+    .playlist-editor-thumbnail {
+        @extend .position-relative;
+        @extend .d-inline-block;
+
+        .play-button {
+            @extend .position-absolute;
+            @extend .w-100;
+
+            background: url('/img/play.svg') center 60% no-repeat;
+            background-size: 30%;
+            opacity: 0.6;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+
+        &:hover {
+            .play-button {
+                opacity: 0.8;
+            }
+        }
+    }
+
 }
 
 button.badge {

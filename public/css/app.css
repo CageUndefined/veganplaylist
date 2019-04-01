@@ -6961,7 +6961,8 @@ button.bg-dark:focus {
   display: inline !important;
 }
 
-.d-inline-block {
+.d-inline-block,
+.search-results .playlist-editor-thumbnail {
   display: inline-block !important;
 }
 
@@ -7990,11 +7991,13 @@ button.bg-dark:focus {
   position: static !important;
 }
 
-.position-relative {
+.position-relative,
+.search-results .playlist-editor-thumbnail {
   position: relative !important;
 }
 
-.position-absolute {
+.position-absolute,
+.search-results .playlist-editor-thumbnail .play-button {
   position: absolute !important;
 }
 
@@ -8081,7 +8084,8 @@ button.bg-dark:focus {
   width: 75% !important;
 }
 
-.w-100 {
+.w-100,
+.search-results .playlist-editor-thumbnail .play-button {
   width: 100% !important;
 }
 
@@ -10663,6 +10667,20 @@ a.text-dark:focus {
     -webkit-column-count: 2;
             column-count: 2;
   }
+}
+
+.search-results .playlist-editor-thumbnail .play-button {
+  background: url("/img/play.svg") center 60% no-repeat;
+  background-size: 30%;
+  opacity: 0.6;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.search-results .playlist-editor-thumbnail:hover .play-button {
+  opacity: 0.8;
 }
 
 button.badge {
