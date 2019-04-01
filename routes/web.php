@@ -23,7 +23,6 @@ Route::get('/recent', 'HomeController@recent')->name('recent');
 Route::get('/profile/{user}', 'UserProfileController@index')->name('profile');
 
 Route::view('/about', 'about');
-Route::view('/contact', 'contact');
 
 Route::get('/admin', 'AdminController@dashboard');
 Route::get('/admin/login', 'AdminController@login');
