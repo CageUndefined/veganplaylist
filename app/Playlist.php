@@ -56,6 +56,10 @@ class Playlist extends Model {
     }
 
     public function getDisplayLengthAttribute() {
-        return gmdate("H:i:s", $this->display_duration);
+        if( $this->display_duration < 3600 )
+            return ltrim( gmdate("i:s", $this->display_duration), '0' );
+            // LOLOL PHP DATE FORMAT STILL HAS NO MINUTES WITHOUT LEADING ZEROS
+        else
+            return gmdate("G:i:s", $this->display_duration);
     }
 }

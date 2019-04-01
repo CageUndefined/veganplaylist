@@ -23,9 +23,9 @@
             class="flex-fill py-0 py-sm-2 py-md-0 bg-transparent border-0 copy-playlist-url-btn"
             data-clipboard-text="{{$playlist->getShortUrl()}}"
         >
-            <i class="fas fa-link"></i> Copy URL
+            <i class="fas fa-user-edit"></i> Copy URL
         </button>
-        @if( $playlist->creator->is( Auth::user() ) )
+        @if( $playlist->creator && $playlist->creator->is( Auth::user() ) )
             <button
                 class="flex-fill py-0 py-sm-2 py-md-0 bg-transparent border-0"
                 onclick="document.location = '{{ route( 'playlist.edit', $playlist ) }}'"
