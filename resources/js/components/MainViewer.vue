@@ -119,15 +119,16 @@ export default {
       this.changeIndex(i);
     },
     deletePlaylist: function(playlist) {
-        console.log(playlist);
-        axios
-            .delete('/playlist/' + playlist.slug)
-            .then(response => {
-                window.location = '/'
-            })
-            .catch(error => {
-                console.log(error)
-            })
+        if (confirm('Are you sure you want to delete this playlist?')) {
+            axios
+                .delete('/playlist/' + playlist.slug)
+                .then(response => {
+                    window.location = '/'
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        }
     }
   },
   created: function() {

@@ -1883,12 +1883,13 @@ __webpack_require__.r(__webpack_exports__);
       this.changeIndex(i);
     },
     deletePlaylist: function deletePlaylist(playlist) {
-      console.log(playlist);
-      axios.delete('/playlist/' + playlist.slug).then(function (response) {
-        window.location = '/';
-      }).catch(function (error) {
-        console.log(error);
-      });
+      if (confirm('Are you sure you want to delete this playlist?')) {
+        axios.delete('/playlist/' + playlist.slug).then(function (response) {
+          window.location = '/';
+        }).catch(function (error) {
+          console.log(error);
+        });
+      }
     }
   },
   created: function created() {
