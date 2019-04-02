@@ -15,7 +15,7 @@
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto align-items-start align-items-md-center">
 			<li class="nav-item">
-                    <a class="nav-link" href="/featured" style="color:#fff;"><i class="mr-1 d-md-none d-lg-inline-block fas fa-star"></i>Featured playlists</a>
+                    <a class="nav-link text-white" href="/featured"><i class="mr-1 d-md-none d-lg-inline-block fas fa-star"></i>Featured playlists</a>
                 </li>
 				<li class="nav-item">
                     <a class="nav-link text-white" href="/recent"><i class="mr-1 d-md-none d-lg-inline-block fas fa-history"></i>Recently added</a>
@@ -49,7 +49,7 @@
                         </li>
                     @endif
                 @else
-                    <li class="nav-item dropdown" style="color:#fff;">
+                    <li class="nav-item dropdown text-white">
                         <a id="navbarDropdown" class="nav-link text-white dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>

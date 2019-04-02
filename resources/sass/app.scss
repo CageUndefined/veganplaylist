@@ -28,11 +28,17 @@ body {
     @extend .navbar-dark;
     @extend .navbar-expand-md;
     @extend .navbar;
+    @extend .navbar-expand;
     @extend .position-absolute;
 
     left: 0;
     right: 0;
     bottom: 0;
+    line-height: 1.3em;
+
+    @media (max-width: 576px) {
+        // position: static !important;
+    }
 }
 
 #sidebar {
