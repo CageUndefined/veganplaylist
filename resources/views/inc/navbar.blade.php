@@ -14,20 +14,20 @@
 
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto align-items-start align-items-md-center">
-			<li class="nav-item">
-                    <a class="nav-link text-white" href="/featured"><i class="mr-1 d-md-none d-lg-inline-block fas fa-star"></i>Featured playlists</a>
+            <li class="nav-item">
+                    <a class="nav-link text-white" href="/featured"><i class="mr-1 d-md-none d-xl-inline-block fas fa-star"></i>Featured playlists</a>
                 </li>
-				<li class="nav-item">
-                    <a class="nav-link text-white" href="/recent"><i class="mr-1 d-md-none d-lg-inline-block fas fa-history"></i>Recently added</a>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/recent"><i class="mr-1 d-md-none d-xl-inline-block fas fa-history"></i>Recently added</a>
                 </li>
-				<li class="nav-item d-none d-lg-inline-block">
+                <li class="nav-item d-none d-xl-inline-block">
                     <span class="nav-link text-white">&#8226;</span>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="/about"><i class="mr-1 d-md-none d-lg-inline-block fas fa-info-circle"></i>About</a>
+                    <a class="nav-link text-white" href="/about"><i class="mr-1 d-md-none d-xl-inline-block fas fa-info-circle"></i>About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" target=_blank href="https://youaretheirvoice.com/contact?veganplaylist"><i class="mr-1 d-md-none d-lg-inline-block fas fa-envelope"></i>Contact</a>
+                    <a class="nav-link text-white" target=_blank href="https://youaretheirvoice.com/contact?veganplaylist"><i class="mr-1 d-md-none d-xl-inline-block fas fa-envelope"></i>Contact</a>
                 </li>
                 <li class="nav-item mx-lg-3">
                     <a
@@ -35,7 +35,7 @@
                         href="https://www.patreon.com/youaretheirvoice"
                         target="_blank"
                     >
-                        <i class="mr-1 d-md-none d-lg-inline-block fas fa-hand-holding-heart"></i>Donate
+                        <i class="mr-1 d-md-none d-xl-inline-block fas fa-hand-holding-heart"></i>Donate
                     </a>
                 </li>
                 <!-- Authentication Links -->
@@ -58,7 +58,7 @@
                             <a class="dropdown-item" href="{{ route('profile', Auth::user() ) }}">
                                 My Playlists
                             </a>
-							<a class="dropdown-item" href="{{ route('settings.index') }}">
+                            <a class="dropdown-item" href="{{ route('settings.index') }}">
                                 Settings
                             </a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
