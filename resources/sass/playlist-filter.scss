@@ -8,6 +8,7 @@
     .playlist-editor-thumbnail {
         @extend .position-relative;
         @extend .d-inline-block;
+        @extend .w-100;
 
         .play-button {
             @extend .position-absolute;
