@@ -42,7 +42,7 @@ class PlaylistController extends Controller {
      */
     public function store(Request $request) {
         $request->validate([
-            'name' => 'required|unique:playlists',
+            'name' => 'required|unique:playlists|max:42',
             'video_ids' => 'required|min:1',
             'g-recaptcha-response' => 'required|captcha',
         ]);
@@ -85,6 +85,12 @@ class PlaylistController extends Controller {
      */
     public function update(Request $request, Playlist $playlist) {
         if (is_null($playlist->creator) or !$playlist->creator->is(Auth::user())) abort(403);
+
+        $request->validate([
+            'name' => 'required|unique:playlists|max:42',
+            'video_ids' => 'required|min:1',
+        ]);
+
         $name = $request->input('name');
         $ids  = $request->input('video_ids');
 

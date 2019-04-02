@@ -89,7 +89,8 @@
                                        class="form-control"
                                        placeholder="Playlist Name"
                                        id="playlist_name"
-                                       value="{{ $playlist_name }}">
+                                       value="{{ $playlist_name }}"
+                                       maxlength="42">
                             </div>
                         </div>
                         <div class="card-body text-center">
