@@ -39181,7 +39181,6 @@ var Playlist = {
     $('#the_playlist ul.list-group').on('click', '.remove', function () {
       var id = $(this).data('id');
       Playlist.removeVideo(id);
-      $('#list_item_' + id).fadeOut().remove();
       return false;
     });
     $('.playlist-save').on('click', function () {
@@ -39245,7 +39244,10 @@ var Playlist = {
   },
   removeVideo: function removeVideo(id) {
     $('#card_' + id).show();
-    if (!Playlist.getVideoIds()) $('.playlist-save').addClass('disabled').attr('disabled', true);
+    $('#list_item_' + id).fadeOut(function () {
+      $(this).remove();
+      if (!Playlist.getVideoIds().length) $('.playlist-save').addClass('disabled').attr('disabled', true);
+    });
   },
   createPlaylist: function createPlaylist() {
     var recaptchaResponse = grecaptcha.getResponse();

@@ -43,6 +43,7 @@ class PlaylistController extends Controller {
     public function store(Request $request) {
         $request->validate([
             'name' => 'required|unique:playlists',
+            'video_ids' => 'required|min:1',
             'g-recaptcha-response' => 'required|captcha',
         ]);
 

@@ -68,9 +68,6 @@ const Playlist = {
             const id = $(this).data('id')
 
             Playlist.removeVideo(id)
-            $('#list_item_' + id)
-                .fadeOut()
-                .remove()
             return false
         })
         $('.playlist-save').on('click', function() {
@@ -133,6 +130,7 @@ const Playlist = {
                 const list = $('#the_playlist .list-group')
                 list.append(li)
                 $('#card_' + id).fadeOut()
+
                 $('.playlist-save')
                     .removeClass('disabled')
                     .attr('disabled', false)
@@ -144,10 +142,13 @@ const Playlist = {
 
     removeVideo(id) {
         $('#card_' + id).show()
-        if (!Playlist.getVideoIds())
-            $('.playlist-save')
-                .addClass('disabled')
-                .attr('disabled', true)
+        $('#list_item_' + id).fadeOut(function() {
+            $(this).remove()
+            if (!Playlist.getVideoIds().length)
+                $('.playlist-save')
+                    .addClass('disabled')
+                    .attr('disabled', true)
+        })
     },
 
     createPlaylist() {
