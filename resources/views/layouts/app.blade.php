@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Spread the compassionate Vegan message with our curated playlists, or create your own from our huge video library.">
     <meta name="keywords" content="vegan, videos, playlists, activism, activist, hacktivists, veganism, share, youtube">
+
+@section('richmeta')
     <meta property="og:url" content="{{ url('/') }}">
     <meta property="og:image" content="https://i.imgur.com/Hfkiumn.png">
     <meta property="og:description" content="Spread the compassionate Vegan message with our curated playlists, or create your own from our huge video library.">
@@ -19,10 +21,10 @@
     <meta name="twitter:title" content="Vegan Playlist | Find and share inspirational Vegan videos">
     <meta name="twitter:description" content="Spread the compassionate Vegan message with our curated playlists, or create your own from our huge video library.">
     <meta name="twitter:image" content="https://i.imgur.com/Hfkiumn.png">
+    @show
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-@yield('head')
 
     <title>Vegan Playlist | @yield('title')</title>
 
@@ -30,7 +32,7 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <script type="text/javascript" src="//platform-api.sharethis.com/js/sharethis.js#property=5c8fba2e1c07550011f24f3c&product=custom-share-buttons"></script>
     {!! NoCaptcha::renderJs() !!}
-    
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">

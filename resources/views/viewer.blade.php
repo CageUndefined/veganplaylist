@@ -2,14 +2,23 @@
 
 @section('title', $playlist->name)
 
-@section('head')
+@section('richmeta')
+    <meta itemprop="description" content="Watch &quot;{{ $playlist->name }}&quot; and many other playlists of vegan videos on VeganPlaylist.org!">
+    <meta itemprop="image" content="{{ $playlist->name }}">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:url" content="{{ url('/') }}">
+    <meta name="twitter:title" content="{{ $playlist->name }}">
+    <meta name="twitter:description" content="Watch &quot;{{ $playlist->name }}&quot; and many other playlists of vegan videos on VeganPlaylist.org!">
+    <meta name="twitter:image" content="{{ $playlist->videos[0]->getThumbnailSrcAttribute() }}">
     <meta property="og:title" content="{{ $playlist->name }}" />
+    <meta property="og:name" content="{{ $playlist->name }}" />
     <meta property="og:type" content="video.other" />
     <meta property="og:site_name" content="Vegan Playlist" />
     <meta property="og:url" content="{{ route( 'playlist.show', $playlist ) }}" />
     <meta property="og:image" content="{{ $playlist->videos[0]->getThumbnailSrcAttribute() }}" />
     <meta property="og:image:alt" content="{{ $playlist->videos[0]->title }}" />
-    <meta property="og:description" content="Watch {{ $playlist->name }} and many other playlists of vegan videos on VeganPlaylist.org!" />
+    <meta property="og:description" content="Watch &quot;{{ $playlist->name }}&quot; and many other playlists of vegan videos on VeganPlaylist.org!" />
+    <meta property="og:see_also" content="{{ url('/') }}">
 @endsection
 
 @section('page_content')
