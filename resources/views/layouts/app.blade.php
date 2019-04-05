@@ -48,5 +48,6 @@
     <div id="app">
         @yield('content')
     </div>
+    <script type="text/javascript" src="//downloads.mailchimp.com/js/signup-forms/popup/unique-methods/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script><script type="text/javascript">window.dojoRequire(["mojo/signup-forms/Loader"], function(L) { L.start({"baseUrl":"mc.us20.list-manage.com","uuid":"0baba35be8f6397f7ac1066f1","lid":"5fd11d4221","uniqueMethods":true}) })</script>
 </body>
 </html>
