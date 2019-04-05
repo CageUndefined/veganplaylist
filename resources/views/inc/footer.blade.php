@@ -15,7 +15,13 @@
                     <span class="nav-link text-white">&#8226;</span>
                 </li>
 				<li class="nav-item d-none d-lg-inline-block">
-                    <a class="nav-link text-white" href="https://www.patreon.com/youaretheirvoice" target="_blank">Please consider <span class="pink">supporting this project</span> if you enjoy it!</a>
+                    <a class="nav-link text-white" href="https://www.patreon.com/youaretheirvoice" target="_blank">Please consider <span class="pink">supporting our Patreon</span></a>
+                </li>
+				<li class="nav-item d-none d-lg-inline-block">
+                    <span class="nav-link text-white">&#8226;</span>
+                </li>
+				<li class="nav-item d-none d-lg-inline-block">
+                    <a class="nav-link text-white" href="https://youaretheirvoice.com/subscribe" target="_blank">Subscribe to our <span class="pink">Newsletter</span></a>
                 </li>
             </ul>
 
@@ -30,4 +36,3 @@
         </div>
     </div>
 </footer>
-
