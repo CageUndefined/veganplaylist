@@ -21,6 +21,7 @@ body {
 
 .navbar-laravel {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+    z-index: 2;
 }
 
 .main-footer {
@@ -35,18 +36,6 @@ body {
     right: 0;
     bottom: 0;
     line-height: 1.3em;
-
-    @media (max-width: 576px) {
-        // position: static !important;
-    }
-}
-
-#sidebar {
-    width: 250px;
-    position: fixed;
-    padding-left: 30px;
-    padding-top: 20px;
-    left: 0;
 }
 
 .viewer {
@@ -138,7 +127,7 @@ body {
             }
 
             &:hover {
-            text-decoration: none;
+                text-decoration: none;
             }
         }
     }
