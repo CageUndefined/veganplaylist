@@ -7,11 +7,11 @@
             <h5><i class="fas fa-play-circle"></i> {{ playlist.name }}: {{ currentVideo.title }}</h5>
           </div>
           <div class="stats col-md-4 row">
-          	<div class="col-md-3">
-          		playlist
-          		<br>
-          		{{ (index + 1) }} / {{ playlist.videos.length }}
-          	</div>
+              <div class="col-md-3">
+                  playlist
+                  <br>
+                  {{ (index + 1) }} / {{ playlist.videos.length }}
+              </div>
             <div class="col-md-3">
               views
               <br>
@@ -39,9 +39,11 @@
         <a v-if="editUrl" :href="editUrl" class="ml-4"><i class="fas fa-edit"></i> Edit playlist</a>
         <a v-if="deleteUrl" v-on:click="deletePlaylist(playlist)" href="#" class="ml-4 text-danger">Delete playlist</a>
       </div>
-      <div class="d-flex">
-        <div class="thumbnail-strip d-flex align-items-center">
-          <a class="arrow mr-2" href="#" v-show="index > 0" v-on:click="changeIndex(index - 1)"><i class="fas fa-arrow-left"></i></a>
+      <div class="d-flex align-items-center mx-2" v-show="index > 0">
+        <a class="arrow" href="#" v-on:click="changeIndex(index - 1)"><i class="fas fa-arrow-left"></i></a>
+      </div>
+      <div class="d-flex overflow-auto">
+        <div class="d-flex align-items-center justify-content-center">
           <a
             class="thumbnail mr-2"
             href="#"
@@ -53,15 +55,12 @@
           >
             <img :src="video.thumbnailSrc" alt>
           </a>
-          <a
-            class="arrow"
-            href="#"
-            v-show="index < (playlist.videos.length - 1)"
-            v-on:click="changeIndex(index + 1)"
-          ><i class="fas fa-arrow-right"></i></a>
         </div>
       </div>
-      <div class=" d-flex align-items-center mr-4">
+      <div class="d-flex align-items-center mx-2" v-show="index < (playlist.videos.length - 1)">
+        <a class="arrow" href="#" v-on:click="changeIndex(index + 1)"><i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="d-none d-sm-flex align-items-center mr-4">
         <span v-if="playlist.creator">
           <a :href="creatorProfileUrl">
             Created by
@@ -111,7 +110,7 @@ export default {
       this.init();
     },
     moveOn: function() {
-    	if (this.index < this.playlist.videos.length) this.changeIndex(this.index + 1);
+        if (this.index < this.playlist.videos.length) this.changeIndex(this.index + 1);
     },
     selectVideo: function(pageVideoIndex) {
       var i = this.playlist.videos.indexOf(this.pageVideos[pageVideoIndex]);
