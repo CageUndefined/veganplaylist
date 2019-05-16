@@ -32,3 +32,7 @@ tags
 
 ### jetbrains ide
 .idea/
+
+# Compiled files
+/public/js
+/public/css
