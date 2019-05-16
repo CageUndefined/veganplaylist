@@ -62,6 +62,27 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
+						
+						
+
+							<div class="form-group row">
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right"></label>
+                            <div class="col-md-6">
+							<div class="form-check">
+							<input type="checkbox" class="form-check-input" name="newslettercheck">
+							<label class="form-check-label" for="newslettercheck">Subscribe to our vegan newsletter!</label>
+							</div>
+                            </div>
+							</div>
+							
+							
+
+
+
+
+
+						
+
 
                         <div class="form-group{{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }} row">
                             <label class="col-md-4 col-form-label text-md-right">Confirm you are not a robot</label>
