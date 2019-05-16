@@ -67,7 +67,7 @@ class RegisterController extends Controller
 		
 		//API Details
 $apiKey = '1a0476e3d1931324ca7e43c0995e2434-us20';
-$listId = '15c60ea1f4';
+$listId = '5fd11d4221';
 
 
 	if (isset($data['newslettercheck'])) {
