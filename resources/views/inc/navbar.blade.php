@@ -32,7 +32,7 @@
                 <li class="nav-item mx-lg-3">
                     <a
                         class="nav-link text-white btn text-left rounded-pill px-3 mr-3 mr-md-0 font-bold bg-pink"
-                        href="https://www.patreon.com/youaretheirvoice"
+                        href="https://www.patreon.com/veganhacktivists"
                         target="_blank"
                     >
                         <i class="mr-1 d-md-none d-xl-inline-block fas fa-hand-holding-heart"></i>Donate

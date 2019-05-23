@@ -22,7 +22,7 @@
 			   If you create your own playlist and share it with your friends, family, or the world, we'll collect anonymous data for you on that list to let you know what sort of impact you're making! All of our videos are pre-approved by the team, if you have suggestions for other videos to be added, please <a target=_blank href="https://youaretheirvoice.com/contact?veganplaylist">contact us</a> here!
 			   <br><br>
 			   <b style="font-size: 16px;">Thank you so much for visiting VeganPlaylist.org! Can you help us?</b><br><br>
-			   Please spread the word by sharing our page below! If you're feeling extra generous, please <a href="https://www.patreon.com/youaretheirvoice" target="_blank">check out our Patreon here</a> to support this project and other ones to come! All donations are used to fund future vegan projects (such as <a href="https://veganactivism.org" target="_blank">VeganActivism.org</a>), we'd be beyond grateful for even the smallest of contributions. Thank you!
+			   Please spread the word by sharing our page below! If you're feeling extra generous, please <a href="https://www.patreon.com/veganhacktivists" target="_blank">check out our Patreon here</a> to support this project and other ones to come! All donations are used to fund future vegan projects (such as <a href="https://veganactivism.org" target="_blank">VeganActivism.org</a>), we'd be beyond grateful for even the smallest of contributions. Thank you!
 			   <br><br>
 			   <div data-url="{{ URL::to('/') }}" data-title="Vegan Playlist" class="sharethis-inline-share-buttons"></div>
             </div>
