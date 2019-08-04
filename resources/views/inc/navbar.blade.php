@@ -27,7 +27,7 @@
                     <a class="nav-link text-white" href="/about"><i class="mr-1 d-md-none d-xl-inline-block fas fa-info-circle"></i>About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" target=_blank href="https://youaretheirvoice.com/contact?veganplaylist"><i class="mr-1 d-md-none d-xl-inline-block fas fa-envelope"></i>Contact</a>
+                    <a class="nav-link text-white" target=_blank href="https://veganhacktivists.org/contact?veganplaylist"><i class="mr-1 d-md-none d-xl-inline-block fas fa-envelope"></i>Contact</a>
                 </li>
                 <li class="nav-item mx-lg-3">
                     <a

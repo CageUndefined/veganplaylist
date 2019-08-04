@@ -15,16 +15,16 @@
                     <span class="nav-link text-white">&#8226;</span>
                 </li>
 				<li class="nav-item d-none d-lg-inline-block">
-                    <a class="nav-link text-white" href="https://youaretheirvoice.com/subscribe" target="_blank">Subscribe to our <span class="pink">Newsletter</span></a>
+                    <a class="nav-link text-white" href="https://veganhacktivists.org/subscribe" target="_blank">Subscribe to our <span class="pink">Newsletter</span></a>
                 </li>
             </ul>
 
             <ul class="navbar-nav ml-auto align-items-start align-items-md-center d-none d-sm-flex">
                 <li class="nav-item">
-                    <a class="nav-link text-white" target=_blank href="https://youaretheirvoice.com/contact?veganplaylist">Suggest a video</a>
+                    <a class="nav-link text-white" target=_blank href="https://veganhacktivists.org/contact?veganplaylist">Suggest a video</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" target=_blank href="https://youaretheirvoice.com/contact?veganplaylist">Report a video</a>
+                    <a class="nav-link text-white" target=_blank href="https://veganhacktivists.org/contact?veganplaylist">Report a video</a>
                 </li>
             </ul>
         </div>
