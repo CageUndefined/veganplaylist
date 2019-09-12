@@ -87,7 +87,7 @@ class PlaylistController extends Controller {
         if (is_null($playlist->creator) or !$playlist->creator->is(Auth::user())) abort(403);
 
         $request->validate([
-            'name' => 'required|unique:playlists|max:42',
+            'name' => 'required|max:42',
             'video_ids' => 'required|min:1',
         ]);
 

@@ -6,6 +6,7 @@
     $edit_action = $action = ucfirst($match[0]) . ' Playlist';
     $disabled = 'disabled';
     $playlist_name = isset($playlist) ? $playlist->name : '';
+    $playlist_slug = isset($playlist) ? $playlist->slug : '';
     $playlist_items = [];
     $isEdit = $action == 'Edit Playlist';
     if ($isEdit) {
@@ -91,6 +92,11 @@
                                        id="playlist_name"
                                        value="{{ $playlist_name }}"
                                        maxlength="42">
+
+                                <input type="hidden"
+                                    id="playlist_slug"
+                                    value="{{ $playlist_slug }}"
+                                >
                             </div>
                         </div>
                         <div class="card-body text-center">
