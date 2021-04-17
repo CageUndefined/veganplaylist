@@ -1,75 +1,15 @@
 # Vegan Playlist
 
-## About Laravel
+[![](https://img.shields.io/badge/community-discord-black?style=flat-square&labelColor=000&color=7289da)](https://discord.com/channels/829144774929940550/829184786530304040)
+[![](https://img.shields.io/badge/sponsor-patreon-black?style=flat-square&labelColor=000&color=ff424d)](http://patreon.com/veganhacktivists)
+[![](https://img.shields.io/badge/trello-vh--playground-black?style=flat-square&labelColor=000&color=026aa7)](https://trello.com/b/J3JW43mY/vh-playground)
+[![](https://img.shields.io/badge/website-veganplaylist.org-black?style=flat-square&labelColor=000&color=ff0097)](http://veganplaylist.org)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Find and share inspirational Vegan videos! Spread the Vegan message with our
+curated playlists, or create your own from our huge video library. Quickly
+create custom playlists for your friends and family that would connect with
+them, or discover videos that help your activism!
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Setup
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost you and your team's skills by digging into our comprehensive video library.
-
-## Set Up
-
-### Linux/Ubuntu
-
-Step 1. Clone the repository.
-
-Step 2. Install php and required extensions:
-
-```console
-$ sudo apt-get install php7.2-dom php7.2-zip php7.2-mbstring php7.2-zip
-```
-
-Step 3: Install composer:
-
-Follow the instructions at [getcomposer.org](https://getcomposer.org/download/).
-
-Step 4. Install local dependencies:
-
-```console
-$ php composer.phar install
-```
-
-Step 5. Configure laravel:
-
-```console
-$ cp .env.example .env
-$ # make any necessary changes to .env, e.g. database info
-$ php artisan key:generate
-```
-
-Step 6. Small fix to run the development server (in `server.php`)
-
-```php
-// replace the final line with this
-require_once __DIR__.'/public/index.php';
-```
-
-Note: do not commit this change! The current code is required as a hack for the hosting situation.
-
-Step 7. Run the development server:
-
-```console
-$ php artisan serve
-Laravel development server started: <http://127.0.0.1:8000>
-```
-
-Navigate to [localhost](http://127.0.0.1:8000) and get started!
-
-Note: you may also configure the local site to run using Apache or nginx.
-
-## License
-
-All rights reserved.
+See the [Vegan Hacktivists documentation](https://github.com/veganhacktivists/documentation).
